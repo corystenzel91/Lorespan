@@ -1,0 +1,704 @@
+{
+  "version": "8.5.4",
+  "checks": [
+    {
+      "name": "runtime version 8.5.4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "service worker cache 8.5.4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "service worker registration 8.5.4",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "no Open Book UI label",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "fresh action is Begin Story",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "library order has exactly 10 books",
+      "passed": true,
+      "detail": [
+        "academy",
+        "hero",
+        "beastbound",
+        "pirate",
+        "guild",
+        "starfall",
+        "moonwake",
+        "emberwake",
+        "ironhaven",
+        "veilwood"
+      ]
+    },
+    {
+      "name": "all 10 cover mappings present",
+      "passed": true,
+      "detail": {
+        "academy": "cover-vantheir-clean-v852.webp",
+        "hero": "cover-hero-academia-v852.webp",
+        "beastbound": "cover-beastbound-clean-v852.webp",
+        "pirate": "cover-tides-clean-v852.webp",
+        "guild": "cover-guild-clean-v852.webp",
+        "starfall": "cover-starfall-v852.webp",
+        "moonwake": "cover-moonwake-v852.webp",
+        "emberwake": "cover-emberwake-v852.webp",
+        "ironhaven": "cover-ironhaven-v852.webp",
+        "veilwood": "cover-veilwood-v852.webp"
+      }
+    },
+    {
+      "name": "all cover mappings unique",
+      "passed": true,
+      "detail": [
+        "cover-vantheir-clean-v852.webp",
+        "cover-hero-academia-v852.webp",
+        "cover-beastbound-clean-v852.webp",
+        "cover-tides-clean-v852.webp",
+        "cover-guild-clean-v852.webp",
+        "cover-starfall-v852.webp",
+        "cover-moonwake-v852.webp",
+        "cover-emberwake-v852.webp",
+        "cover-ironhaven-v852.webp",
+        "cover-veilwood-v852.webp"
+      ]
+    },
+    {
+      "name": "all 10 books pass forward/return/setup/offline mapping",
+      "passed": true,
+      "detail": [
+        {
+          "book": "academy",
+          "cover": "cover-vantheir-clean-v852.webp",
+          "exists": true,
+          "decodable": true,
+          "size": [
+            877,
+            1390
+          ],
+          "setup_copy": true,
+          "effect": true,
+          "forward_cover_route": true,
+          "return_cover_route": true,
+          "offline_cached": true,
+          "passed": true
+        },
+        {
+          "book": "hero",
+          "cover": "cover-hero-academia-v852.webp",
+          "exists": true,
+          "decodable": true,
+          "size": [
+            900,
+            1200
+          ],
+          "setup_copy": true,
+          "effect": true,
+          "forward_cover_route": true,
+          "return_cover_route": true,
+          "offline_cached": true,
+          "passed": true
+        },
+        {
+          "book": "beastbound",
+          "cover": "cover-beastbound-clean-v852.webp",
+          "exists": true,
+          "decodable": true,
+          "size": [
+            877,
+            1390
+          ],
+          "setup_copy": true,
+          "effect": true,
+          "forward_cover_route": true,
+          "return_cover_route": true,
+          "offline_cached": true,
+          "passed": true
+        },
+        {
+          "book": "pirate",
+          "cover": "cover-tides-clean-v852.webp",
+          "exists": true,
+          "decodable": true,
+          "size": [
+            877,
+            1390
+          ],
+          "setup_copy": true,
+          "effect": true,
+          "forward_cover_route": true,
+          "return_cover_route": true,
+          "offline_cached": true,
+          "passed": true
+        },
+        {
+          "book": "guild",
+          "cover": "cover-guild-clean-v852.webp",
+          "exists": true,
+          "decodable": true,
+          "size": [
+            877,
+            1390
+          ],
+          "setup_copy": true,
+          "effect": true,
+          "forward_cover_route": true,
+          "return_cover_route": true,
+          "offline_cached": true,
+          "passed": true
+        },
+        {
+          "book": "starfall",
+          "cover": "cover-starfall-v852.webp",
+          "exists": true,
+          "decodable": true,
+          "size": [
+            877,
+            1390
+          ],
+          "setup_copy": true,
+          "effect": true,
+          "forward_cover_route": true,
+          "return_cover_route": true,
+          "offline_cached": true,
+          "passed": true
+        },
+        {
+          "book": "moonwake",
+          "cover": "cover-moonwake-v852.webp",
+          "exists": true,
+          "decodable": true,
+          "size": [
+            877,
+            1390
+          ],
+          "setup_copy": true,
+          "effect": true,
+          "forward_cover_route": true,
+          "return_cover_route": true,
+          "offline_cached": true,
+          "passed": true
+        },
+        {
+          "book": "emberwake",
+          "cover": "cover-emberwake-v852.webp",
+          "exists": true,
+          "decodable": true,
+          "size": [
+            877,
+            1390
+          ],
+          "setup_copy": true,
+          "effect": true,
+          "forward_cover_route": true,
+          "return_cover_route": true,
+          "offline_cached": true,
+          "passed": true
+        },
+        {
+          "book": "ironhaven",
+          "cover": "cover-ironhaven-v852.webp",
+          "exists": true,
+          "decodable": true,
+          "size": [
+            877,
+            1390
+          ],
+          "setup_copy": true,
+          "effect": true,
+          "forward_cover_route": true,
+          "return_cover_route": true,
+          "offline_cached": true,
+          "passed": true
+        },
+        {
+          "book": "veilwood",
+          "cover": "cover-veilwood-v852.webp",
+          "exists": true,
+          "decodable": true,
+          "size": [
+            877,
+            1390
+          ],
+          "setup_copy": true,
+          "effect": true,
+          "forward_cover_route": true,
+          "return_cover_route": true,
+          "offline_cached": true,
+          "passed": true
+        }
+      ]
+    },
+    {
+      "name": "10 valid shelf hotspots",
+      "passed": true,
+      "detail": {
+        "academy": {
+          "x": 4.2,
+          "y": 5.0,
+          "w": 18.7,
+          "h": 24.8,
+          "r": 0.0
+        },
+        "hero": {
+          "x": 23.5,
+          "y": 5.7,
+          "w": 18.1,
+          "h": 23.8,
+          "r": 0.0
+        },
+        "veilwood": {
+          "x": 41.7,
+          "y": 4.1,
+          "w": 22.7,
+          "h": 26.8,
+          "r": 4.0
+        },
+        "beastbound": {
+          "x": 66.2,
+          "y": 5.2,
+          "w": 19.2,
+          "h": 24.4,
+          "r": 0.0
+        },
+        "moonwake": {
+          "x": 5.0,
+          "y": 33.1,
+          "w": 20.6,
+          "h": 22.2,
+          "r": 0.0
+        },
+        "pirate": {
+          "x": 25.8,
+          "y": 33.5,
+          "w": 17.2,
+          "h": 22.1,
+          "r": 0.0
+        },
+        "starfall": {
+          "x": 42.9,
+          "y": 32.0,
+          "w": 21.5,
+          "h": 23.9,
+          "r": 8.0
+        },
+        "guild": {
+          "x": 46.0,
+          "y": 70.5,
+          "w": 12.6,
+          "h": 19.5,
+          "r": -5.0
+        },
+        "emberwake": {
+          "x": 58.1,
+          "y": 70.4,
+          "w": 12.8,
+          "h": 19.7,
+          "r": 0.0
+        },
+        "ironhaven": {
+          "x": 70.5,
+          "y": 70.5,
+          "w": 12.8,
+          "h": 19.8,
+          "r": 0.0
+        }
+      }
+    },
+    {
+      "name": "versioned shelf asset exists",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "versioned room asset exists",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "shelf image decodes",
+      "passed": true,
+      "detail": [
+        814,
+        1261
+      ]
+    },
+    {
+      "name": "room image decodes",
+      "passed": true,
+      "detail": [
+        941,
+        535
+      ]
+    },
+    {
+      "name": "embedded shelf fallback matches clean shelf exactly",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "forward animation function",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "return animation function",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "selected cover assigned to flight",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "selected cover assigned to opening cover",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "opening skip control",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "return skip control",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "animation cancellation cleanup",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "first page manual continuation",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "manifest start_url relative",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "manifest scope relative",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "manifest standalone",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "manifest has 4 icons",
+      "passed": true,
+      "detail": [
+        {
+          "src": "magic-book-192-v2.png",
+          "sizes": "192x192",
+          "type": "image/png",
+          "purpose": "any"
+        },
+        {
+          "src": "magic-book-maskable-192.png",
+          "sizes": "192x192",
+          "type": "image/png",
+          "purpose": "maskable"
+        },
+        {
+          "src": "magic-book-512.png",
+          "sizes": "512x512",
+          "type": "image/png",
+          "purpose": "any"
+        },
+        {
+          "src": "magic-book-maskable-512.png",
+          "sizes": "512x512",
+          "type": "image/png",
+          "purpose": "maskable"
+        }
+      ]
+    },
+    {
+      "name": "all manifest icons exist and decode",
+      "passed": true,
+      "detail": [
+        {
+          "src": "magic-book-192-v2.png",
+          "exists": true,
+          "decodable": true,
+          "size": [
+            192,
+            192
+          ],
+          "declared": "192x192",
+          "purpose": "any"
+        },
+        {
+          "src": "magic-book-maskable-192.png",
+          "exists": true,
+          "decodable": true,
+          "size": [
+            192,
+            192
+          ],
+          "declared": "192x192",
+          "purpose": "maskable"
+        },
+        {
+          "src": "magic-book-512.png",
+          "exists": true,
+          "decodable": true,
+          "size": [
+            512,
+            512
+          ],
+          "declared": "512x512",
+          "purpose": "any"
+        },
+        {
+          "src": "magic-book-maskable-512.png",
+          "exists": true,
+          "decodable": true,
+          "size": [
+            512,
+            512
+          ],
+          "declared": "512x512",
+          "purpose": "maskable"
+        }
+      ]
+    },
+    {
+      "name": "service worker caches manifest",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "service worker caches index and offline fallback",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "service worker skipWaiting and claim",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "no missing local assets",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "no duplicate HTML IDs",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "CSS braces balanced",
+      "passed": true,
+      "detail": {
+        "open": 1731,
+        "close": 1731
+      }
+    },
+    {
+      "name": "all embedded JavaScript syntax checks pass",
+      "passed": true,
+      "detail": [
+        {
+          "script": 0,
+          "passed": true,
+          "stderr": ""
+        },
+        {
+          "script": 1,
+          "passed": true,
+          "stderr": ""
+        }
+      ]
+    },
+    {
+      "name": "service worker JavaScript syntax passes",
+      "passed": true,
+      "detail": ""
+    }
+  ],
+  "books": [
+    {
+      "book": "academy",
+      "cover": "cover-vantheir-clean-v852.webp",
+      "exists": true,
+      "decodable": true,
+      "size": [
+        877,
+        1390
+      ],
+      "setup_copy": true,
+      "effect": true,
+      "forward_cover_route": true,
+      "return_cover_route": true,
+      "offline_cached": true,
+      "passed": true
+    },
+    {
+      "book": "hero",
+      "cover": "cover-hero-academia-v852.webp",
+      "exists": true,
+      "decodable": true,
+      "size": [
+        900,
+        1200
+      ],
+      "setup_copy": true,
+      "effect": true,
+      "forward_cover_route": true,
+      "return_cover_route": true,
+      "offline_cached": true,
+      "passed": true
+    },
+    {
+      "book": "beastbound",
+      "cover": "cover-beastbound-clean-v852.webp",
+      "exists": true,
+      "decodable": true,
+      "size": [
+        877,
+        1390
+      ],
+      "setup_copy": true,
+      "effect": true,
+      "forward_cover_route": true,
+      "return_cover_route": true,
+      "offline_cached": true,
+      "passed": true
+    },
+    {
+      "book": "pirate",
+      "cover": "cover-tides-clean-v852.webp",
+      "exists": true,
+      "decodable": true,
+      "size": [
+        877,
+        1390
+      ],
+      "setup_copy": true,
+      "effect": true,
+      "forward_cover_route": true,
+      "return_cover_route": true,
+      "offline_cached": true,
+      "passed": true
+    },
+    {
+      "book": "guild",
+      "cover": "cover-guild-clean-v852.webp",
+      "exists": true,
+      "decodable": true,
+      "size": [
+        877,
+        1390
+      ],
+      "setup_copy": true,
+      "effect": true,
+      "forward_cover_route": true,
+      "return_cover_route": true,
+      "offline_cached": true,
+      "passed": true
+    },
+    {
+      "book": "starfall",
+      "cover": "cover-starfall-v852.webp",
+      "exists": true,
+      "decodable": true,
+      "size": [
+        877,
+        1390
+      ],
+      "setup_copy": true,
+      "effect": true,
+      "forward_cover_route": true,
+      "return_cover_route": true,
+      "offline_cached": true,
+      "passed": true
+    },
+    {
+      "book": "moonwake",
+      "cover": "cover-moonwake-v852.webp",
+      "exists": true,
+      "decodable": true,
+      "size": [
+        877,
+        1390
+      ],
+      "setup_copy": true,
+      "effect": true,
+      "forward_cover_route": true,
+      "return_cover_route": true,
+      "offline_cached": true,
+      "passed": true
+    },
+    {
+      "book": "emberwake",
+      "cover": "cover-emberwake-v852.webp",
+      "exists": true,
+      "decodable": true,
+      "size": [
+        877,
+        1390
+      ],
+      "setup_copy": true,
+      "effect": true,
+      "forward_cover_route": true,
+      "return_cover_route": true,
+      "offline_cached": true,
+      "passed": true
+    },
+    {
+      "book": "ironhaven",
+      "cover": "cover-ironhaven-v852.webp",
+      "exists": true,
+      "decodable": true,
+      "size": [
+        877,
+        1390
+      ],
+      "setup_copy": true,
+      "effect": true,
+      "forward_cover_route": true,
+      "return_cover_route": true,
+      "offline_cached": true,
+      "passed": true
+    },
+    {
+      "book": "veilwood",
+      "cover": "cover-veilwood-v852.webp",
+      "exists": true,
+      "decodable": true,
+      "size": [
+        877,
+        1390
+      ],
+      "setup_copy": true,
+      "effect": true,
+      "forward_cover_route": true,
+      "return_cover_route": true,
+      "offline_cached": true,
+      "passed": true
+    }
+  ],
+  "overall_passed": true,
+  "visual_browser_note": "Chromium cannot complete a visual run in this container because its DBus/netlink sandbox services are unavailable; syntax, asset, mapping, route, manifest, service-worker, and image decoding tests were run instead."
+}

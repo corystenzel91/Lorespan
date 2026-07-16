@@ -1,0 +1,25 @@
+Lorespan v8.5.4 — All-book verification
+
+Books checked:
+1. Vantheir Academy
+2. Hero Academia
+3. Beastbound Rebirth
+4. Tides of the Shattered Crown
+5. Guild Bound
+6. Starfall Archive
+7. Moonwake Covenant
+8. Emberwake Court
+9. Ironhaven Ledger
+10. Veilwood Hollow
+
+For every book, the test verifies:
+- a unique mapped cover file;
+- the cover exists and decodes;
+- the forward animation selects that book's cover through bookId;
+- the return animation selects the same cover through bookId;
+- the cover is included in the offline service-worker cache;
+- character-setup copy exists;
+- a matching per-book magic effect exists;
+- a valid bookshelf hotspot exists.
+
+The webpage source contains no Open Book action label. The cleaned external shelf and embedded emergency shelf fallback are byte-for-byte identical.
