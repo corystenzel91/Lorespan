@@ -1,0 +1,10 @@
+academy: cover=cover-vantheir-clean-v852.webp decode=True selector=True hotspot=True effect=True forward=shared-selected-cover return=shared-selected-cover
+hero: cover=cover-hero-academia-v852.webp decode=True selector=True hotspot=True effect=True forward=shared-selected-cover return=shared-selected-cover
+beastbound: cover=cover-beastbound-clean-v852.webp decode=True selector=True hotspot=True effect=True forward=shared-selected-cover return=shared-selected-cover
+pirate: cover=cover-tides-clean-v852.webp decode=True selector=True hotspot=True effect=True forward=shared-selected-cover return=shared-selected-cover
+guild: cover=cover-guild-clean-v852.webp decode=True selector=True hotspot=True effect=True forward=shared-selected-cover return=shared-selected-cover
+starfall: cover=cover-starfall-v852.webp decode=True selector=True hotspot=True effect=True forward=shared-selected-cover return=shared-selected-cover
+moonwake: cover=cover-moonwake-v852.webp decode=True selector=True hotspot=True effect=True forward=shared-selected-cover return=shared-selected-cover
+emberwake: cover=cover-emberwake-v852.webp decode=True selector=True hotspot=True effect=True forward=shared-selected-cover return=shared-selected-cover
+ironhaven: cover=cover-ironhaven-v852.webp decode=True selector=True hotspot=True effect=True forward=shared-selected-cover return=shared-selected-cover
+veilwood: cover=cover-veilwood-v852.webp decode=True selector=True hotspot=True effect=True forward=shared-selected-cover return=shared-selected-cover

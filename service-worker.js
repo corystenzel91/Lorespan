@@ -1,8 +1,8 @@
-const CACHE_NAME = "lorespan-v8.5.4";
+const CACHE_NAME = "lorespan-v8.5.7";
 const CORE = [
   "./", "./index.html", "./offline.html",
-  "./lorespan-desk-room-v854.webp", "./manifest.webmanifest", "./magic-book-192-v2.png", "./magic-book-512.png",
-  "./magic-book-maskable-192.png", "./magic-book-maskable-512.png", "./hero-top-blue-book.webp", "./library-hero.png", "./library-concept-shelf-v854.webp",
+  "./lorespan-desk-room-v857.webp", "./manifest.webmanifest", "./magic-book-192-v2.png", "./magic-book-512.png",
+  "./magic-book-maskable-192.png", "./magic-book-maskable-512.png", "./hero-top-blue-book.webp", "./library-hero.png", "./library-concept-shelf-v857.webp",
   "./cover-vantheir-clean-v852.webp", "./cover-hero-academia-v852.webp", "./cover-beastbound-clean-v852.webp", "./cover-tides-clean-v852.webp",
   "./cover-guild-clean-v852.webp", "./cover-starfall-v852.webp", "./cover-moonwake-v852.webp", "./cover-emberwake-v852.webp", "./cover-ironhaven-v852.webp", "./cover-veilwood-v852.webp"
 ];
@@ -15,7 +15,7 @@ self.addEventListener("install", event => {
     await cache.put(url,response);
   }));
   const critical=["./index.html","./offline.html",
-  "./lorespan-desk-room-v854.webp","./manifest.webmanifest"];
+  "./lorespan-desk-room-v857.webp","./manifest.webmanifest"];
   const failedCritical=results.some((result,index)=>result.status==="rejected"&&critical.includes(CORE[index]));
   if(failedCritical)throw new Error("Critical offline files failed to cache");
   await self.skipWaiting();

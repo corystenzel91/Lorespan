@@ -1,0 +1,436 @@
+{
+  "version": "8.5.7",
+  "overall_passed": true,
+  "checks": [
+    {
+      "name": "exactly ten unique books",
+      "passed": true,
+      "detail": "['academy', 'hero', 'beastbound', 'pirate', 'guild', 'starfall', 'moonwake', 'emberwake', 'ironhaven', 'veilwood']"
+    },
+    {
+      "name": "all ten cover mappings",
+      "passed": true,
+      "detail": "{'academy': 'cover-vantheir-clean-v852.webp', 'hero': 'cover-hero-academia-v852.webp', 'beastbound': 'cover-beastbound-clean-v852.webp', 'pirate': 'cover-tides-clean-v852.webp', 'guild': 'cover-guild-clean-v852.webp', 'starfall': 'cover-starfall-v852.webp', 'moonwake': 'cover-moonwake-v852.webp', 'emberwake': 'cover-emberwake-v852.webp', 'ironhaven': 'cover-ironhaven-v852.webp', 'veilwood': 'cover-veilwood-v852.webp'}"
+    },
+    {
+      "name": "all ten setup mappings",
+      "passed": true,
+      "detail": "['academy', 'beastbound', 'emberwake', 'guild', 'hero', 'ironhaven', 'moonwake', 'pirate', 'starfall', 'veilwood']"
+    },
+    {
+      "name": "all ten effect mappings",
+      "passed": true,
+      "detail": "['academy', 'beastbound', 'emberwake', 'guild', 'hero', 'ironhaven', 'moonwake', 'pirate', 'starfall', 'veilwood']"
+    },
+    {
+      "name": "all ten shelf hotspots",
+      "passed": true,
+      "detail": "['academy', 'beastbound', 'emberwake', 'guild', 'hero', 'ironhaven', 'moonwake', 'pirate', 'starfall', 'veilwood']"
+    },
+    {
+      "name": "academy: cover exists and decodes",
+      "passed": true,
+      "detail": "(877, 1390)"
+    },
+    {
+      "name": "academy: selector/hotspot/effect mapped",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "hero: cover exists and decodes",
+      "passed": true,
+      "detail": "(900, 1200)"
+    },
+    {
+      "name": "hero: selector/hotspot/effect mapped",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "beastbound: cover exists and decodes",
+      "passed": true,
+      "detail": "(877, 1390)"
+    },
+    {
+      "name": "beastbound: selector/hotspot/effect mapped",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pirate: cover exists and decodes",
+      "passed": true,
+      "detail": "(877, 1390)"
+    },
+    {
+      "name": "pirate: selector/hotspot/effect mapped",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "guild: cover exists and decodes",
+      "passed": true,
+      "detail": "(877, 1390)"
+    },
+    {
+      "name": "guild: selector/hotspot/effect mapped",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "starfall: cover exists and decodes",
+      "passed": true,
+      "detail": "(877, 1390)"
+    },
+    {
+      "name": "starfall: selector/hotspot/effect mapped",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "moonwake: cover exists and decodes",
+      "passed": true,
+      "detail": "(877, 1390)"
+    },
+    {
+      "name": "moonwake: selector/hotspot/effect mapped",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "emberwake: cover exists and decodes",
+      "passed": true,
+      "detail": "(877, 1390)"
+    },
+    {
+      "name": "emberwake: selector/hotspot/effect mapped",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ironhaven: cover exists and decodes",
+      "passed": true,
+      "detail": "(877, 1390)"
+    },
+    {
+      "name": "ironhaven: selector/hotspot/effect mapped",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "veilwood: cover exists and decodes",
+      "passed": true,
+      "detail": "(877, 1390)"
+    },
+    {
+      "name": "veilwood: selector/hotspot/effect mapped",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "all covers are distinct",
+      "passed": true,
+      "detail": "{'academy': 'c32626f5fabb83c103f7b74a9419c6e95b0a79fa0d7d6cd12f4711c83872e7e7', 'hero': '9f19b0c2ac48e81be610076284d3bc22fb888e5ddd72c9cda9cfe2b6d58bf134', 'beastbound': '57103bfc60d29533d31a0f24b0ac2f44faff85045bf4d78c5c11a7523b88cf75', 'pirate': '10a6e20b722d2747e50ac4c5df669c86fb95b81bbd71a89da54475ef822db6aa', 'guild': 'a0611d16b18deabfcde41d01d7d42a88f5839a354d9a24b902962831772e1e61', 'starfall': 'da73874e15af18b8b9b86e5b3aa8cc9a7887ae755201ba5268c4f00c2ba049a9', 'moonwake': '0f41cd4838972548b76d74dd7eb59e3314c790b6414fb3ccbf11a85b01a3e405', 'emberwake': '52afbb0e84bacf154c27d457574830d7588cc108c95dfbb245979ac9aa4b701c', 'ironhaven': 'caceebea2d86438f5e05e00ba22c5cfd1396bd54e930be290e64cbb9f176dd2f', 'veilwood': '3e2ab85538ac8b99f9476faa1bfb55b52fba5f6d38497ec790ded8037488ac15'}"
+    },
+    {
+      "name": "shared cinematic function exists",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "opening wrapper uses shared system",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "return wrapper uses shared system",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "selected cover used both directions",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "open sequence lands then opens",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "return sequence closes then flies",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "skip opening and return controls",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "animation watchdog and handoff safeguards",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "first page appears before selector",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "selector opens from first-page button",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "selector supports every book",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "minimum age remains 15",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "no visible Open Book label",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "no embedded legacy shelf",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "only v857 shelf referenced",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "only v857 desk referenced",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "v857 artwork exists",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "runtime version 8.5.7",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "service worker registration 8.5.7",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "service worker cache 8.5.7",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "service worker caches v857 art",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "manifest standalone",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "manifest start and scope local",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "manifest icons exist",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "all referenced local assets exist",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "no duplicate HTML IDs",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "CSS braces balanced",
+      "passed": true,
+      "detail": "1747 / 1747"
+    }
+  ],
+  "books": [
+    {
+      "book": "academy",
+      "cover": "cover-vantheir-clean-v852.webp",
+      "cover_exists": true,
+      "cover_decodes": true,
+      "size": [
+        877,
+        1390
+      ],
+      "cover_sha256": "c32626f5fabb83c103f7b74a9419c6e95b0a79fa0d7d6cd12f4711c83872e7e7",
+      "setup": true,
+      "hotspot": true,
+      "effect": true,
+      "forward_shared_system": true,
+      "return_shared_system": true
+    },
+    {
+      "book": "hero",
+      "cover": "cover-hero-academia-v852.webp",
+      "cover_exists": true,
+      "cover_decodes": true,
+      "size": [
+        900,
+        1200
+      ],
+      "cover_sha256": "9f19b0c2ac48e81be610076284d3bc22fb888e5ddd72c9cda9cfe2b6d58bf134",
+      "setup": true,
+      "hotspot": true,
+      "effect": true,
+      "forward_shared_system": true,
+      "return_shared_system": true
+    },
+    {
+      "book": "beastbound",
+      "cover": "cover-beastbound-clean-v852.webp",
+      "cover_exists": true,
+      "cover_decodes": true,
+      "size": [
+        877,
+        1390
+      ],
+      "cover_sha256": "57103bfc60d29533d31a0f24b0ac2f44faff85045bf4d78c5c11a7523b88cf75",
+      "setup": true,
+      "hotspot": true,
+      "effect": true,
+      "forward_shared_system": true,
+      "return_shared_system": true
+    },
+    {
+      "book": "pirate",
+      "cover": "cover-tides-clean-v852.webp",
+      "cover_exists": true,
+      "cover_decodes": true,
+      "size": [
+        877,
+        1390
+      ],
+      "cover_sha256": "10a6e20b722d2747e50ac4c5df669c86fb95b81bbd71a89da54475ef822db6aa",
+      "setup": true,
+      "hotspot": true,
+      "effect": true,
+      "forward_shared_system": true,
+      "return_shared_system": true
+    },
+    {
+      "book": "guild",
+      "cover": "cover-guild-clean-v852.webp",
+      "cover_exists": true,
+      "cover_decodes": true,
+      "size": [
+        877,
+        1390
+      ],
+      "cover_sha256": "a0611d16b18deabfcde41d01d7d42a88f5839a354d9a24b902962831772e1e61",
+      "setup": true,
+      "hotspot": true,
+      "effect": true,
+      "forward_shared_system": true,
+      "return_shared_system": true
+    },
+    {
+      "book": "starfall",
+      "cover": "cover-starfall-v852.webp",
+      "cover_exists": true,
+      "cover_decodes": true,
+      "size": [
+        877,
+        1390
+      ],
+      "cover_sha256": "da73874e15af18b8b9b86e5b3aa8cc9a7887ae755201ba5268c4f00c2ba049a9",
+      "setup": true,
+      "hotspot": true,
+      "effect": true,
+      "forward_shared_system": true,
+      "return_shared_system": true
+    },
+    {
+      "book": "moonwake",
+      "cover": "cover-moonwake-v852.webp",
+      "cover_exists": true,
+      "cover_decodes": true,
+      "size": [
+        877,
+        1390
+      ],
+      "cover_sha256": "0f41cd4838972548b76d74dd7eb59e3314c790b6414fb3ccbf11a85b01a3e405",
+      "setup": true,
+      "hotspot": true,
+      "effect": true,
+      "forward_shared_system": true,
+      "return_shared_system": true
+    },
+    {
+      "book": "emberwake",
+      "cover": "cover-emberwake-v852.webp",
+      "cover_exists": true,
+      "cover_decodes": true,
+      "size": [
+        877,
+        1390
+      ],
+      "cover_sha256": "52afbb0e84bacf154c27d457574830d7588cc108c95dfbb245979ac9aa4b701c",
+      "setup": true,
+      "hotspot": true,
+      "effect": true,
+      "forward_shared_system": true,
+      "return_shared_system": true
+    },
+    {
+      "book": "ironhaven",
+      "cover": "cover-ironhaven-v852.webp",
+      "cover_exists": true,
+      "cover_decodes": true,
+      "size": [
+        877,
+        1390
+      ],
+      "cover_sha256": "caceebea2d86438f5e05e00ba22c5cfd1396bd54e930be290e64cbb9f176dd2f",
+      "setup": true,
+      "hotspot": true,
+      "effect": true,
+      "forward_shared_system": true,
+      "return_shared_system": true
+    },
+    {
+      "book": "veilwood",
+      "cover": "cover-veilwood-v852.webp",
+      "cover_exists": true,
+      "cover_decodes": true,
+      "size": [
+        877,
+        1390
+      ],
+      "cover_sha256": "3e2ab85538ac8b99f9476faa1bfb55b52fba5f6d38497ec790ded8037488ac15",
+      "setup": true,
+      "hotspot": true,
+      "effect": true,
+      "forward_shared_system": true,
+      "return_shared_system": true
+    }
+  ],
+  "limitations": [
+    "The environment blocks a full interactive Chromium device run through DBus/NETLINK restrictions. JavaScript syntax, asset decoding, all-ten-book mappings, shared forward/reverse routes, selector routes, and PWA package integrity were tested programmatically."
+  ]
+}

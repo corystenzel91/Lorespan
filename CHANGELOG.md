@@ -1,17 +1,10 @@
-# Lorespan v8.5.2
+# Lorespan v8.5.7
 
-- First page now remains visible until the reader taps **Continue to Character Setup**.
-- Removed automatic character-setup popups.
-- Enlarged mobile character setup remains active.
-- Every book cover now uses a unique v8.5.2 filename to prevent stale cover reuse.
-- Selected book is hidden before the open spread appears, preventing the closed red book from lingering behind the pages.
-- Book opening was refined: landing, cover opening, and zoom into the first page are separated and smoother.
-- Fresh-book action label is **Begin Story**, not **Open Book**.
-- Shelf and desk artwork use v8.5.2 filenames.
-- Service-worker cache updated to `lorespan-v8.5.2`.
-
-### v8.5.4 verification patch
-- Replaced the embedded emergency shelf fallback with the same cleaned shelf artwork used by the webpage. This prevents the deleted extra action panel from reappearing if the normal shelf image fails to load.
-- Rechecked all ten unique cover mappings in both opening and return routes.
-- Revalidated each book's character setup copy and offline cache entry.
-- Bumped runtime and service-worker cache to v8.5.4.
+- Replaced separate opening and return timelines with one shared reversible cinematic system.
+- Smoothed lift, curved flight, desk landing, settling, cover opening, page zoom, cover closing, and shelf return.
+- Fixed stale v8.5.5 artwork references that could reload an older shelf or desk scene.
+- Corrected runtime, service-worker registration, and cache versions to v8.5.7.
+- Kept the first page visible until the reader selects Continue to Character Setup.
+- Added a guarded selector handoff for every book.
+- Verified all ten books use their own cover, hotspot, effect, setup copy, forward route, and return route.
+- Removed all visible Open Book labels and legacy embedded shelf fallback data.
