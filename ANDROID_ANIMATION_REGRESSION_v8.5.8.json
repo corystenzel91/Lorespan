@@ -1,0 +1,20 @@
+{
+  "version": "8.5.8",
+  "script_checks": [
+    {
+      "script": 0,
+      "ok": true,
+      "stderr": ""
+    },
+    {
+      "script": 1,
+      "ok": true,
+      "stderr": ""
+    }
+  ],
+  "service_worker_ok": true,
+  "open_book_ui_absent": true,
+  "shared_forward": true,
+  "shared_return": true,
+  "curved_path_markers": true
+}

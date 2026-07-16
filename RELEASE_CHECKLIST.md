@@ -1,4 +1,4 @@
-# Release checklist — v8.5.7
+# Release checklist — v8.5.8
 
 - [x] Ten unique library books
 - [x] Ten valid and distinct cover images
