@@ -1,0 +1,244 @@
+{
+  "version": "8.5.2",
+  "books_tested": [
+    "academy",
+    "hero",
+    "beastbound",
+    "pirate",
+    "guild",
+    "starfall",
+    "moonwake",
+    "emberwake",
+    "ironhaven",
+    "veilwood"
+  ],
+  "checks": [
+    {
+      "name": "Embedded JavaScript 1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Embedded JavaScript 2",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Service worker syntax",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Ten cover mappings",
+      "passed": true,
+      "detail": "{'academy': 'cover-vantheir-clean-v852.webp', 'hero': 'cover-hero-academia-v852.webp', 'beastbound': 'cover-beastbound-clean-v852.webp', 'pirate': 'cover-tides-clean-v852.webp', 'guild': 'cover-guild-clean-v852.webp', 'starfall': 'cover-starfall-v852.webp', 'moonwake': 'cover-moonwake-v852.webp', 'emberwake': 'cover-emberwake-v852.webp', 'ironhaven': 'cover-ironhaven-v852.webp', 'veilwood': 'cover-veilwood-v852.webp'}"
+    },
+    {
+      "name": "All cover files exist",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "All cover filenames unique",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "academy setup copy",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "academy cover mapping",
+      "passed": true,
+      "detail": "cover-vantheir-clean-v852.webp"
+    },
+    {
+      "name": "hero setup copy",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "hero cover mapping",
+      "passed": true,
+      "detail": "cover-hero-academia-v852.webp"
+    },
+    {
+      "name": "beastbound setup copy",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "beastbound cover mapping",
+      "passed": true,
+      "detail": "cover-beastbound-clean-v852.webp"
+    },
+    {
+      "name": "pirate setup copy",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pirate cover mapping",
+      "passed": true,
+      "detail": "cover-tides-clean-v852.webp"
+    },
+    {
+      "name": "guild setup copy",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "guild cover mapping",
+      "passed": true,
+      "detail": "cover-guild-clean-v852.webp"
+    },
+    {
+      "name": "starfall setup copy",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "starfall cover mapping",
+      "passed": true,
+      "detail": "cover-starfall-v852.webp"
+    },
+    {
+      "name": "moonwake setup copy",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "moonwake cover mapping",
+      "passed": true,
+      "detail": "cover-moonwake-v852.webp"
+    },
+    {
+      "name": "emberwake setup copy",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "emberwake cover mapping",
+      "passed": true,
+      "detail": "cover-emberwake-v852.webp"
+    },
+    {
+      "name": "ironhaven setup copy",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ironhaven cover mapping",
+      "passed": true,
+      "detail": "cover-ironhaven-v852.webp"
+    },
+    {
+      "name": "veilwood setup copy",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "veilwood cover mapping",
+      "passed": true,
+      "detail": "cover-veilwood-v852.webp"
+    },
+    {
+      "name": "First page manual setup button",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "No automatic setup reveal timers",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Setup overlay opens from manual button",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Open Book label removed",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Begin Story label active",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Flight hidden before spread",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Exact cover assigned important",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Forward and return routes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Skip controls both directions",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Full-screen mobile setup",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Runtime version",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Service worker registration",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Cache version",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Versioned shelf art",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "Versioned desk art",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "No missing local HTML assets",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "No missing service-worker core assets",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "No duplicate HTML IDs",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "name": "CSS braces balanced",
+      "passed": true,
+      "detail": "1720 / 1720"
+    }
+  ],
+  "passed": true,
+  "visual_browser_test": "Chromium visual execution remains unavailable in this workspace because the container blocks required DBus/network sandbox services. Syntax, assets, all ten cover mappings, all ten setup copies, flow wiring, and package integrity were tested."
+}

@@ -1,0 +1,12 @@
+LORESPAN v8.5.2 — COMPLETE REPLACEMENT PACKAGE
+
+1. Open the GitHub repository used by GitHub Pages.
+2. Delete the old website files from the publishing folder.
+3. Extract this ZIP.
+4. Upload every file inside the extracted folder directly into the publishing folder.
+5. Confirm index.html is at the top level, not inside another folder.
+6. Commit the changes.
+7. Wait for GitHub Pages to finish deploying.
+8. Reload the website. If an installed PWA still shows an older version, use Check for Updates or reinstall it.
+
+This release uses new v8.5.2 asset filenames and a new service-worker cache so old covers and old animation artwork cannot be reused accidentally.
