@@ -1,0 +1,25 @@
+{
+  "version": "8.6.3",
+  "checks": {
+    "no_open_book_text": true,
+    "version_863": true,
+    "no_old_versioned_animation_assets": true,
+    "ten_v863_covers": true,
+    "fresh_shelf": true,
+    "fresh_desk": true,
+    "service_worker_purges_old": true,
+    "3d_edges": true,
+    "curved_path": true,
+    "inverse_return": true,
+    "character_setup_10": true,
+    "setup_retry": true,
+    "runtime_report_passed": true,
+    "no_missing_local_assets": true,
+    "all_images_decode": true,
+    "no_duplicate_ids": true
+  },
+  "missing_assets": [],
+  "bad_images": [],
+  "duplicate_ids": [],
+  "passed": true
+}

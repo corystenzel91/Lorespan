@@ -1,10 +1,6 @@
-# Lorespan v8.5.8
+# v8.6.3
 
-- Replaced separate opening and return timelines with one shared reversible cinematic system.
-- Smoothed lift, curved flight, desk landing, settling, cover opening, page zoom, cover closing, and shelf return.
-- Fixed stale v8.5.5 artwork references that could reload an older shelf or desk scene.
-- Corrected runtime, service-worker registration, and cache versions to v8.5.8.
-- Kept the first page visible until the reader selects Continue to Character Setup.
-- Added a guarded selector handoff for every book.
-- Verified all ten books use their own cover, hotspot, effect, setup copy, forward route, and return route.
-- Removed all visible Open Book labels and legacy embedded shelf fallback data.
+- Added back cover, top edge, fore edge, deeper spine and layered page block to the flying hardcover.
+- Reworked the shared bezier path, perspective, angular motion, contact shadow and landing timing.
+- Slowed and blended the desk handoff, cover opening and mirrored return.
+- Fresh v8.6.3 filenames and cache prevent old animation assets from being reused.

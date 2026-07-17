@@ -1,8 +1,9 @@
-LORESPAN v8.5.7 — COMPLETE REPLACEMENT
+LORESPAN v8.6.2 — COMPLETE CLEAN REPLACEMENT
 
-1. Delete the old website files from the GitHub Pages publishing folder.
+1. Delete all existing files in the GitHub Pages publishing folder.
 2. Extract this ZIP.
-3. Upload every file and folder inside the extracted package to the repository root.
-4. Confirm index.html is directly in the repository root.
+3. Upload every extracted file and folder directly to the repository root.
+4. Confirm index.html is at the root, not inside another folder.
 5. Commit the upload and wait for GitHub Pages to finish deploying.
-6. Refresh the site. If an installed PWA still shows an older shelf, remove the installed app once and reinstall it after v8.5.7 is live.
+6. Open the site once while online. The v8.6.2 service worker will delete older Lorespan caches automatically.
+7. If an already installed Android PWA still displays an old screen before updating, close and reopen it once after the site is live.

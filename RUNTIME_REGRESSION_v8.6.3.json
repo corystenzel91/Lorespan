@@ -1,0 +1,68 @@
+{
+  "viewport": "412x915 Android-style touch emulation",
+  "test": "all ten forward/return route activation, exact cover binding, skip cleanup, character selector mapping",
+  "results": [
+    {
+      "book": "academy",
+      "open": true,
+      "return": true,
+      "setup": true
+    },
+    {
+      "book": "hero",
+      "open": true,
+      "return": true,
+      "setup": true
+    },
+    {
+      "book": "beastbound",
+      "open": true,
+      "return": true,
+      "setup": true
+    },
+    {
+      "book": "pirate",
+      "open": true,
+      "return": true,
+      "setup": true
+    },
+    {
+      "book": "guild",
+      "open": true,
+      "return": true,
+      "setup": true
+    },
+    {
+      "book": "starfall",
+      "open": true,
+      "return": true,
+      "setup": true
+    },
+    {
+      "book": "moonwake",
+      "open": true,
+      "return": true,
+      "setup": true
+    },
+    {
+      "book": "emberwake",
+      "open": true,
+      "return": true,
+      "setup": true
+    },
+    {
+      "book": "ironhaven",
+      "open": true,
+      "return": true,
+      "setup": true
+    },
+    {
+      "book": "veilwood",
+      "open": true,
+      "return": true,
+      "setup": true
+    }
+  ],
+  "page_errors": [],
+  "passed": true
+}
