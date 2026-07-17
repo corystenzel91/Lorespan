@@ -1,12 +1,12 @@
 const CACHE_PREFIX="lorespan-";
-const CACHE_NAME="lorespan-v8.6.7";
+const CACHE_NAME="lorespan-v8.6.8";
 const CORE=[
   "./",
   "./index.html",
   "./offline.html",
   "./manifest.webmanifest",
-  "./library-concept-shelf-v867.webp",
-  "./lorespan-desk-room-v867.webp",
+  "./library-concept-shelf-v868.webp",
+  "./lorespan-desk-room-v868.webp",
   "./magic-book-192-v2.png",
   "./magic-book-512.png",
   "./magic-book-maskable-192.png",
@@ -15,16 +15,16 @@ const CORE=[
   "./hero-book-v512-clean.webp",
   "./library-hero.png",
   "./lorespan-home.webp",
-  "./cover-vantheir-clean-v867.webp",
-  "./cover-hero-academia-v867.webp",
-  "./cover-beastbound-clean-v867.webp",
-  "./cover-tides-clean-v867.webp",
-  "./cover-guild-clean-v867.webp",
-  "./cover-starfall-v867.webp",
-  "./cover-moonwake-v867.webp",
-  "./cover-emberwake-v867.webp",
-  "./cover-ironhaven-v867.webp",
-  "./cover-veilwood-v867.webp"
+  "./cover-vantheir-clean-v868.webp",
+  "./cover-hero-academia-v868.webp",
+  "./cover-beastbound-clean-v868.webp",
+  "./cover-tides-clean-v868.webp",
+  "./cover-guild-clean-v868.webp",
+  "./cover-starfall-v868.webp",
+  "./cover-moonwake-v868.webp",
+  "./cover-emberwake-v868.webp",
+  "./cover-ironhaven-v868.webp",
+  "./cover-veilwood-v868.webp"
 ];
 self.addEventListener("install",e=>e.waitUntil((async()=>{const c=await caches.open(CACHE_NAME);await c.addAll(CORE);await self.skipWaiting()})()));
 self.addEventListener("activate",e=>e.waitUntil((async()=>{for(const k of await caches.keys())if(k.startsWith(CACHE_PREFIX)&&k!==CACHE_NAME)await caches.delete(k);await self.clients.claim()})()));

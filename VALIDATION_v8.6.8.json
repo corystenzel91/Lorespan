@@ -1,0 +1,15 @@
+{
+  "index_exists": true,
+  "version_updated": true,
+  "academy_nodes_preserved": true,
+  "no_open_book_label": true,
+  "all_new_assets_exist": true,
+  "old_versioned_assets_absent": true,
+  "service_worker_current": true,
+  "editorial_marker": true,
+  "character_setup_present": true,
+  "year1_year2_present": true,
+  "node_id_count": 988,
+  "story_template_fields": 1942,
+  "passed": true
+}
