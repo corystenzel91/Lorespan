@@ -1,0 +1,20 @@
+{
+  "version": "8.7.4",
+  "checks": {
+    "runtime_v874": true,
+    "desk_asset_exists": true,
+    "shelf_asset_exists": true,
+    "ten_cover_mappings": true,
+    "no_v873_asset_refs": true,
+    "no_open_book_label": true,
+    "character_setup_present": true,
+    "forward_route": true,
+    "return_route": true,
+    "room_forced_visible_before_flight": true,
+    "all_inline_js_syntax": true,
+    "service_worker_syntax": true,
+    "manifest_exists": true,
+    "all_passed": true
+  },
+  "js_errors": []
+}

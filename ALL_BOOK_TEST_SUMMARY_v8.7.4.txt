@@ -1,0 +1,7 @@
+Lorespan v8.7.4 all-book mapping test
+All ten cover mappings present: True
+Shared forward route present: True
+Shared return route present: True
+Character setup handoff present: True
+Desk scene forced visible before flight: True
+All checks passed: True
