@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "checks": {
+    "version": true,
+    "no_old_version_refs": true,
+    "purple_desk_book_cropped": true,
+    "shelf_origin_hides_early": true,
+    "purple_shelf_lip": true,
+    "all_ten_covers": true,
+    "missing_refs": [],
+    "open_book_label_absent": true,
+    "character_setup_present": true
+  }
+}

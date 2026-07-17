@@ -1,2 +1,3 @@
-# Lorespan v8.6.4
-Clean replacement build with a single continuous 3D book object for shelf, desk, opening, closing, and return.
+# Lorespan v8.6.7 Clean Replacement
+
+Complete GitHub Pages/PWA replacement package. Delete old repository files before uploading these files to the repository root.
