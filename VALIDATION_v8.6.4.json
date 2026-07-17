@@ -1,0 +1,16 @@
+{
+  "version": "8.6.4",
+  "passed": true,
+  "checks": {
+    "v864_runtime_present": true,
+    "single_object_no_v864_spread": true,
+    "all_10_covers": true,
+    "fresh_shelf": true,
+    "fresh_desk": true,
+    "old_assets_absent": true,
+    "cache_v864": true,
+    "purges_old_caches": true,
+    "open_book_label_absent": true,
+    "character_setup_10": true
+  }
+}

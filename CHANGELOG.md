@@ -1,6 +1,5 @@
-# v8.6.3
-
-- Added back cover, top edge, fore edge, deeper spine and layered page block to the flying hardcover.
-- Reworked the shared bezier path, perspective, angular motion, contact shadow and landing timing.
-- Slowed and blended the desk handoff, cover opening and mirrored return.
-- Fresh v8.6.3 filenames and cache prevent old animation assets from being reused.
+# v8.6.4
+- Replaced the separate flat open-spread layer with one continuous 3D book object.
+- The exact selected cover remains on the same object from shelf to desk and back.
+- Added hinged cover opening, unfolding left pages, gutter depth, page edges, contact shadow, and mirrored return motion.
+- Fresh v864 artwork names and cache purge prevent previous animation assets from being reused.
