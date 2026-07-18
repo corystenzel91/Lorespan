@@ -2,4 +2,4 @@
 2. Upload every extracted file to the root of rystenzel91.github.io.
 3. Confirm index.html and service-worker.js are at the root.
 4. Wait for GitHub Pages to deploy.
-5. On Android, clear site data or uninstall the old PWA once before testing v8.7.6.
+5. On Android, clear site data or uninstall the old PWA once before testing v8.7.7.

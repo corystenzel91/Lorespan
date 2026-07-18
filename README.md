@@ -1,3 +1,3 @@
-# Lorespan v8.7.6
+# Lorespan v8.7.7
 
-GitHub Pages replacement build. Upload the extracted contents directly to the repository root so `index.html` is at the top level.
+GitHub-ready replacement package. Upload all extracted files to the repository root so `index.html` is at the top level.
