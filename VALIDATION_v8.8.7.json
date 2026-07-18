@@ -1,0 +1,12 @@
+{
+  "version": "8.8.7",
+  "scope": "Vantheir Academy Year 1 Week 4",
+  "passed": true,
+  "checks_total": 52,
+  "failed": [],
+  "duplicate_ids": [],
+  "missing_assets": [],
+  "javascript_scripts_passed": 5,
+  "javascript_scripts_total": 5,
+  "service_worker_passed": true
+}

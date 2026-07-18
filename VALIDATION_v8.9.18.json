@@ -1,0 +1,18 @@
+{
+  "version": "8.9.18",
+  "scope": [
+    "Summer I",
+    "Year 2 Week 1"
+  ],
+  "embedded_scripts": 5,
+  "javascript_node_check": "passed",
+  "html_ids": 50,
+  "html_ids_preserved": true,
+  "duplicate_html_ids": 0,
+  "original_story_nodes_preserved": 1287,
+  "new_typed_response_nodes": 16,
+  "original_visible_choice_pairs_preserved": 3506,
+  "storage_references_preserved": true,
+  "service_worker_cache": "lorespan-v8.9.18",
+  "copyright_similarity_review": "no obvious franchise-specific names or copied passages found; editorial review only"
+}

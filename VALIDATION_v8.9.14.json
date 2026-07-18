@@ -1,0 +1,56 @@
+{
+  "build": "v8.9.14",
+  "html_parsed": true,
+  "ids_old": 47,
+  "ids_new": 47,
+  "ids_same_order": true,
+  "duplicate_html_ids": [],
+  "embedded_javascript": [
+    {
+      "index": 0,
+      "ok": true,
+      "stderr": ""
+    },
+    {
+      "index": 1,
+      "ok": true,
+      "stderr": ""
+    },
+    {
+      "index": 2,
+      "ok": true,
+      "stderr": ""
+    },
+    {
+      "index": 3,
+      "ok": true,
+      "stderr": ""
+    },
+    {
+      "index": 4,
+      "ok": true,
+      "stderr": ""
+    }
+  ],
+  "story_nodes_old": 1232,
+  "story_nodes_new": 1255,
+  "added_story_nodes": 23,
+  "all_original_story_node_names_present": true,
+  "inherited_duplicate_story_keys": [
+    "trialResolution",
+    "weekSevenOpening"
+  ],
+  "duplicate_story_keys_after_edit": [
+    "trialResolution",
+    "weekSevenOpening"
+  ],
+  "new_duplicate_story_keys_introduced": [],
+  "choice_pairs_old": 3519,
+  "choice_pairs_new": 3534,
+  "original_choice_sequence_preserved": true,
+  "storage_keys_same_sequence": true,
+  "storage_reference_count": 19,
+  "missing_local_assets": [],
+  "player_response_style_present": true,
+  "service_worker_cache": "lorespan-v8.9.14"
+}

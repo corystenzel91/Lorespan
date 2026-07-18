@@ -1,0 +1,76 @@
+{
+  "version": "8.9.9",
+  "html_ids_original": 50,
+  "html_ids_final": 50,
+  "ids_unchanged": true,
+  "duplicate_ids": [],
+  "node_definitions_original": 1172,
+  "node_definitions_final": 1184,
+  "original_nodes_preserved": true,
+  "added_week16_typed_nodes": [
+    "w16TypedAskLiora",
+    "w16TypedBelongMany",
+    "w16TypedBringRecords",
+    "w16TypedDelayPublicly",
+    "w16TypedHelpFamilies",
+    "w16TypedInvestigateErasure",
+    "w16TypedMeetCouncil",
+    "w16TypedNoDecision",
+    "w16TypedQuestionMara",
+    "w16TypedRecentVisitor",
+    "w16TypedRestoreNow",
+    "w16TypedSharedOversight"
+  ],
+  "original_choice_pairs_preserved": true,
+  "missing_choice_pairs": [],
+  "storage_references_unchanged": true,
+  "storage_reference_count": 19,
+  "javascript": [
+    {
+      "script": 1,
+      "valid": true,
+      "error": ""
+    },
+    {
+      "script": 2,
+      "valid": true,
+      "error": ""
+    },
+    {
+      "script": 3,
+      "valid": true,
+      "error": ""
+    },
+    {
+      "script": 4,
+      "valid": true,
+      "error": ""
+    },
+    {
+      "script": 5,
+      "valid": true,
+      "error": ""
+    }
+  ],
+  "all_javascript_valid": true,
+  "local_assets": [
+    {
+      "reference": "library-concept-shelf-v885.webp",
+      "exists": true
+    },
+    {
+      "reference": "lorespan-desk-room-v885.webp",
+      "exists": true
+    },
+    {
+      "reference": "magic-book-192-v2.png",
+      "exists": true
+    },
+    {
+      "reference": "manifest.webmanifest",
+      "exists": true
+    }
+  ],
+  "all_local_assets_present": true,
+  "service_worker_cache": "lorespan-v8.9.9"
+}

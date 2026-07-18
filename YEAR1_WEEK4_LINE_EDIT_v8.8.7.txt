@@ -1,0 +1,6 @@
+Vantheir Academy Year 1 — Week 4
+
+Edited nodes:
+turningStairs, falseRoom, hiddenLanding, lanternKeys, remembranceMorning, drillElian, blankChair, memoryCircle, shadowCourt, dragonChoice, protectOrion, workshopShadow, keySeal, dragonLantern, nameVault, twelveFlames, firstName, vaultAftermath, westernGate.
+
+Preserved all IDs, choices, typed-response mappings, flags, profiles, routes, and save keys.

@@ -1,0 +1,37 @@
+{
+  "html_parsed": true,
+  "node_checks": [
+    {
+      "script": 0,
+      "ok": true,
+      "stderr": ""
+    },
+    {
+      "script": 1,
+      "ok": true,
+      "stderr": ""
+    },
+    {
+      "script": 2,
+      "ok": true,
+      "stderr": ""
+    },
+    {
+      "script": 3,
+      "ok": true,
+      "stderr": ""
+    },
+    {
+      "script": 4,
+      "ok": true,
+      "stderr": ""
+    }
+  ],
+  "missing_referenced_files": [],
+  "ids_preserved": true,
+  "id_count": 50,
+  "original_choice_pairs_retained": false,
+  "original_choice_pair_count": 3379,
+  "new_choice_pair_count": 3406,
+  "output_size": 1842533
+}

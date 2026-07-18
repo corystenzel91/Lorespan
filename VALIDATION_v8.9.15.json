@@ -1,0 +1,26 @@
+{
+  "build": "v8.9.15",
+  "edited_section": "Vantheir Academy Year 1 Week 22",
+  "html_parse": "passed",
+  "embedded_javascript_blocks": 5,
+  "javascript_syntax": "passed",
+  "html_ids": 47,
+  "html_ids_unique": true,
+  "html_id_sequence_preserved": true,
+  "original_story_nodes": 1255,
+  "new_story_nodes": 6,
+  "removed_story_nodes": 0,
+  "original_visible_choice_pairs": 3534,
+  "visible_choice_sequence_preserved": true,
+  "storage_references": 19,
+  "storage_reference_set_preserved": true,
+  "new_typed_response_nodes": [
+    "typedConvergenceGates",
+    "typedConvergenceMap",
+    "typedConvergenceCouncil",
+    "typedConvergenceHearings",
+    "typedConvergenceRepresentatives",
+    "typedConvergenceSafeguards"
+  ],
+  "service_worker_cache": "lorespan-v8.9.15"
+}

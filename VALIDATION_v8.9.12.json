@@ -1,0 +1,65 @@
+{
+  "ids_original": 47,
+  "ids_new": 47,
+  "ids_identical": true,
+  "duplicate_ids": [],
+  "scripts": [
+    {
+      "index": 0,
+      "ok": true,
+      "stderr": ""
+    },
+    {
+      "index": 1,
+      "ok": true,
+      "stderr": ""
+    },
+    {
+      "index": 2,
+      "ok": true,
+      "stderr": ""
+    },
+    {
+      "index": 3,
+      "ok": true,
+      "stderr": ""
+    },
+    {
+      "index": 4,
+      "ok": true,
+      "stderr": ""
+    }
+  ],
+  "all_scripts_ok": true,
+  "nodes_original": 1198,
+  "nodes_new": 1216,
+  "all_original_nodes_preserved": true,
+  "added_nodes": [
+    "w19AskAmara",
+    "w19AskRowanCharter",
+    "w19AskTowns",
+    "w19CommunityVote",
+    "w19ConditionalSign",
+    "w19CouncilBloom",
+    "w19DelayCharter",
+    "w19DragonBloom",
+    "w19FutureMemory",
+    "w19LivingVote",
+    "w19PresentCharter",
+    "w19ProtectBloom",
+    "w19ProtectTree",
+    "w19RowanTouch",
+    "w19SealBloom",
+    "w19SupportAmara",
+    "w19TemporaryRole",
+    "w19VerifyMemory"
+  ],
+  "duplicate_node_keys": [
+    "trialResolution"
+  ],
+  "choices_original": 3601,
+  "choices_new": 3619,
+  "original_choices_preserved_in_order": true,
+  "storage_identical": true,
+  "storage_count": 33
+}

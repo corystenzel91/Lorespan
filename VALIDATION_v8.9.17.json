@@ -1,0 +1,28 @@
+{
+  "version": "8.9.17",
+  "source": "8.9.16",
+  "html_ids_original": 50,
+  "html_ids_final": 50,
+  "html_ids_unchanged_order": true,
+  "duplicate_html_ids": [],
+  "original_nodes": 1271,
+  "final_nodes": 1285,
+  "original_nodes_all_preserved": true,
+  "new_nodes": 14,
+  "original_choice_pairs": 3550,
+  "original_choice_sequence_preserved": true,
+  "storage_refs_original": 19,
+  "storage_refs_final": 19,
+  "storage_refs_unchanged": true,
+  "player_response_style_present": true,
+  "inherited_duplicate_story_keys": {
+    "trialResolution": 2
+  },
+  "html_parse": "passed",
+  "embedded_javascript_sections": 5,
+  "javascript_syntax": "passed",
+  "zip_integrity": "passed",
+  "service_worker_cache": "lorespan-v8.9.17",
+  "week24_typed_reaction_nodes": 14,
+  "copyright_similarity_review": "No obvious franchise-specific names or copied passages found in edited Week 24 material; editorial review only, not legal clearance."
+}

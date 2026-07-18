@@ -1,0 +1,84 @@
+{
+  "html_ids_original": 50,
+  "html_ids_new": 50,
+  "ids_same_order": true,
+  "duplicate_html_ids": [],
+  "story_nodes_original": 1259,
+  "story_nodes_new": 1271,
+  "original_nodes_preserved": true,
+  "new_nodes": [
+    "typedWeek23VisibleRecord",
+    "typedWeek23ReturnFear",
+    "typedWeek23WarningGarden",
+    "typedWeek23StudyEarlier",
+    "typedWeek23StudyLater",
+    "typedWeek23AskCouncil",
+    "typedWeek23ConditionalCommit",
+    "typedWeek23KeepBoth",
+    "typedWeek23CommunityVote",
+    "typedWeek23FutureRight",
+    "typedWeek23Amendable",
+    "typedWeek23AskFuture"
+  ],
+  "choice_pairs_original": 3540,
+  "choice_pairs_new": 3550,
+  "original_choice_sequence_preserved": false,
+  "storage_original": [
+    "lorespan-before-import-backup",
+    "lorespan-font",
+    "lorespan-portraits",
+    "lorespan-preupdate-backup",
+    "lorespan-profile",
+    "lorespan-spacing",
+    "lorespan-state-academy",
+    "lorespan-theme",
+    "lorespan-unified-academy-migrated"
+  ],
+  "storage_new": [
+    "lorespan-before-import-backup",
+    "lorespan-font",
+    "lorespan-portraits",
+    "lorespan-preupdate-backup",
+    "lorespan-profile",
+    "lorespan-spacing",
+    "lorespan-state-academy",
+    "lorespan-theme",
+    "lorespan-unified-academy-migrated"
+  ],
+  "storage_same": true,
+  "original_choice_pairs_subsequence": true,
+  "scripts": [
+    {
+      "index": 0,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "index": 1,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "index": 2,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "index": 3,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "index": 4,
+      "ok": true,
+      "error": ""
+    }
+  ],
+  "html_parse": true,
+  "duplicate_story_nodes_original": [
+    "trialResolution"
+  ],
+  "duplicate_story_nodes_new": [
+    "trialResolution"
+  ]
+}
