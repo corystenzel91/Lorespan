@@ -1,0 +1,16 @@
+{
+  "version": "8.7.5",
+  "duplicate_ids": [],
+  "missing_local_assets": [],
+  "banned_reader_facing_phrases_found": [],
+  "service_worker_registration": true,
+  "cache_version": true,
+  "typed_bridge_present": true,
+  "reported_phrase_removed": true,
+  "passed": true,
+  "dynamic_runtime_asset_expressions_ignored": [
+    "${A[id]||A.academy}",
+    "${coverUrl}",
+    "${cover}"
+  ]
+}

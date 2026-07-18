@@ -3885,7 +3885,7 @@ body.book-opening{overflow:hidden!important;touch-action:none}
           </button>
           <input id="importSaveInput" type="file" accept="application/json,.json" hidden>
         </div>
-        <p id="appVersion" class="launcher-version">Lorespan v8.7.4</p>
+        <p id="appVersion" class="launcher-version">Lorespan v8.7.5</p>
       </aside>
       <div id="appStatus" class="sr-status" role="status" aria-live="polite"></div>
 
@@ -36103,7 +36103,7 @@ function characterMemoryEcho(nodeId){
   const recent=state.characterMemories.slice(-8).includes(memory);
   if(!recent && (rel.interactions||0)<3)return "";
   const callbacks={
-    apologetic:`${name} has not forgotten that you apologized when it would have been easier to defend yourself.`,
+    apologetic:`${name} meets your eyes without the old sharpness.`,
     supportive:`${name} remembers that you chose to listen before trying to solve the problem.`,
     empathetic:`${name} approaches you with the memory of being heard rather than managed.`,
     protective:`${name} remembers the moment you put yourself between danger and someone else.`,
@@ -36116,11 +36116,11 @@ function characterMemoryEcho(nodeId){
     humorous:`${name} watches for the humor you sometimes use to keep fear from owning the room.`,
     courageous:`${name} expects you to step forward when waiting becomes its own danger.`,
     leadership:`${name} looks to you when the room needs direction, though not everyone is comfortable with how naturally that has begun.`,
-    skeptical:`${name} offers the claim with its evidence this time. Your earlier doubt changed how they prepare.`,
+    skeptical:`${name} arrives with the claim already supported by notes and evidence.`,
     challenge:`${name} has learned that you will contest a decision that asks others to bear a cost they did not choose.`,
     compassion:`${name} remembers that your first instinct was to protect the person inside the problem.`,
     curiosity:`${name} expects you to follow the unanswered question farther than most people would.`,
-    neutral:`${name} remembers the choice, even if neither of you has decided what it means yet.`
+    neutral:`${name} hesitates, as though weighing something left unfinished between you.`
   };
   let line=callbacks[intent]||callbacks.neutral;
   if(band==="close"||band==="devoted")line+=` ${name} skips the practiced explanation and tells you what they actually think.`;
@@ -36146,7 +36146,7 @@ function currentCharacterReaction(name,intents){
   };
   const base=personality[name]?.[band]||"";
   if(base)return base;
-  if(intent==="apologetic"&&band!=="hostile")return `${name} allows the apology to change the next part of the conversation instead of treating it as decoration.`;
+  if(intent==="apologetic"&&band!=="hostile")return `${name}'s reply comes more softly than before.`;
   return "";
 }
 
@@ -36354,7 +36354,7 @@ function moodAndArcEcho(nodeId){
       const arcLines={Lyra:"Lyra speaks more plainly than she once would have, trusting you to handle the truth without taking the decision from her.",Finn:"Finn contributes before being invited, confident that disagreement will not cost him his place beside you.",Cassian:"Cassian treats you as a partner whose opposition must be answered, not managed.",Mara:"Mara lets the practical answer include what the situation costs her personally.",Liora:"Liora no longer treats belonging as something that can be withdrawn without warning.",Thorne:"Thorne gives you the reasoning behind the order, not only the order itself.",Solis:"Solis shares authority with you while making the consequences equally shared.",Orion:"Orion offers a piece of unvarnished truth before deciding whether that was wise."};
       if(arcLines[name])lines.push(arcLines[name]);
     }
-    if(repair?.open&&repair.needsAction)lines.push(`${name} heard the apology. What changes next will depend on whether your behavior changes with it.`);
+    if(repair?.open&&repair.needsAction)lines.push(`${name} acknowledges the apology, but their posture remains guarded.`);
   }
   decayCharacterMoods(state);
   localStorage.setItem("lorespan-state-academy",JSON.stringify(state));
@@ -36588,7 +36588,7 @@ function npcPersistenceText(node,state){
     if(!re.test(source))continue;
     const m=lw.npcMemory[name];
     if(!m||m.meetings<2)continue;
-    if(m.support>m.challenge+1)lines.push(`${name} no longer treats your presence as incidental; earlier patience and support shape how readily they make room for you now.`);
+    if(m.support>m.challenge+1)lines.push(`${name} shifts aside to make room for you before the discussion begins.`);
     else if(m.challenge>m.support+1)lines.push(`${name} remembers that you have challenged them before. They answer more carefully, expecting you to notice what they leave unsaid.`);
     else if(m.honesty>2)lines.push(`${name} has learned that your questions continue after easy explanations end, and prepares for the conversation accordingly.`);
     else lines.push(`${name} recognizes the history between you in small choices of distance, timing, and what they decide not to repeat.`);
@@ -39001,6 +39001,7 @@ function addressedCharacterName(sourceNode,destinationNode){
   const names=typeof characterNamesForText==="function"?characterNamesForText(text):[];
   return names[0]||"";
 }
+/* v8.7.5 — reader-facing prose only: hidden memory/relationship systems never announce themselves. */
 function adaptiveTypedBridge(text,next){
   const sourceNode=BOOKS[currentBook]?.nodes?.[currentNode];
   const destinationNode=BOOKS[currentBook]?.nodes?.[next];
@@ -39008,20 +39009,20 @@ function adaptiveTypedBridge(text,next){
   const name=addressedCharacterName(sourceNode,destinationNode);
   const action=typedActionCue(text);
   let reaction="";
-  if(intents.includes("apologetic"))reaction=name?`${name} lets the apology stand on its own for a moment instead of rushing past it. The tension eases enough for the conversation to continue honestly.`:"The apology is acknowledged before the conversation moves to another subject.";
-  else if(intents.includes("romantic"))reaction=name?`${name} notices the invitation in your words but does not treat it as consent to rush the moment. Their answer leaves room for interest, uncertainty, or friendship to become clear over time.`:"The warmth in the answer is allowed to remain an invitation rather than becoming an instant promise.";
-  else if(intents.includes("platonic_boundary"))reaction=name?`${name} accepts the boundary without turning friendship into a consolation prize. The conversation continues with the new understanding intact.`:"The boundary is heard and respected before the conversation continues.";
-  else if(intents.includes("supportive")||intents.includes("empathetic"))reaction=name?`${name} hears the care in the answer, even where the situation leaves no easy comfort.`:"The care in the answer changes the emotional distance in the conversation.";
-  else if(intents.includes("defiant"))reaction=name?`${name} recognizes that this is a boundary, not an invitation to keep pressing.`:"The refusal establishes a boundary the conversation can no longer ignore.";
-  else if(intents.includes("skeptical")||intents.includes("analytical"))reaction=name?`${name} pauses over the question, forced to address the evidence rather than the easiest explanation.`:"The question turns the exchange toward evidence, assumptions, and what still needs to be tested.";
-  else if(intents.includes("cautious")||intents.includes("private"))reaction=name?`${name} adjusts to the restraint in your answer instead of treating silence as agreement.`:"Your restraint slows the exchange and leaves room for consequences to be considered.";
+  if(intents.includes("apologetic"))reaction=name?`${name} is quiet for a moment. When they answer, the edge in their voice has softened.`:"For a moment, no one speaks. Then the conversation resumes more gently.";
+  else if(intents.includes("romantic"))reaction=name?`${name} hears the warmth beneath your words and answers without hurrying the moment.`:"The warmth between you lingers without demanding an answer too soon.";
+  else if(intents.includes("platonic_boundary"))reaction=name?`${name} nods once and does not press further.`:"The answer is accepted without argument, and the conversation moves on.";
+  else if(intents.includes("supportive")||intents.includes("empathetic"))reaction=name?`${name}'s shoulders ease slightly, though the problem itself remains.`:"The words do not solve the problem, but they make the silence easier to share.";
+  else if(intents.includes("defiant"))reaction=name?`${name} stops pressing and meets your refusal directly.`:"The refusal lands clearly enough that no one mistakes it for hesitation.";
+  else if(intents.includes("skeptical")||intents.includes("analytical"))reaction=name?`${name} pauses, then answers the question more carefully.`:"The room turns toward the evidence and the gaps that remain.";
+  else if(intents.includes("cautious")||intents.includes("private"))reaction=name?`${name} lowers their voice and gives the moment more space.`:"The exchange slows, leaving room to think before anyone commits.";
   else if(intents.includes("humorous"))reaction=name?`${name} catches the humor, and some of the strain leaves the moment without making the problem disappear.`:"The humor releases a little pressure without dismissing what is at stake.";
-  else if(intents.includes("honest"))reaction=name?`${name} responds to the honesty before deciding what to do with it.`:"The admission changes the conversation by removing the safer version of the truth.";
-  else if(intents.includes("protective"))reaction=name?`${name} sees that your attention has shifted from winning the argument to keeping someone safe.`:"The answer places safety ahead of pride or momentum.";
-  else if(intents.includes("diplomatic"))reaction=name?`${name} follows the attempt to make room for more than one voice.`:"The answer opens space for negotiation without pretending everyone already agrees.";
-  else if(intents.includes("direct")||intents.includes("leadership")||intents.includes("courageous"))reaction=name?`${name} responds to the decisiveness, whether with trust, resistance, or both.`:"The direct answer gives the conversation a clear direction.";
-  else if(intents.includes("curious"))reaction=name?`${name} considers what the question reveals about your priorities before answering.`:"The question keeps the conversation open instead of forcing a conclusion too early.";
-  else reaction=name?`${name} takes in both the words and the manner in which you chose to offer them.`:"Your response becomes part of the scene rather than a copy of a preset line.";
+  else if(intents.includes("honest"))reaction=name?`${name} holds your gaze, taking the admission seriously.`:"The admission leaves the truth exposed between you.";
+  else if(intents.includes("protective"))reaction=name?`${name} follows your attention toward the person in danger.`:"The argument falls away as everyone turns toward keeping someone safe.";
+  else if(intents.includes("diplomatic"))reaction=name?`${name} glances around the room before answering, making space for the others to speak.`:"The exchange opens enough for more than one voice to enter it.";
+  else if(intents.includes("direct")||intents.includes("leadership")||intents.includes("courageous"))reaction=name?`${name} answers without delay.`:"The direct answer sends the room into motion.";
+  else if(intents.includes("curious"))reaction=name?`${name} considers the question before answering.`:"The question holds the conversation open a little longer.";
+  else reaction=name?`${name} studies you for a moment before replying.`:"A brief silence follows before the conversation continues.";
   const remembered=name?currentCharacterReaction(name,intents):"";
   return [action,reaction,remembered].filter(Boolean).join(" ");
 }
@@ -39392,7 +39393,7 @@ if("serviceWorker" in navigator && location.protocol!=="file:"){
     }
   });
 
-  navigator.serviceWorker.register("./service-worker.js?v=8.7.4",{updateViaCache:"none"}).then(registration=>{
+  navigator.serviceWorker.register("./service-worker.js?v=8.7.5",{updateViaCache:"none"}).then(registration=>{
     swRegistration=registration;
 
     if(registration.waiting && navigator.serviceWorker.controller){

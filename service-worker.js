@@ -1,5 +1,5 @@
 const CACHE_PREFIX="lorespan-";
-const CACHE_NAME='lorespan-v8.7.4';
+const CACHE_NAME='lorespan-v8.7.5';
 const CORE=[
   "./",
   "./index.html",
