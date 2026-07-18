@@ -1,3 +1,3 @@
-# Lorespan v8.7.4 Clean Replacement
+# Lorespan v8.7.6
 
-Complete GitHub Pages/PWA replacement package. Delete old repository files before uploading these files to the repository root.
+GitHub Pages replacement build. Upload the extracted contents directly to the repository root so `index.html` is at the top level.

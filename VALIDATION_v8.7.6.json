@@ -1,0 +1,18 @@
+{
+  "version": "8.7.6",
+  "passed": true,
+  "checks": {
+    "runtime_v876": true,
+    "old_v874_runtime_removed": true,
+    "sw_registration_v876": true,
+    "desk_img_element": true,
+    "skip_click": true,
+    "skip_pointer": true,
+    "landing_before_open": true,
+    "no_mobile_autofocus": true,
+    "open_book_label_absent": true,
+    "all_10_covers": true,
+    "core_assets": true
+  },
+  "note": "Static package, syntax, mapping, and handoff validation. Physical Android GPU rendering requires deployed-device confirmation."
+}
