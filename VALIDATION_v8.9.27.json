@@ -1,0 +1,14 @@
+{
+  "version": "v8.9.27",
+  "fixes": [
+    "restart reopens book",
+    "source rectangle measured for generic open",
+    "emergency animation cleanup hardened"
+  ],
+  "status": "passed",
+  "javascript_sections": 3,
+  "duplicate_html_ids": 0,
+  "animation_runtime_count": 1,
+  "missing_packaged_assets": 0,
+  "zip_integrity": "passed"
+}

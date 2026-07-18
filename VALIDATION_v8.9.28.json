@@ -1,0 +1,185 @@
+{
+  "version": "8.9.28",
+  "html_ids": {
+    "count": 48,
+    "duplicates": []
+  },
+  "javascript": [
+    {
+      "index": 0,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "index": 1,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "index": 2,
+      "ok": true,
+      "error": ""
+    }
+  ],
+  "function_counts": {
+    "runBookCinematic": 1,
+    "runBookProceduralCinematic": 1,
+    "runBookOpenAnimation": 1,
+    "runBookReturnAnimation": 1,
+    "buildShelf": 1,
+    "openBook": 1,
+    "closeBook": 1
+  },
+  "assets": {
+    "referenced": 28,
+    "missing": []
+  },
+  "movie_files": {
+    "academy": {
+      "open": {
+        "path": "movies/academy-open.mp4",
+        "exists": true,
+        "bytes": 530611
+      },
+      "return": {
+        "path": "movies/academy-return.mp4",
+        "exists": true,
+        "bytes": 505228
+      }
+    },
+    "hero": {
+      "open": {
+        "path": "movies/hero-open.mp4",
+        "exists": true,
+        "bytes": 403869
+      },
+      "return": {
+        "path": "movies/hero-return.mp4",
+        "exists": true,
+        "bytes": 380404
+      }
+    },
+    "beastbound": {
+      "open": {
+        "path": "movies/beastbound-open.mp4",
+        "exists": true,
+        "bytes": 470783
+      },
+      "return": {
+        "path": "movies/beastbound-return.mp4",
+        "exists": true,
+        "bytes": 464182
+      }
+    },
+    "pirate": {
+      "open": {
+        "path": "movies/pirate-open.mp4",
+        "exists": true,
+        "bytes": 442990
+      },
+      "return": {
+        "path": "movies/pirate-return.mp4",
+        "exists": true,
+        "bytes": 418890
+      }
+    },
+    "guild": {
+      "open": {
+        "path": "movies/guild-open.mp4",
+        "exists": true,
+        "bytes": 457506
+      },
+      "return": {
+        "path": "movies/guild-return.mp4",
+        "exists": true,
+        "bytes": 402016
+      }
+    },
+    "starfall": {
+      "open": {
+        "path": "movies/starfall-open.mp4",
+        "exists": true,
+        "bytes": 440213
+      },
+      "return": {
+        "path": "movies/starfall-return.mp4",
+        "exists": true,
+        "bytes": 402162
+      }
+    },
+    "moonwake": {
+      "open": {
+        "path": "movies/moonwake-open.mp4",
+        "exists": true,
+        "bytes": 449710
+      },
+      "return": {
+        "path": "movies/moonwake-return.mp4",
+        "exists": true,
+        "bytes": 414656
+      }
+    },
+    "emberwake": {
+      "open": {
+        "path": "movies/emberwake-open.mp4",
+        "exists": true,
+        "bytes": 454506
+      },
+      "return": {
+        "path": "movies/emberwake-return.mp4",
+        "exists": true,
+        "bytes": 393592
+      }
+    },
+    "ironhaven": {
+      "open": {
+        "path": "movies/ironhaven-open.mp4",
+        "exists": true,
+        "bytes": 439095
+      },
+      "return": {
+        "path": "movies/ironhaven-return.mp4",
+        "exists": true,
+        "bytes": 385955
+      }
+    },
+    "veilwood": {
+      "open": {
+        "path": "movies/veilwood-open.mp4",
+        "exists": true,
+        "bytes": 446108
+      },
+      "return": {
+        "path": "movies/veilwood-return.mp4",
+        "exists": true,
+        "bytes": 405706
+      }
+    }
+  },
+  "versions": {
+    "page": [
+      "8.9.2",
+      "8.9.28",
+      "8.9.3",
+      "8.9.5"
+    ],
+    "manifest": "8.9.28",
+    "service_worker": [
+      "8.9.28"
+    ],
+    "registration_query": [
+      "8.9.28"
+    ]
+  },
+  "checks": {
+    "no_hotspot_click": true,
+    "one_movie_runtime": true,
+    "one_fallback_runtime": true,
+    "skip_button_present": true,
+    "continue_button_present": true,
+    "movie_css_present": true,
+    "fallback_present": true,
+    "watchdog_13s": true
+  },
+  "passed": true
+}

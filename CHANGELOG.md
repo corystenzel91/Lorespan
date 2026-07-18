@@ -1,11 +1,29 @@
-# Lorespan v8.9.22
+# v8.9.26
+- Rebuilt the flying book as a persistent 3D object with stronger spine, covers, page edges, and depth.
+- Added a weighted desk landing before opening.
+- Added a hinged cover opening to nearly 180 degrees.
+- Added four independently animated turning sheets and layered page stacks.
+- Added realistic reverse page settling and cover closing for return-to-shelf.
+- Extended the animation watchdog for the longer physical sequence.
+
+# Lorespan v8.9.24
+
+- Restored a dedicated Continue Book control for the latest valid save.
+- Book taps now select a title instead of immediately opening it.
+- Restored Begin/Continue and Start Over controls on the selected-book card.
+- Prevented stale overlays and opening-state flags from blocking other books.
+- Strengthened spine, pages, thickness, title, shadows, and perspective during flight.
+- Masks the selected shelf book during the cinematic overlay to prevent a duplicate background copy.
+- Aligned page, manifest, and service-worker versions.
+
+# Lorespan v8.9.23
 
 - Removed the remaining duplicate cinematic animation runtime so only one authoritative shelf-flight engine remains.
 - Unified opening, return, Skip Animation, cancellation, and cleanup state.
 - Confirmed the return sequence no longer programmatically clicks a shelf book or reopens the reader.
 - Renamed the Guild Bound registry-trial resolution node to `guildTrialResolution`, preventing it from overwriting Vantheir Academy's `trialResolution` node.
 - Updated every related guild choice target, typed-response route, progress flag, optional event, and progression mapping.
-- Updated the service-worker cache to `lorespan-v8.9.22`.
+- Updated the service-worker cache to `lorespan-v8.9.23`.
 - Revalidated HTML IDs, JavaScript syntax, local assets, and ZIP integrity.
 
 # Lorespan v8.9.20
@@ -54,3 +72,27 @@
 - Connected shelf-book taps directly to the opening function instead of a synthetic preview-button click.
 - Replaced the flat flying rectangle with a layered hardcover model: front cover, spine, page block, back cover, edge highlight, rounded geometry, perspective, and softer shadowing.
 - Smoothed the flight curve and extended the full animation slightly for more natural movement.
+
+
+## v8.9.26
+- Full code and animation audit.
+- Fixed animation watchdog firing before the cinematic runtime timeout.
+- Hardened Skip Animation label and cleanup behavior.
+- Ensured animation state, inert state, and overlay cleanup complete before screen handoff.
+- Revalidated JavaScript, IDs, assets, service worker, and ZIP integrity.
+
+## v8.9.27 — Full Code and Animation Bug Audit
+- Fixed Start Over so confirmation reopens the selected book instead of only selecting it.
+- Fixed generic library openings so the animation begins at the selected book instead of a fallback corner.
+- Strengthened animation cancellation cleanup for overlays, shelf locking, masks, classes, and Skip state.
+- Revalidated the 3D flight, cover hinge, page turns, return sequence, Continue Book, save state, assets, and cache alignment.
+
+## v8.9.28 — Full movie-animation rebuild and end-to-end audit
+- Added 20 real MP4 animation files: opening and return movies for all 10 shelf books.
+- Each movie uses the selected book's own cover and shelf position.
+- Movies show a dimensional hardcover with visible spine, page block, thickness, perspective, moving shadow, curved flight, desk landing, hinged opening, and page movement.
+- The return movies reverse the complete opening sequence.
+- Added a video-first runtime with Skip support and a procedural 3D fallback if movie playback fails.
+- Fixed service-worker registration version mismatch.
+- Extended the emergency handoff timeout so a fallback animation can fully clean up before the reader opens.
+- Audited scripts, IDs, shelf controls, opening/return state, asset references, movie encoding, cache entries, manifest, and ZIP structure.

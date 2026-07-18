@@ -1,0 +1,19 @@
+{
+  "version": "8.9.25",
+  "checks": [
+    "HTML IDs unique",
+    "embedded JavaScript syntax",
+    "single cinematic runtime",
+    "single open/return wrapper",
+    "no hotspot.click return trigger",
+    "all local assets present",
+    "service-worker cache aligned",
+    "ZIP integrity"
+  ],
+  "fixes": [
+    "animation watchdog increased from 8.0s to 10.0s",
+    "watchdog cleared inside handoff",
+    "skip label DOM handling hardened",
+    "cleanup resets will-change and disables skip before handoff"
+  ]
+}

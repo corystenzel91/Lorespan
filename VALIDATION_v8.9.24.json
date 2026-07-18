@@ -1,0 +1,19 @@
+{
+  "version": "v8.9.24",
+  "html_ids": 46,
+  "duplicate_html_ids": [],
+  "embedded_javascript_sections_checked": 3,
+  "javascript_syntax": "pass",
+  "animation_runtime_count": 1,
+  "open_animation_wrapper_count": 1,
+  "return_animation_wrapper_count": 1,
+  "build_shelf_count": 1,
+  "programmatic_hotspot_clicks": 0,
+  "book_click_behavior": "select only",
+  "preview_primary_action": "opens selected book",
+  "continue_book_control": "restored; latest valid save only",
+  "overlay_cleanup_resets_shelf_state": true,
+  "service_worker_cache": "lorespan-v8.9.24",
+  "zip_integrity": "pass",
+  "missing_packaged_assets": []
+}
