@@ -1,0 +1,13 @@
+{
+  "version": "8.9.22",
+  "index_size_bytes": 1896452,
+  "html_id_count": 47,
+  "duplicate_html_ids": [],
+  "runBookCinematic_definitions": 1,
+  "runBookOpenAnimation_definitions": 1,
+  "runBookReturnAnimation_definitions": 1,
+  "hotspot_click_calls": 0,
+  "trialResolution_node_definitions": 1,
+  "guildTrialResolution_node_definitions": 3,
+  "service_worker_cache": "lorespan-v8.9.22"
+}

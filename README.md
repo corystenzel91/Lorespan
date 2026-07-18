@@ -1,3 +1,5 @@
+Lorespan v8.9.22 — full code audit and animation consolidation. Upload every file in this folder to the repository root.
+
 Lorespan v8.9.18 — Year 1 complete, Summer I polished, Year 2 Week 1 polished. Upload every file in this folder to the repository root.
 
 # Lorespan v8.9.17 — GitHub Pages

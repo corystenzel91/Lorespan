@@ -1,3 +1,13 @@
+# Lorespan v8.9.22
+
+- Removed the remaining duplicate cinematic animation runtime so only one authoritative shelf-flight engine remains.
+- Unified opening, return, Skip Animation, cancellation, and cleanup state.
+- Confirmed the return sequence no longer programmatically clicks a shelf book or reopens the reader.
+- Renamed the Guild Bound registry-trial resolution node to `guildTrialResolution`, preventing it from overwriting Vantheir Academy's `trialResolution` node.
+- Updated every related guild choice target, typed-response route, progress flag, optional event, and progression mapping.
+- Updated the service-worker cache to `lorespan-v8.9.22`.
+- Revalidated HTML IDs, JavaScript syntax, local assets, and ZIP integrity.
+
 # Lorespan v8.9.20
 
 - Replaced the shelf/desk transition with a movie-style full-screen overlay over still artwork.
