@@ -1,4 +1,4 @@
-# Lorespan v8.9.19
+# Lorespan v8.9.20
 
 - Replaced the shelf/desk transition with a movie-style full-screen overlay over still artwork.
 - Only shelf books are interactive in the library.
@@ -38,3 +38,9 @@
 - Polished previous-week wording and maintained player-response-only highlighting.
 - Completed a copyright-similarity editorial review.
 - Updated the service-worker cache for GitHub Pages deployment.
+
+## v8.9.20 — Cinematic book flight repair
+- Initialized the animation epoch counter so the cinematic no longer cancels immediately.
+- Connected shelf-book taps directly to the opening function instead of a synthetic preview-button click.
+- Replaced the flat flying rectangle with a layered hardcover model: front cover, spine, page block, back cover, edge highlight, rounded geometry, perspective, and softer shadowing.
+- Smoothed the flight curve and extended the full animation slightly for more natural movement.
