@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "week3_nodes": 20,
+  "missing_nodes": [],
+  "broken_destinations": [],
+  "checks": {
+    "double_words": [],
+    "bad_spacing": false,
+    "reported_knuckle_phrase": false,
+    "duplicate_bread_line_count": 1,
+    "meta_mechanics": []
+  },
+  "javascript_syntax": "passed",
+  "service_worker_syntax": "passed",
+  "duplicate_ids": [],
+  "missing_local_assets": []
+}

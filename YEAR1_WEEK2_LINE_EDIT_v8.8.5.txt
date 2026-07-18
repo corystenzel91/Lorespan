@@ -1,0 +1,18 @@
+Vantheir Academy Year 1 — Week 2 manual line edit
+
+Scope:
+- mondayDawn through continuationQuiet
+- Preserved all node IDs, choice destinations, free-response mappings, flags, profiles, and save keys.
+
+Editorial changes:
+- Tightened scene openings and removed choppy sentence stacking.
+- Removed repeated first-introduction descriptions for established characters.
+- Removed unrelated injected visual descriptions of Thorne and Orion.
+- Reworked awkward gestures and repetitive choice phrasing.
+- Improved setting continuity across the library, greenhouse, Orion's office, arena, dorm, and evening scenes.
+- Smoothed dialogue pacing and reduced unnecessary back-and-forth.
+- Clarified the greenhouse memory sequence and the transition into the Lantern Night thread.
+
+Bug fixes:
+- Updated stale v883 shelf, desk, and cover references to the current v885 assets.
+- Verified all Week 2 choice and free-response destinations exist.

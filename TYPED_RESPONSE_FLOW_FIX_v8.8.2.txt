@@ -1,0 +1,1 @@
+Typed sentences remain anchored to the current decision. Meaningful responses route to the closest visible choice instead of inserting a detached clarification exchange. Generic system-generated reaction bridges were removed.

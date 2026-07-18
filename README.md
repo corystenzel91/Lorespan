@@ -1,3 +1,3 @@
-# Lorespan v8.7.7
+# Lorespan v8.8.6
 
-GitHub-ready replacement package. Upload all extracted files to the repository root so `index.html` is at the top level.
+GitHub-ready master containing the completed manual line edit for Vantheir Academy Year 1 Week 3, continuing from the v8.8.5 master.

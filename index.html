@@ -1951,6 +1951,20 @@ html.phone-layout .launcher-shelf .cover-actions{
 
 /* Stateful Branching & Character Memory Pass */
 
+const STORY_COHERENCE_MIGRATION_V883="lorespan-v883-coherence-migrated";
+(function migrateDetachedClarificationsV883(){
+  try{
+    if(localStorage.getItem(STORY_COHERENCE_MIGRATION_V883))return;
+    for(const id of ["academy"]){
+      const key=`lorespan-state-${id}`;
+      const raw=localStorage.getItem(key); if(!raw)continue;
+      const state=JSON.parse(raw);
+      if(Array.isArray(state.history))state.history=state.history.filter(item=>item?.kind!=="clarification");
+      localStorage.setItem(key,JSON.stringify(state));
+    }
+    localStorage.setItem(STORY_COHERENCE_MIGRATION_V883,"1");
+  }catch(error){console.warn("Story coherence migration skipped",error)}
+})();
 /* Lorespan v7.0 — adaptive novel introductions and clarification turns */
 .character-introduction{
   max-width:68ch;margin:0 0 1.15em;padding:12px 14px;border-left:2px solid var(--accent);
@@ -2620,7 +2634,7 @@ body.book-opening{overflow:hidden;touch-action:none}
   isolation:isolate!important;
   background:
     linear-gradient(180deg,rgba(18,9,5,.03),rgba(8,4,2,.18)),
-    url("library-concept-shelf-v880.webp") center top/100% 100% no-repeat!important;
+    url("library-concept-shelf-v885.webp") center top/100% 100% no-repeat!important;
   box-shadow:0 26px 60px rgba(0,0,0,.46),inset 0 0 0 1px rgba(219,171,95,.16)!important;
 }
 .concept-glow{position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(circle at 50% 12%,rgba(182,112,255,.12),transparent 20%),radial-gradient(circle at 90% 92%,rgba(255,190,80,.09),transparent 18%)}
@@ -3076,7 +3090,7 @@ body.book-opening{overflow:hidden;touch-action:none}
 
 /* Lorespan v8.7.7 — seamless illustrated shelf-to-desk flight */
 
-.book-launch-origin-shelf{position:fixed;left:var(--origin-shelf-left,0px);top:var(--origin-shelf-top,0px);width:var(--origin-shelf-width,100vw);height:var(--origin-shelf-height,100vh);z-index:1;pointer-events:none;border-radius:14px;overflow:hidden;background:url("library-concept-shelf-v880.webp") center top/100% 100% no-repeat;box-shadow:0 24px 65px rgba(0,0,0,.56),inset 0 0 0 1px rgba(219,171,95,.14);opacity:1;transform:translateZ(0);animation:originShelfToStudy836 1.12s ease-in-out both}
+.book-launch-origin-shelf{position:fixed;left:var(--origin-shelf-left,0px);top:var(--origin-shelf-top,0px);width:var(--origin-shelf-width,100vw);height:var(--origin-shelf-height,100vh);z-index:1;pointer-events:none;border-radius:14px;overflow:hidden;background:url("library-concept-shelf-v885.webp") center top/100% 100% no-repeat;box-shadow:0 24px 65px rgba(0,0,0,.56),inset 0 0 0 1px rgba(219,171,95,.14);opacity:1;transform:translateZ(0);animation:originShelfToStudy836 1.12s ease-in-out both}
 .book-launch-overlay.open .book-launch-room{opacity:0;animation:studyRoomReveal836 1.1s ease-out .36s both!important}
 .book-launch-overlay.open .book-launch-desk{opacity:0;animation:studyDeskReveal836 .92s ease-out .52s both!important}
 .book-launch-overlay.open .book-flight-cover{background-image:var(--launch-cover)!important;background-size:contain!important;background-repeat:no-repeat!important;background-position:center!important;border-radius:10px;transform-origin:center center;animation:flyIllustratedBook836 1.36s cubic-bezier(.18,.78,.12,1) both!important;filter:drop-shadow(0 6px 7px rgba(0,0,0,.38)) drop-shadow(0 0 10px var(--spark2,#79cfff))}
@@ -3211,7 +3225,7 @@ body.book-opening{overflow:hidden!important;touch-action:none}
 .book-launch-room{
   background:
     linear-gradient(180deg,rgba(8,4,5,.18),rgba(8,4,5,.58)),
-    url("lorespan-desk-room-v880.webp") center/cover no-repeat!important;
+    url("lorespan-desk-room-v885.webp") center/cover no-repeat!important;
   opacity:0;filter:saturate(.92) contrast(1.03) brightness(.86);
 }
 .book-launch-room::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 58%,transparent 0 24%,rgba(4,2,3,.2) 58%,rgba(2,1,2,.72) 100%);pointer-events:none}
@@ -3338,7 +3352,7 @@ body.book-opening{overflow:hidden!important;touch-action:none}
   animation:none!important;
 }
 .book-launch-overlay.waapi-active .book-launch-room{
-  background:linear-gradient(180deg,rgba(5,2,3,.08),rgba(5,2,3,.28)),url("lorespan-desk-room-v880.webp") center/cover no-repeat!important;
+  background:linear-gradient(180deg,rgba(5,2,3,.08),rgba(5,2,3,.28)),url("lorespan-desk-room-v885.webp") center/cover no-repeat!important;
   opacity:0;
   filter:saturate(1.04) contrast(1.04) brightness(.92);
 }
@@ -3374,7 +3388,7 @@ body.book-opening{overflow:hidden!important;touch-action:none}
 /* Lorespan v8.7.7 — clean cinematic engine and readable mobile setup */
 .book-launch-overlay.waapi-v845{position:fixed!important;inset:0!important;z-index:10000!important;overflow:hidden!important;background:#080504!important;isolation:isolate!important;}
 .book-launch-overlay.waapi-v845 .book-launch-origin-shelf{position:absolute!important;inset:0!important;z-index:0!important;background:var(--origin-shelf-image) center/cover no-repeat!important;opacity:1;}
-.book-launch-overlay.waapi-v845 .book-launch-room{position:absolute!important;inset:0!important;z-index:1!important;background:#100906 url("lorespan-desk-room-v880.webp") center bottom/100% auto no-repeat!important;opacity:0;transform:scale(1.02);}
+.book-launch-overlay.waapi-v845 .book-launch-room{position:absolute!important;inset:0!important;z-index:1!important;background:#100906 url("lorespan-desk-room-v885.webp") center bottom/100% auto no-repeat!important;opacity:0;transform:scale(1.02);}
 .book-launch-overlay.waapi-v845 .book-launch-room>*{display:none!important;}
 .book-launch-overlay.waapi-v845 .book-launch-desk,.book-launch-overlay.waapi-v845 .book-launch-shelf{display:none!important;}
 .book-launch-overlay.waapi-v845 .book-flight-cover{position:fixed!important;z-index:5!important;display:block!important;background-image:var(--launch-cover)!important;background-size:100% 100%!important;background-position:center!important;background-repeat:no-repeat!important;border-radius:4px 9px 9px 4px!important;box-shadow:0 20px 50px rgba(0,0,0,.58),0 0 26px var(--spark1),0 0 54px color-mix(in srgb,var(--spark2) 55%,transparent)!important;transform-origin:center!important;backface-visibility:hidden!important;will-change:left,top,width,height,transform,opacity!important;}
@@ -3427,7 +3441,7 @@ body.book-opening{overflow:hidden!important;touch-action:none}
 /* v8.5.0 authoritative cinematic and readable mobile setup */
 .book-launch-overlay.cinematic-v846{position:fixed!important;inset:0!important;z-index:9999!important;display:block!important;overflow:hidden!important;background:#080403!important;isolation:isolate!important;}
 .book-launch-overlay.cinematic-v846 .book-launch-origin-shelf{position:absolute!important;inset:0!important;z-index:0!important;background:var(--origin-shelf-image) center top/cover no-repeat!important;animation:none!important;}
-.book-launch-overlay.cinematic-v846 .book-launch-room{position:absolute!important;inset:0!important;z-index:1!important;background:#100906 url("lorespan-desk-room-v880.webp") center bottom/100% auto no-repeat!important;animation:none!important;}
+.book-launch-overlay.cinematic-v846 .book-launch-room{position:absolute!important;inset:0!important;z-index:1!important;background:#100906 url("lorespan-desk-room-v885.webp") center bottom/100% auto no-repeat!important;animation:none!important;}
 .book-launch-overlay.cinematic-v846 .book-launch-room>*{display:none!important;}
 .book-launch-overlay.cinematic-v846 .book-flight-cover,.book-launch-overlay.cinematic-v846 .book-flight-trail,.book-launch-overlay.cinematic-v846 .book-launch-stage,.book-launch-overlay.cinematic-v846 .book-launch-desk,.book-launch-overlay.cinematic-v846 .book-launch-shelf,.book-launch-overlay.cinematic-v846 .book-landing-shadow,.book-launch-overlay.cinematic-v846 .magic-sparkles{display:none!important;animation:none!important;}
 .v846-flight{position:fixed;z-index:5;background:var(--launch-cover) center/100% 100% no-repeat;border-radius:5px 11px 11px 5px;box-shadow:0 22px 52px rgba(0,0,0,.68),0 0 25px var(--spark1),0 0 55px color-mix(in srgb,var(--spark2) 52%,transparent);transform-origin:center;backface-visibility:hidden;will-change:left,top,width,height,transform,opacity;}
@@ -3457,8 +3471,8 @@ body.book-opening{overflow:hidden!important;touch-action:none}
 
 /* Lorespan v8.7.7 — final mobile-safe cinematic and shelf cleanup */
 .book-launch-overlay.cinematic-v847{position:fixed!important;inset:0!important;z-index:9999!important;display:block!important;overflow:hidden!important;background:#080403!important;isolation:isolate!important;}
-.book-launch-overlay.cinematic-v847 .book-launch-origin-shelf{position:absolute!important;inset:0!important;z-index:0!important;background:var(--origin-shelf-image,url("library-concept-shelf-v880.webp")) center top/cover no-repeat!important;animation:none!important;}
-.book-launch-overlay.cinematic-v847 .book-launch-room{position:absolute!important;inset:0!important;z-index:1!important;background:#100906 url("lorespan-desk-room-v880.webp") center center/cover no-repeat!important;animation:none!important;}
+.book-launch-overlay.cinematic-v847 .book-launch-origin-shelf{position:absolute!important;inset:0!important;z-index:0!important;background:var(--origin-shelf-image,url("library-concept-shelf-v885.webp")) center top/cover no-repeat!important;animation:none!important;}
+.book-launch-overlay.cinematic-v847 .book-launch-room{position:absolute!important;inset:0!important;z-index:1!important;background:#100906 url("lorespan-desk-room-v885.webp") center center/cover no-repeat!important;animation:none!important;}
 .book-launch-overlay.cinematic-v847 .book-launch-room>*{display:none!important;}
 .book-launch-overlay.cinematic-v847 .book-flight-cover,.book-launch-overlay.cinematic-v847 .book-flight-trail,.book-launch-overlay.cinematic-v847 .book-launch-stage,.book-launch-overlay.cinematic-v847 .book-launch-desk,.book-launch-overlay.cinematic-v847 .book-launch-shelf,.book-launch-overlay.cinematic-v847 .book-landing-shadow,.book-launch-overlay.cinematic-v847 .magic-sparkles,.book-launch-overlay.cinematic-v847 .v846-flight,.book-launch-overlay.cinematic-v847 .v846-book,.book-launch-overlay.cinematic-v847 .v845-flight,.book-launch-overlay.cinematic-v847 .v845-spread{display:none!important;animation:none!important;}
 .v847-flight{position:fixed;z-index:6;background:var(--launch-cover) center/100% 100% no-repeat;border-radius:5px 11px 11px 5px;box-shadow:0 22px 52px rgba(0,0,0,.68),0 0 25px var(--spark1),0 0 55px color-mix(in srgb,var(--spark2) 52%,transparent);transform-origin:center;backface-visibility:hidden;will-change:left,top,width,height,transform,opacity;}
@@ -3477,9 +3491,9 @@ body.book-opening{overflow:hidden!important;touch-action:none}
 
 /* Lorespan v8.7.7 — authoritative mobile setup and clean all-book cinematic */
 .book-launch-overlay.cinematic-v848{position:fixed!important;inset:0!important;z-index:9999!important;display:block!important;overflow:hidden!important;background:#090403!important;isolation:isolate!important;touch-action:none!important}
-.book-launch-overlay.cinematic-v848 .book-launch-origin-shelf{position:absolute!important;inset:0!important;z-index:0!important;background:var(--origin-shelf-image,url("library-concept-shelf-v880.webp")) center top/cover no-repeat!important;animation:none!important}
+.book-launch-overlay.cinematic-v848 .book-launch-origin-shelf{position:absolute!important;inset:0!important;z-index:0!important;background:var(--origin-shelf-image,url("library-concept-shelf-v885.webp")) center top/cover no-repeat!important;animation:none!important}
 .book-launch-overlay.cinematic-v848 .book-launch-room{display:none!important}
-.book-launch-overlay.cinematic-v848 .v848-room{display:block!important;position:absolute!important;inset:0!important;z-index:1!important;overflow:hidden!important;background:#100906 url("lorespan-desk-room-v880.webp") center center/cover no-repeat!important;opacity:0;transform:scale(1.035);will-change:opacity,transform}
+.book-launch-overlay.cinematic-v848 .v848-room{display:block!important;position:absolute!important;inset:0!important;z-index:1!important;overflow:hidden!important;background:#100906 url("lorespan-desk-room-v885.webp") center center/cover no-repeat!important;opacity:0;transform:scale(1.035);will-change:opacity,transform}
 .book-launch-overlay.cinematic-v848 .v848-room::before{content:"";position:absolute;left:19%;right:19%;top:0;height:34%;background:linear-gradient(180deg,rgba(9,4,3,.98),rgba(18,8,5,.94) 62%,rgba(18,8,5,0));filter:blur(1px);pointer-events:none}
 .book-launch-overlay.cinematic-v848 .v848-room::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 58%,transparent 0 28%,rgba(5,2,2,.16) 58%,rgba(2,1,1,.66) 100%);pointer-events:none}
 .book-launch-overlay.cinematic-v848 .v848-flight{position:fixed!important;z-index:8!important;border-radius:8px!important;background-position:center!important;background-size:contain!important;background-repeat:no-repeat!important;filter:drop-shadow(0 16px 22px rgba(0,0,0,.7)) drop-shadow(0 0 18px var(--spark2,#bb70e7));will-change:left,top,width,height,transform,opacity;transform-origin:center center}
@@ -3559,7 +3573,7 @@ body.book-opening{overflow:hidden!important;touch-action:none}
   .setup-card>p{font-size:17px!important}
 }
 
-.book-launch-overlay.cinematic-v848 .v848-room{background:#100906 url("lorespan-desk-room-v880.webp") center center/cover no-repeat!important}
+.book-launch-overlay.cinematic-v848 .v848-room{background:#100906 url("lorespan-desk-room-v885.webp") center center/cover no-repeat!important}
 .book-launch-overlay.cinematic-v848 .v848-spread{
   border-radius:20px!important;
   background:#734423!important;
@@ -3642,7 +3656,7 @@ body.book-opening{overflow:hidden!important;touch-action:none}
   background-color:#090403!important;
   background-image:
     linear-gradient(180deg,rgba(3,1,1,.12),rgba(3,1,1,.18)),
-    url("lorespan-desk-room-v880.webp")!important;
+    url("lorespan-desk-room-v885.webp")!important;
   background-repeat:no-repeat!important;
   background-position:center center!important;
   background-size:contain!important;
@@ -3656,7 +3670,7 @@ body.book-opening{overflow:hidden!important;touch-action:none}
   left:-7%!important;
   right:-7%!important;
   top:-7%!important;
-  background:url("lorespan-desk-room-v880.webp") center/cover no-repeat!important;
+  background:url("lorespan-desk-room-v885.webp") center/cover no-repeat!important;
   filter:blur(26px) brightness(.34) saturate(.86)!important;
   opacity:.9!important;
   pointer-events:none!important;
@@ -3767,12 +3781,12 @@ body.book-opening{overflow:hidden!important;touch-action:none}
 .book-launch-overlay.cinematic-v862>.v845-spread{display:none!important;animation:none!important}
 .book-launch-overlay.cinematic-v862 .book-launch-origin-shelf{
   position:absolute!important;inset:0!important;z-index:0!important;
-  background:url("library-concept-shelf-v880.webp") center top/cover no-repeat!important;
+  background:url("library-concept-shelf-v885.webp") center top/cover no-repeat!important;
   opacity:1;animation:none!important;pointer-events:none!important;
 }
 .book-launch-overlay.cinematic-v862 .v862-room{
   position:absolute!important;inset:0!important;z-index:1!important;display:block!important;
-  background:#100906 url("lorespan-desk-room-v880.webp") center center/cover no-repeat!important;
+  background:#100906 url("lorespan-desk-room-v885.webp") center center/cover no-repeat!important;
   opacity:0;transform:scale(1.025);will-change:opacity,transform;pointer-events:none!important;
 }
 .v862-flight{
@@ -3859,12 +3873,12 @@ body.book-opening{overflow:hidden!important;touch-action:none}
 .book-launch-overlay.cinematic-v862 .v862-cover{backface-visibility:hidden!important;transform-style:preserve-3d!important;box-shadow:0 22px 46px rgba(0,0,0,.58),inset 5px 0 8px rgba(255,255,255,.11)!important}
 </style>
 
-<style id="v880-skip-button-touch-fix">
+<style id="v883-skip-button-touch-fix">
 /* v8.7.7 — large, readable, single-line animation skip control */
 .book-launch-overlay.open .skip-book-animation,
 .book-launch-overlay.open.returning .skip-book-animation,
 .book-launch-overlay.cinematic-v876 .skip-book-animation,
-.book-launch-overlay.cinematic-v880 .skip-book-animation {
+.book-launch-overlay.cinematic-v883 .skip-book-animation {
   display:flex!important;
   align-items:center!important;
   justify-content:center!important;
@@ -4676,7 +4690,7 @@ function worldPolishContext(bookId,nodeId,node,state){
 
 const BOOKS={
 
-/* Vantheir Academy Years 1–2 coherence and choice-flow audit v8.8.0 — repeated descriptions, gestures, scene openings, and dialogue pacing refined; technical identifiers preserved. */
+/* Vantheir Academy Years 1–2 coherence and choice-flow audit v8.8.3 — repeated descriptions, gestures, scene openings, and dialogue pacing refined; technical identifiers preserved. */
  academy:{
   title:"Vantheir Academy — Years 1–5",genre:"Academy Fantasy",className:"red",
   desc:"One continuous academy volume designed to grow from Year 1 through Year 5 as new chapters are published.",
@@ -5156,7 +5170,7 @@ The room exhales.
 
 Thorne sets down his tea.
 
-The smaller room holds the close warmth of books, folded clothes, and rain-damp fabric left near the window.`,
+From behind the blue door comes the scrape of furniture being moved across a floor.`,
     npc:`“Control is not the same as force,” he says.
 
 His gaze shifts between you and Cassian.
@@ -6189,13 +6203,9 @@ So do you.`,
     free:{follow:"mondayDawn",finn:"mondayDawn",shelves:"mondayDawn",cassian:"mondayDawn",lantern:"mondayDawn",default:"mondayDawn"}
    },
    mondayDawn:{
-    narration:`The archive door closes behind you moments before dawn.
+    narration:`The archive door closes behind you just before dawn.
 
-By the time you reach the upper library, pale light has begun gathering at the windows. The academy has not fully awakened, but it is no longer asleep.
-
-Somewhere in the kitchens, pans clang.
-
-A cleaning charm chases muddy footprints across the marble floor and loses.
+Pale light gathers at the upper-library windows while the academy stirs around you. Pans clang somewhere in the kitchens, and a cleaning charm chases muddy footprints across the marble floor without catching them.
 
 At the central staircase, Cassian stops.`,
     npc:`“We have class in two hours.”
@@ -6223,15 +6233,11 @@ Cassian glances toward you.
    lateMorning:{
     narration:`You return to Starwing Hall and set every alarm charm you can find.
 
-None of them ring.
+Not one of them rings.
 
-You wake to someone pounding on your door.
+You wake to pounding on your door and late-morning light across the floor. The silver dragon is gone.
 
-The room is bright with late morning.
-
-The silver dragon is gone.
-
-Outside, Lyra is already dressed. Finn has one shoe on. Cassian holds four attendance slips marked ABSENT.`,
+Outside, Lyra is already dressed, Finn has only one shoe on, and Cassian holds four attendance slips stamped ABSENT.`,
     npc:`“Good news,” Cassian says.
 
 You sit up.
@@ -6249,17 +6255,9 @@ Lyra looks past you toward the empty windowsill.
     free:{search:"dragonTrail",room:"dragonTrail",window:"dragonTrail",finn:"dragonTrail",class:"dragonTrail",default:"dragonTrail"}
    },
    breakfastEarly:{
-    narration:`The dining hall is nearly empty.
+    narration:`The dining hall is nearly empty. Kitchen sprites weave between the tables with baskets of warm bread while a few professors speak quietly over tea.
 
-Kitchen sprites carry baskets of warm bread between the tables. A few professors speak quietly over tea.
-
-For several minutes, the conversation stays ordinary.
-
-Finn complains about his missing shoe.
-
-Cassian insists sleeping in one shoe is not a real problem.
-
-Lyra steals half your toast.
+For several minutes, the conversation stays ordinary. Finn complains about his missing shoe, Cassian argues that sleeping in one shoe is not a real problem, and Lyra steals half your toast.
 
 Then every spoon on the table turns toward the old tower.
 
@@ -6289,9 +6287,7 @@ Cassian releases Lyra.
    thorneWarning:{
     narration:`You fold a scrap of paper into a bird and write Professor Thorne's name across one wing.
 
-The message launches.
-
-It circles once, tears itself in half, and falls.
+The message launches, circles once, then tears itself in half and drops to the floor.
 
 New words appear across both pieces.
 
@@ -6319,19 +6315,11 @@ Finn closes his sketchbook.
     free:{greenhouse:"dragonTrail",solis:"solisArrives",thorne:"thorneArrives",ignore:"thorneArrives",default:"dragonTrail"}
    },
    glassWalkway:{
-    narration:`You take the covered walkway behind the alchemy wing.
+    narration:`You take the covered walkway behind the alchemy wing. Rain beads across the glass roof while students begin filling the grounds below.
 
-Rain clings to the glass roof. Below, the academy grounds are beginning to fill with students.
+The dragon darts between the greenhouse towers and slips through a locked pane without breaking it.
 
-The dragon darts between the greenhouse towers and passes through a locked pane without breaking it.
-
-A handprint appears on the other side.
-
-Not yours.
-
-A girl's hand.
-
-The fingers drag slowly downward.`,
+A small handprint appears on the other side. The fingers drag slowly downward.`,
     choices:[
       ["Press your hand against the glass.","memoryGarden"],
       ["Break the latch and enter normally.","memoryGarden"],
@@ -6364,13 +6352,9 @@ The handle turns by itself.`,
     free:{enter:"memoryGarden",first:"memoryGarden",lyra:"memoryGarden",cassian:"memoryGarden",shield:"memoryGarden",default:"memoryGarden"}
    },
    solisArrives:{
-    narration:`Professor Solis opens her office door before you knock.
+    narration:`Professor Solis opens her office door before you knock. Mud stains her robe, and one sleeve is torn.
 
-Mud stains her robe. One sleeve is torn.
-
-She reads the message and closes her eyes.
-
-The enclosed room smells faintly of ink, tea, and old wood warmed by lamps.`,
+She reads the message, closes her eyes, and steps back into an office smelling of ink, tea, and lamp-warmed wood.`,
     npc:`“The greenhouse remembers.”
 
 You ask what that means.
@@ -6394,17 +6378,9 @@ Solis looks toward the glass towers.
     free:{go:"memoryGarden",students:"memoryGarden",forgotten:"memoryGarden",injured:"memoryGarden",default:"memoryGarden"}
    },
    thorneArrives:{
-    narration:`You find Professor Thorne crossing the upper courtyard.
+    narration:`You find Professor Thorne crossing the upper courtyard and show him the torn message.
 
-You show him the torn message.
-
-He reads it once.
-
-Then he drops his tea.
-
-The cup shatters.
-
-He does not look down.`,
+He reads it once. His tea slips from his hand and shatters on the stone, but he never looks down.`,
     npc:`“Who else has seen this?”
 
 You tell him.
@@ -6420,25 +6396,15 @@ Thorne turns toward the greenhouse.
     free:{explanation:"memoryGarden",follow:"memoryGarden",liora:"memoryGarden",default:"memoryGarden"}
    },
    memoryGarden:{
-    narration:`Warm air wraps around you as the greenhouse opens.
+    narration:`Warm air closes around you as the greenhouse opens. Paths wind beneath trees heavy with silver fruit, and flowers whisper fragments of old conversations.
 
-Inside, paths wind through trees heavy with silver fruit. Flowers whisper fragments of old conversations.
-
-The dragon waits beneath an enormous white tree.
-
-Its roots surround glass jars.
-
-Each jar contains a name.
-
-Some shine.
-
-Some are fading.
+The dragon waits beneath an enormous white tree whose roots curl around rows of glass jars. Each jar contains a name. Some shine. Others are fading.
 
 One has broken.
 
 LIORA VALE.
 
-Professor Thorne occupies the room without needing its center, charcoal robes severe against the lighter stone.`,
+Thorne goes still beside Lyra.`,
     npc:`Lyra moves before anyone can stop her.
 
 The roots tighten.
@@ -6460,15 +6426,13 @@ The tree speaks in Liora's voice.
 The dragon steps between her and the broken jar.`,
     choices:[
       ["“Wait. Let the dragon show us why it came.”","gardenVision"],
-      ["You rub your thumb across your knuckles. “Thorne, explain the jars now.”","gardenVision"],
+      ["“Thorne, explain the jars. Now.”","gardenVision"],
       ["Approach the broken jar yourself.","gardenVision"]
     ],
     free:{wait:"gardenVision",dragon:"gardenVision",thorne:"gardenVision",jars:"gardenVision",approach:"gardenVision",default:"gardenVision"}
    },
    gardenVision:{
-    narration:`The dragon touches the broken glass.
-
-The greenhouse disappears.
+    narration:`The dragon touches the broken glass, and the greenhouse vanishes.
 
 For an instant, you stand in the same room years earlier.
 
@@ -6484,9 +6448,7 @@ Liora reaches for her jar.
 
 A shadow falls across the glass.
 
-The memory ends before you see who cast it.
-
-The Headmaster remains near the table rather than behind it, his expression controlled but not unreadable.`,
+The memory ends before you see who cast it.`,
     npc:`You return to the present on your knees.
 
 Finn is drawing without looking at the page.
@@ -6502,9 +6464,7 @@ Headmaster Orion stands behind Liora.`,
     free:{orion:"orionOffice",headmaster:"orionOffice",proof:"fadingName",solis:"fadingName",accurate:"fadingName",default:"fadingName"}
    },
    fadingName:{
-    narration:`A bell rings for first period.
-
-Everyone holds position.
+    narration:`A bell rings for first period, but no one moves.
 
 Thorne lifts one of the fading jars.
 
@@ -6520,7 +6480,7 @@ Elian Voss.
 
 A student screams outside.
 
-Filtered light moves over roots and leaves, while hidden creatures rustle just beyond the path.`,
+Filtered light shifts over the roots as something small rustles beyond the path.`,
     choices:[
       ["Run toward the scream.","elianLetter"],
       ["Protect the remaining jars first.","elianLetter"],
@@ -6620,21 +6580,9 @@ Lantern Night.`,
     free:{elian:"orionOffice",followed:"orionOffice",delivered:"orionOffice",letter:"orionOffice",orion:"orionOffice",default:"orionOffice"}
    },
    orionOffice:{
-    narration:`Headmaster Orion's office occupies the highest accessible tower.
+    narration:`Headmaster Orion's office occupies the highest accessible tower. There are no portraits or trophies—only shelves of sealed glass boxes.
 
-There are no portraits or trophies.
-
-Only shelves of sealed glass boxes.
-
-Each holds an object.
-
-A comb.
-
-A broken wand.
-
-A silver ring.
-
-A child's red scarf.
+Each contains a single object: a comb, a broken wand, a silver ring, a child's red scarf.
 
 Lyra recognizes the scarf.`,
     npc:`“That belonged to Liora.”
@@ -6662,7 +6610,7 @@ Lyra looks at the letter.
 “It may be,” Orion says. “Or it may be what learned her best.”`,
     choices:[
       ["“What happens on Lantern Night?”","dayClosing"],
-      ["You tilt your head slightly. “How do we tell Liora from the copy?”","dayClosing"],
+      ["“How do we tell Liora from the copy?”","dayClosing"],
       ["“Why should we trust you?”","dayClosing"]
     ],
     free:{lantern:"dayClosing",night:"dayClosing",tell:"dayClosing",copy:"dayClosing",trust:"dayClosing",default:"dayClosing"}
@@ -6670,15 +6618,9 @@ Lyra looks at the letter.
    dayClosing:{
     narration:`The afternoon bells ring while you are still in Orion's office.
 
-Below, students cross the courtyards between ordinary lessons.
+Below, students cross the courtyards between ordinary lessons. A dueling class begins near the arena, cloud-lizards chase one another over the sanctuary roof, and someone in the dining hall sings badly enough that several windows close themselves.
 
-A dueling class begins near the arena.
-
-Cloud-lizards chase one another over the sanctuary roof.
-
-Someone in the dining hall sings badly enough that several windows close themselves.
-
-Beyond the room, Vantheir keeps moving through lessons, meals, and crowded corridors.
+Vantheir keeps moving through lessons, meals, and crowded corridors as though no one has vanished.
 
 Orion returns Liora's scarf to its box.
 
@@ -6705,11 +6647,7 @@ One toward Starwing Hall.`,
     free:{arena:"closingArena",cassian:"closingArena",library:"closingLibrary",finn:"closingLibrary",starwing:"closingDorm",lyra:"closingDorm",default:"closingDorm"}
    },
    closingArena:{
-    narration:`Cassian walks beside you toward the arena.
-
-Halfway there, he stops beneath an archway.
-
-Headmaster Orion stands away from the room's center, pale hair and formal robes making his restraint look deliberate.`,
+    narration:`Cassian walks beside you toward the arena. Halfway there, he stops beneath an archway and looks back toward Orion's tower.`,
     npc:`“If Orion is right, one of us will eventually hear exactly what we want to hear.”
 
 He looks toward the old tower.
@@ -6739,7 +6677,7 @@ Closer each time.
 
 In the newest sketch, it stands behind Headmaster Orion.
 
-The air smells of paper, binding glue, and old stone; even small movements seem louder between the crowded shelves.`,
+Paper, binding glue, and old stone sharpen the library's silence.`,
     npc:`“I think it moves when I learn something,” Finn says.
 
 A blank page turns by itself.
@@ -6781,9 +6719,9 @@ Lyra stops breathing.`,
     free:{wardrobe:"continuationPause",thorne:"continuationPause",inside:"continuationPause",who:"continuationPause",default:"continuationPause"}
    },
    continuationPause:{
-    narration:`By sunset, the academy has gained three new rumors, one damaged greenhouse, and an official notice reminding students not to enter unauthorized memory gardens.
+    narration:`By sunset, the academy has gained three new rumors, one damaged greenhouse, and an official notice warning students away from unauthorized memory gardens.
 
-No one explains why such a notice already existed.
+No one explains why the notice was already prepared.
 
 Workers begin hanging lantern frames across the courtyard.
 
@@ -6793,7 +6731,7 @@ Inside it, a shadow raises one hand.
 
 Then the flame goes out.
 
-The academy settles into evening, but the unanswered questions follow you home.
+The academy settles into evening, but the unanswered questions follow you back to Starwing Hall.
 
 {waveOneMemory}`,
     choices:[
@@ -6841,7 +6779,7 @@ Finn is asleep against a stack of books.
 
 Cassian is reading a notice pinned to the table.
 
-The enclosed room smells faintly of ink, tea, and old wood warmed by lamps.`,
+Morning light catches on the dining-hall windows, turning the steam above the tea urns gold.`,
     npc:`“All first-years are required to report to the eastern court after breakfast,” Cassian says.
 
 Lyra takes the notice from him.
@@ -6881,13 +6819,13 @@ He looks at the gathered first-years.
 
 “Today you will cross the court, retrieve one object, and return.”
 
-A student raises a hand.
+One student raises a hand.
 
 “What is in the chest?”
 
 “Something you want.”
 
-Another student raises a hand.
+A second hand rises.
 
 “What happens if we fall?”
 
@@ -6993,9 +6931,7 @@ Cassian nearly falls.
 
 Finn catches him by the wrist.
 
-For one startled second, neither speaks.
-
-Then Cassian swings onto the next platform and drags Finn with him.`,
+For one startled second, neither speaks. Then Cassian swings onto the next platform and hauls Finn after him.`,
     npc:`“You ignored the plan,” Cassian says.
 
 “I misunderstood it with confidence.”
@@ -7079,7 +7015,7 @@ A secret transfer student.
 
 At your table, Finn listens to the rumors with increasing concern.
 
-Practice marks score the floor, and the gathered students keep shifting their weight as they wait for someone else to begin.`,
+The dining hall hums with speculation, every table offering a different version of what happened.`,
     npc:`“Someone just said the uniform stood up and challenged Thorne to a duel.”
 
 Cassian looks toward the student spreading the story.
@@ -7238,7 +7174,7 @@ A circle of twelve stars is painted around its base.
 
 One is missing.
 
-Warm bread, tea, and overlapping conversation soften the room without making it quiet.`,
+Someone has left bread and tea beside the paint pots, but no one reaches for either.`,
     npc:`“The public tradition is simple,” Mara says. “Students write hopes. The lanterns carry them into the sky.”
 
 She places one finger against the black paper.
@@ -7288,9 +7224,7 @@ The first letter is yours.
 
 Cassian snuffs the flame with one sharp motion.
 
-The workshop returns to normal.
-
-Warm bread, tea, and overlapping conversation soften the room without making it quiet.`,
+The workshop returns to normal, though no one moves for several breaths.`,
     npc:`The group falls quiet.
 
 The compass needle trembles.
@@ -7309,7 +7243,7 @@ Mara's answer is almost a whisper.
 
 “The lantern chooses the person most likely to open the final door.”`,
     choices:[
-      ["You rub your thumb across your knuckles. “Then we make sure it chose wrong.”","nightDecision"],
+      ["“Then we make sure it chose wrong.”","nightDecision"],
       ["Ask whether destroying the lantern changes anything.","nightDecision"],
       ["Ask who opened the door in previous years.","nightDecision"]
     ],
@@ -7322,7 +7256,7 @@ Outside the workshop, students gather for rehearsal.
 
 Music drifts through the corridor. Someone laughs as a practice lantern tangles itself in a tree.
 
-The ordinary sound makes the locked room feel smaller—and the danger more real.
+The ordinary sounds outside make the locked workshop feel smaller, and the danger inside it harder to dismiss.
 
 Mara wraps the black lantern in cloth.
 
@@ -7389,7 +7323,7 @@ Mara hides the black lantern beneath three ordinary practice lanterns. Finn copi
 
 The restraint is difficult. It is also useful.
 
-By dawn, you know the tower's clock stopped at eleven fifty-nine on the night Nessa Rowe vanished. You know the lower stair appears only when the first morning bell begins. And you know someone entered the tower after it was officially sealed.`,
+By dawn, you know the tower clock stopped at eleven fifty-nine on the night Nessa Rowe vanished. The lower stair appears only with the first morning bell, and someone entered the tower after it was officially sealed.`,
     npc:`Professor Thorne arrives before sunrise carrying rope, ward chalk, and enough tea for everyone.
 
 “You waited,” he says, plainly surprised.
@@ -7409,11 +7343,9 @@ This time, you approach the door with a plan.`,
     free:{enter:"bellTower",together:"bellTower",thorne:"bellTower",sealed:"bellTower",finn:"bellTower",drawing:"bellTower",default:"bellTower"}
    },
    bellTower:{
-    narration:`The eastern bell tower is locked by six iron chains.
+    narration:`Six iron chains cross the eastern bell-tower door.
 
-Cassian melts none of them.
-
-He simply lifts the latch. The door opens.
+Cassian reaches for the latch before trying any spell. It lifts, and the door opens.
 
 He looks offended.
 
@@ -7435,7 +7367,7 @@ The hands read eleven fifty-nine.
 
 They do not move.
 
-Professor Thorne occupies the room without needing its center, charcoal robes severe against the lighter stone. Mara keeps her red scarf tucked close and a notebook within reach, recording only after she has decided the moment belongs on a page.`,
+Professor Thorne follows at the rear, wand ready. Mara keeps one hand near the notebook tucked beneath her red scarf.`,
     npc:`Mara presses one palm to the clock.
 
 The stone becomes water.
@@ -7459,7 +7391,7 @@ Thorne closes his eyes.
     free:{follow:"submergedStairs",lyra:"submergedStairs",cassian:"submergedStairs",test:"submergedStairs",finn:"submergedStairs",drawing:"submergedStairs",default:"submergedStairs"}
    },
    submergedStairs:{
-    narration:`Crossing the clock feels like stepping through cold rain.
+    narration:`Passing through the clock face feels like stepping through cold rain.
 
 The hidden staircase descends beneath the tower.
 
@@ -7477,7 +7409,7 @@ At the bottom stands a girl in an old Vantheir uniform.
 
 She holds a silver compass identical to yours.
 
-Mara stops breathing.`,
+Mara goes utterly still.`,
     npc:`“Nessa?”
 
 The girl looks up.
@@ -7541,7 +7473,7 @@ Liora reaches for her sister.
 
 The image breaks before their hands meet.
 
-Professor Thorne occupies the room without needing its center, charcoal robes severe against the lighter stone.`,
+Professor Thorne turns toward the exit, his expression sharpening.`,
     npc:`Lyra steps forward.
 
 “Liora!”
@@ -7573,7 +7505,7 @@ Professor Thorne turns toward the exit.
    escapeTower:{
     narration:`The hidden staircase collapses upward.
 
-Water finally remembers gravity.
+The suspended water drops all at once.
 
 It crashes through the passage.
 
@@ -7646,13 +7578,11 @@ The tower faces back.`,
     free:{leave:"afterBellTower",thorne:"afterBellTower",walk:"afterBellTower",lyra:"afterBellTower",wait:"afterBellTower",default:"afterBellTower"}
    },
    afterBellTower:{
-    narration:`The descent from the bell tower takes longer than it should.
+    narration:`The descent from the bell tower refuses to follow the route you climbed.
 
 Every landing opens onto a different corridor.
 
-One leads past classrooms closed for decades.
-
-Another overlooks the dining hall from a balcony that does not exist from below.
+One landing opens beside classrooms sealed for decades. Another overlooks the dining hall from a balcony that does not exist when viewed from below.
 
 On the third landing, you pass a window filled with daylight.
 
@@ -7700,7 +7630,7 @@ The silver dragon bites his sleeve.
 
 He stops.
 
-The smaller room holds the close warmth of books, folded clothes, and rain-damp fabric left near the window.`,
+From behind the blue door comes the scrape of furniture being moved across a floor.`,
     npc:`“I was testing it.”
 
 Finn looks at the tiny teeth still attached to the fabric.
@@ -8046,7 +7976,7 @@ Then every figure looks toward Headmaster Orion.
 
 The child points at him.
 
-Professor Thorne occupies the room without needing its center, charcoal robes severe against the lighter stone.`,
+Professor Thorne turns toward the exit, his expression sharpening.`,
     npc:`“He opened the first door.”
 
 The court falls silent.
@@ -8372,7 +8302,7 @@ Mara carries the black lantern inside.
 
 The shadow follows through the ceiling.
 
-Professor Thorne occupies the room without needing its center, charcoal robes severe against the lighter stone. Solis stands slightly apart from the group, listening with the patience she usually reserves for frightened creatures.`,
+Professor Thorne turns toward the exit, his expression sharpening. Solis stands slightly apart from the group, listening with the patience she usually reserves for frightened creatures.`,
     npc:`Professor Thorne reaches the vault a moment later with Orion and Solis behind him.
 
 Thorne sees the lanterns.
@@ -8827,7 +8757,7 @@ He locks the door and removes a ring from beneath his collar.
 
 The crest matches the badge worn by one returned student.
 
-The smaller room holds the close warmth of books, folded clothes, and rain-damp fabric left near the window.`,
+From behind the blue door comes the scrape of furniture being moved across a floor.`,
     npc:`“My father said this belonged to his older brother.”
 
 You ask what happened to him.
@@ -8875,7 +8805,7 @@ One place remains empty.
 
 The silver dragon looks toward you.
 
-The enclosed room smells faintly of ink, tea, and old wood warmed by lamps.`,
+Morning light catches on the dining-hall windows, turning the steam above the tea urns gold.`,
     npc:`“The tower did not return the forgotten,” Orion says.
 
 “It returned the obligations Vantheir severed when it erased them.”
@@ -8907,7 +8837,7 @@ No one announces what the moment changed. Later, the people who stood beside you
 
 {temperamentLegacy}
 
-The air smells of paper, binding glue, and old stone; even small movements seem louder between the crowded shelves.`,
+Paper, binding glue, and old stone sharpen the library's silence.`,
     choices:[
       ["Remain until Orion returns.","returnedAssembly"],
       ["Walk with Finn among the empty tables.","returnedAssembly"],
@@ -8992,7 +8922,7 @@ Then it writes a new sentence.
 
 THE HARVEST BEGINS WITH WHAT WAS BURIED.
 
-Warm bread, tea, and overlapping conversation soften the room without making it quiet.`,
+Someone has left bread and tea beside the paint pots, but no one reaches for either.`,
     npc:`Finn opens his sketchbook.
 
 A field appears across the page.
@@ -9076,7 +9006,7 @@ Professor Aldren does not call the attempt a failure. He circles the sphere once
 
 Then he dismisses everyone except your group.
 
-Practice marks score the floor, and the gathered students keep shifting their weight as they wait for someone else to begin.`,
+The dining hall hums with speculation, every table offering a different version of what happened.`,
     npc:`“The fields were used before Vantheir had towers,” he says.
 
 Liora appears in the doorway.
@@ -9658,7 +9588,7 @@ A name none of you have seen before.
 
 CAEL VARENN.
 
-Professor Thorne occupies the room without needing its center, charcoal robes severe against the lighter stone.`,
+Professor Thorne turns toward the exit, his expression sharpening.`,
     npc:`Professor Thorne drops his wand.
 
 Liora turns toward him.
@@ -9813,7 +9743,7 @@ A knot has appeared in it.
 
 Not tied by anyone you can see.
 
-The smaller room holds the close warmth of books, folded clothes, and rain-damp fabric left near the window.`,
+From behind the blue door comes the scrape of furniture being moved across a floor.`,
     npc:`Lyra notices first.
 
 “That wasn't there before.”
@@ -9851,7 +9781,7 @@ One unties itself.
 
 Six remain.
 
-The smaller room holds the close warmth of books, folded clothes, and rain-damp fabric left near the window.`,
+From behind the blue door comes the scrape of furniture being moved across a floor.`,
     npc:`“The old ceremony never ended at Harvest,” Liora says.
 
 Lyra folds her arms.
@@ -11671,7 +11601,7 @@ Thorne holds Cael's lantern key.
 
 Cassian holds his family ring.
 
-Practice marks score the floor, and the gathered students keep shifting their weight as they wait for someone else to begin.`,
+The dining hall hums with speculation, every table offering a different version of what happened.`,
     npc:`{cassianMemory}
 
 “The key points beneath the library,” Cassian says.
@@ -11837,9 +11767,9 @@ So is the anger.
 
 The academy will never return to innocence.
 
-The air smells of paper, binding glue, and old stone; even small movements seem louder between the crowded shelves.
+Paper, binding glue, and old stone sharpen the library's silence.
 
-Professor Thorne occupies the room without needing its center, charcoal robes severe against the lighter stone.`,
+Professor Thorne turns toward the exit, his expression sharpening.`,
     npc:`Amara nods.
 
 “Truth is not mercy.”
@@ -12112,7 +12042,7 @@ Thorne's expression tightens.
 
 “Some.”
 
-The enclosed room smells faintly of ink, tea, and old wood warmed by lamps.`,
+Morning light catches on the dining-hall windows, turning the steam above the tea urns gold.`,
     npc:`{thorneMemory}
 
 You ask who else he saw.
@@ -12301,7 +12231,7 @@ They are not ghosts.
 
 They are memories preserved so completely that they can still question the living. Each House carries a different answer to the Possibility Current: not a school of fixed magic, but a philosophy for deciding which possibilities deserve form—and who bears the cost when one possibility displaces another.
 
-The enclosed room smells faintly of ink, tea, and old wood warmed by lamps.`,
+Morning light catches on the dining-hall windows, turning the steam above the tea urns gold.`,
     npc:`A girl from House Emberwake blocks the path.
 
 “State what memories belong to.”
@@ -12443,7 +12373,7 @@ Cassian treats you like a distant classmate.
 
 Professor Thorne has no scar.
 
-The smaller room holds the close warmth of books, folded clothes, and rain-damp fabric left near the window.`,
+From behind the blue door comes the scrape of furniture being moved across a floor.`,
     npc:`A voice follows you through the false morning.
 
 “Choose one burden to restore.”
@@ -12479,7 +12409,7 @@ Shared burden returns as silver light crossing every threshold.
 
 The false academy begins to crack.
 
-The air smells of paper, binding glue, and old stone; even small movements seem louder between the crowded shelves.`,
+Paper, binding glue, and old stone sharpen the library's silence.`,
     npc:`Your companions remember in different orders.
 
 {lyraMemory}
@@ -35737,7 +35667,7 @@ function waveOneMediumLegacy(f){
   if(f.wave1Medium04||f.wave1Medium19)lines.push("You have already shown that academy rules and assumptions can be questioned.");
   if(f.wave1Medium06||f.wave1Medium21)lines.push("Humor has become one way your group makes fear manageable.");
   if(f.wave1Medium11||f.wave1Medium25)lines.push("You tend to draw others into decisions instead of carrying them alone.");
-  if(!lines.length&&count)return "Small choices from the opening weeks continue shaping who trusts your judgment and what they are willing to reveal.";
+  if(!lines.length&&count)return "The opening weeks have taught the group how you tend to listen and respond.";
   if(!lines.length)return "The opening weeks are still teaching the academy how you listen, question, and choose.";
   return lines.slice(0,2).join(" ");
 }
@@ -36128,7 +36058,7 @@ function naturalConversationBeat(nodeId,node){
   const source=`${nodeId}:${text}`;
   const hash=[...source].reduce((n,c)=>((n*31)+c.charCodeAt(0))>>>0,7);
   if(questionCount>1)return hash%2?"The next question waits behind the first instead of crowding it.":"A brief pause leaves room for your answer before the conversation can move on.";
-  if(!hasAction&&text.length>170)return hash%2?"The speaker shifts slightly, letting the silence carry part of what the words cannot.":"For a moment, neither of you rushes to fill the space between sentences.";
+  if(!hasAction&&text.length>170)return hash%2?"":"";
   return "";
 }
 function characterMemoryEcho(nodeId){
@@ -37712,16 +37642,16 @@ The path through the cedar grove should end at an ordinary shrine. Instead it co
 
 const LIBRARY_ORDER=["academy","hero","beastbound","pirate","guild","starfall","moonwake","emberwake","ironhaven","veilwood"];
 const LIBRARY_COVERS={
-  academy:"cover-vantheir-clean-v880.webp",
-  hero:"cover-hero-academia-v880.webp",
-  beastbound:"cover-beastbound-clean-v880.webp",
-  pirate:"cover-tides-clean-v880.webp",
-  guild:"cover-guild-clean-v880.webp",
-  starfall:"cover-starfall-v880.webp",
-  moonwake:"cover-moonwake-v880.webp",
-  emberwake:"cover-emberwake-v880.webp",
-  ironhaven:"cover-ironhaven-v880.webp",
-  veilwood:"cover-veilwood-v880.webp"
+  academy:"cover-vantheir-clean-v885.webp",
+  hero:"cover-hero-academia-v885.webp",
+  beastbound:"cover-beastbound-clean-v885.webp",
+  pirate:"cover-tides-clean-v885.webp",
+  guild:"cover-guild-clean-v885.webp",
+  starfall:"cover-starfall-v885.webp",
+  moonwake:"cover-moonwake-v885.webp",
+  emberwake:"cover-emberwake-v885.webp",
+  ironhaven:"cover-ironhaven-v885.webp",
+  veilwood:"cover-veilwood-v885.webp"
 };
 const LIBRARY_LABELS={
   academy:{eyebrow:"Vantheir Academy",title:"Years 1–5",status:"Expanding volume"},
@@ -37760,7 +37690,7 @@ const BOOK_EFFECTS={
   veilwood:{spark1:"#ecb8ff",spark2:"#bb70e7",spark3:"#fff0ff",pageGlow1:"#fff8ff",pageGlow2:"#eac9ff"}
 };
 const CINEMATIC_ASSETS=[
-  "library-concept-shelf-v880.webp","lorespan-desk-room-v880.webp",
+  "library-concept-shelf-v885.webp","lorespan-desk-room-v885.webp",
   ...Object.values(LIBRARY_COVERS)
 ];
 let cinematicAssetsReady=null;
@@ -37838,7 +37768,7 @@ function buildShelf(){
   shelf.className="bookshelf-scene concept-scene";
   const art=document.createElement("img");
   art.className="concept-shelf-art";
-  art.src="library-concept-shelf-v880.webp";
+  art.src="library-concept-shelf-v885.webp";
   art.alt="";
   art.setAttribute("aria-hidden","true");
   art.decoding="async";
@@ -38182,7 +38112,11 @@ function prepareFirstMeetingIntroductions(state,node){
   const entry=VANTHEIR_CHARACTER_BACKGROUNDS[name];
   const base=profile.setting==="lgbtq"&&entry.inclusive?entry.inclusive:entry.intro;
   const sentences=String(base).match(/[^.!?]+[.!?]+/g)||[String(base)];
-  return sentences.slice(0,2).join(" ").trim();
+  let intro=sentences.slice(0,2).join(" ").trim();
+  if(["Lyra","Finn","Cassian","Liora","Mara"].includes(name)){
+    intro += ` ${entry.full.split(" ")[0]} is close enough to your age to understand the pressure without needing it explained.`;
+  }
+  return intro;
 }
 function naturalPromiseFromText(text,sourceNode,next){
   const value=normalizeTyped(text);
@@ -38211,32 +38145,9 @@ function rememberPromise(state,text,sourceNode,next){
   state.openPromises.push(promise);
   if(state.openPromises.length>24)state.openPromises=state.openPromises.slice(-24);
 }
-function naturalPromiseEcho(nodeId){
-  if(currentBook!=="academy")return "";
-  const state=getState("academy");
-  if(!state?.openPromises?.length)return "";
-  const node=BOOKS.academy?.nodes?.[nodeId]||{};
-  const present=characterNamesForText(`${node.narration||""}\n${node.npc||""}`);
-  const promise=[...state.openPromises].reverse().find(item=>item.status==="open"&&(item.target==="someone present"||present.includes(item.target))&&item.sourceNode!==nodeId);
-  if(!promise)return "";
-  return `${promise.target==="someone present"?"Someone in the room":promise.target} remembers the promise without reciting it. Their attention settles on what you do next rather than what you said before.`;
+function naturalPromiseEcho(nodeId){return "";
 }
-function recurringCastLifeEcho(nodeId){
-  if(currentBook!=="academy")return "";
-  const state=getState("academy")||{};
-  const phase=typeof npcLifePhase==="function"?npcLifePhase(state,nodeId):0;
-  const node=BOOKS.academy?.nodes?.[nodeId]||{};
-  const present=backgroundCharactersForNode(node);
-  const lines={
-    Nessa:["Nessa pauses between customers to revise a letter she still has not sent.","A parcel from Nessa's sister occupies the safest shelf, unopened until the afternoon rush ends.","Nessa's new apprentice handles the wrapping while she checks a restoration estimate from the capital."],
-    Toma:["Toma's son is shaping dough at the back table, correcting himself before his father can.","Toma lets his son choose the day's filled bread, though he pretends the decision was practical.","A new recipe appears on the board under both their names, written in two different hands."],
-    Pell:["Pell and Miri are disagreeing quietly over a catalogue note while sharing the same neglected lunch.","Pell leaves one disputed entry in Miri's wording, marked only with a question in the margin.","Miri now corrects junior clerks while Pell listens from the next table and does not intervene."],
-    Miri:["Miri has ferry schedules tucked beneath the archive forms, studying both whenever Pell turns away.","Miri reads a letter from home twice before returning to the catalogue.","A formal-study application waits beneath Miri's inkstone, already signed but not yet delivered."],
-    Senn:["Healer Senn's child has left a half-finished arithmetic page beneath the medicine inventory.","Senn eats two bites of a cold meal between patients and wraps the rest for later.","A drawing from Senn's child hangs beside the duty roster, carefully placed where steam cannot reach it."],
-    Iren:["Iren's mother tests a repaired boot while Iren studies a travel notice pinned near the till.","Iren has begun training an apprentice on the work she once insisted only she could finish.","A road map now hangs behind the counter beside a note in her mother's handwriting: Return when you mean to, not when you are afraid."]
-  };
-  for(const name of present){if(lines[name])return lines[name][Math.min(phase,lines[name].length-1)];}
-  return "";
+function recurringCastLifeEcho(nodeId){return "";
 }
 function createClarificationSection(playerText,question){
   const section=document.createElement("section");section.className="story-section";section.innerHTML='<hr class="divider">';
@@ -38247,12 +38158,11 @@ function createClarificationSection(playerText,question){
   return section;
 }
 function clarificationQuestionFor(text,node){
-  const name=addressedCharacterName(node,node)||"The person across from you";
   const value=normalizeTyped(text);
-  if(/\\b(that depends|depends|maybe|perhaps|not sure|i don't know|i dont know)\\b/.test(value))return `${name} waits instead of guessing. “What does it depend on?”`;
-  if(/^(yes|no|fine|okay|ok|sure|whatever)$/.test(value))return `${name} studies your expression. “Tell me what you mean by that.”`;
-  return `${name} does not force your words into an answer they may not contain. “Which part are you responding to?”`;
+  if(/\b(that depends|depends|maybe|perhaps|not sure|i don't know|i dont know)\b/.test(value))return "A brief pause follows. What does it depend on?";
+  return "The moment holds while you decide how to continue.";
 }
+
 function appendClarificationTurn(text){
   const state=getState(currentBook)||{history:[],flags:{}};
   const node=BOOKS[currentBook].nodes[currentNode];
@@ -38364,7 +38274,7 @@ function renderHistory(book,state){
   }else{
     history.forEach(item=>{
       if(item?.kind==="clarification"){
-        feed.appendChild(createClarificationSection(item.playerText||"",item.question||"Could you clarify what you mean?"));
+        /* Legacy detached clarification turns are omitted during replay. */
         return;
       }
       const node=book.nodes[item.node];
@@ -39089,28 +38999,9 @@ function addressedCharacterName(sourceNode,destinationNode){
 }
 /* v8.7.7 — reader-facing prose only: hidden memory/relationship systems never announce themselves. */
 function adaptiveTypedBridge(text,next){
-  const sourceNode=BOOKS[currentBook]?.nodes?.[currentNode];
-  const destinationNode=BOOKS[currentBook]?.nodes?.[next];
-  const intents=detectTypedIntents(text).slice(0,3);
-  const name=addressedCharacterName(sourceNode,destinationNode);
-  const action=typedActionCue(text);
-  let reaction="";
-  if(intents.includes("apologetic"))reaction=name?`${name} is quiet for a moment. When they answer, the edge in their voice has softened.`:"For a moment, no one speaks. Then the conversation resumes more gently.";
-  else if(intents.includes("romantic"))reaction=name?`${name} hears the warmth beneath your words and answers without hurrying the moment.`:"The warmth between you lingers without demanding an answer too soon.";
-  else if(intents.includes("platonic_boundary"))reaction=name?`${name} nods once and does not press further.`:"The answer is accepted without argument, and the conversation moves on.";
-  else if(intents.includes("supportive")||intents.includes("empathetic"))reaction=name?`${name}'s shoulders ease slightly, though the problem itself remains.`:"The words do not solve the problem, but they make the silence easier to share.";
-  else if(intents.includes("defiant"))reaction=name?`${name} stops pressing and meets your refusal directly.`:"The refusal lands clearly enough that no one mistakes it for hesitation.";
-  else if(intents.includes("skeptical")||intents.includes("analytical"))reaction=name?`${name} pauses, then answers the question more carefully.`:"The room turns toward the evidence and the gaps that remain.";
-  else if(intents.includes("cautious")||intents.includes("private"))reaction=name?`${name} lowers their voice and gives the moment more space.`:"The exchange slows, leaving room to think before anyone commits.";
-  else if(intents.includes("humorous"))reaction=name?`${name} catches the humor, and some of the strain leaves the moment without making the problem disappear.`:"The humor releases a little pressure without dismissing what is at stake.";
-  else if(intents.includes("honest"))reaction=name?`${name} holds your gaze, taking the admission seriously.`:"The admission leaves the truth exposed between you.";
-  else if(intents.includes("protective"))reaction=name?`${name} follows your attention toward the person in danger.`:"The argument falls away as everyone turns toward keeping someone safe.";
-  else if(intents.includes("diplomatic"))reaction=name?`${name} glances around the room before answering, making space for the others to speak.`:"The exchange opens enough for more than one voice to enter it.";
-  else if(intents.includes("direct")||intents.includes("leadership")||intents.includes("courageous"))reaction=name?`${name} answers without delay.`:"The direct answer sends the room into motion.";
-  else if(intents.includes("curious"))reaction=name?`${name} considers the question before answering.`:"The question holds the conversation open a little longer.";
-  else reaction=name?`${name} studies you for a moment before replying.`:"A brief silence follows before the conversation continues.";
-  return [action,reaction].filter(Boolean).join(" ");
+  return "";
 }
+
 function interpretTypedResponse(text){
   const node=BOOKS[currentBook].nodes[currentNode];
   const visibleChoices=selectVisibleChoices(node,currentNode);
@@ -39147,12 +39038,25 @@ function interpretTypedResponse(text){
     const support=candidates.find(c=>/help|stay|support|listen|comfort|protect|gentle/.test(normalizeTyped(c.label)));
     if(support)support.score+=8;
   }
+  if(/\b(label|labeled|attention|noticed|notice me|spotlight|private|keep quiet|do not want attention|dont want attention)\b/.test(value)){
+    const discreet=candidates.find(c=>/listen|quiet|careful|observe|remain|say nothing|avoid|private/.test(normalizeTyped(c.label)));
+    if(discreet)discreet.score+=10;
+  }
+  if(/\b(who|which person|what person)\b/.test(value)){
+    const person=candidates.find(c=>/student|person|lyra|finn|cassian|headmaster|professor/.test(normalizeTyped(c.label)));
+    if(person)person.score+=6;
+  }
   candidates.sort((a,b)=>b.score-a.score);
   const top=candidates[0],second=candidates[1];
   const vague=/^(maybe|perhaps|depends|that depends|i don't know|i dont know|yes|no|fine|okay|ok|sure|whatever)$/.test(value);
-  const margin=(top?.score||0)-(second?.score||0);
-  if(vague||!top||top.score<3||margin<1)return {next:null,confidence:top?.score||0,clarify:true};
-  return {next:top.next,confidence:top.score,exact:false};
+  const meaningfulWordCount=typedTokens(value).filter(word=>word.length>1).length;
+  if(!top){
+    const fallback=node.free?.default||visibleChoices[0]?.[1]||null;
+    return {next:fallback,confidence:0,clarify:false};
+  }
+  /* Keep every typed response inside the current scene. Even brief or uncertain replies
+     continue through the nearest authored route rather than spawning a detached exchange. */
+  return {next:top.next,confidence:Math.max(top.score,meaningfulWordCount>=3?1:0),exact:false,uncertain:vague};
 }
 function interpret(text){return interpretTypedResponse(text).next;}
 
@@ -39173,11 +39077,10 @@ $("composer").onsubmit=e=>{
   const normalized=value=>String(value).toLowerCase().replace(/[“”‘’'".,!?;:—–-]/g," ").replace(/\s+/g," ").trim();
   const exactChoice=selectVisibleChoices(node,currentNode).find(([label])=>normalized(interpolateText(label))===normalized(text));
   const result=exactChoice?{next:exactChoice[1],confidence:99,exact:true}:interpretTypedResponse(text);
-  if(result.clarify||!result.next){
-    appendClarificationTurn(text);
-    saveState({draft:""});
-    releaseSubmission();
-    return;
+  if(!result.next){
+    const fallback=node.free?.default||selectVisibleChoices(node,currentNode)[0]?.[1]||null;
+    if(!fallback){releaseSubmission();return;}
+    result.next=fallback;
   }
   const next=result.next;
   recordExactChoice(currentNode,exactChoice?exactChoice[0]:text,next,"free");
@@ -39595,7 +39498,7 @@ refreshSettingButtons();
 <style id="v874-authoritative-cinematic-style">
 .book-launch-overlay.cinematic-v874{display:block!important;position:fixed!important;inset:0!important;z-index:99999!important;overflow:hidden!important;background:#120907!important;perspective:1800px!important;transform-style:preserve-3d!important;touch-action:none!important;isolation:isolate!important}
 .book-launch-overlay.cinematic-v874>*:not(.v874-room):not(.v874-vignette):not(.v874-book):not(.skip-book-animation){display:none!important;animation:none!important}
-.v874-room{position:absolute;inset:0;z-index:1;background:#120907 url("lorespan-desk-room-v880.webp") center center/cover no-repeat;opacity:0;transform:scale(1.015);will-change:opacity,transform}
+.v874-room{position:absolute;inset:0;z-index:1;background:#120907 url("lorespan-desk-room-v885.webp") center center/cover no-repeat;opacity:0;transform:scale(1.015);will-change:opacity,transform}
 .v874-vignette{position:absolute;inset:0;z-index:2;pointer-events:none;background:radial-gradient(ellipse at 50% 60%,transparent 28%,rgba(4,2,2,.12) 62%,rgba(2,1,1,.52) 100%)}
 .v874-book{position:absolute;z-index:8;transform-style:preserve-3d;transform-origin:center center;will-change:transform,opacity;backface-visibility:visible}
 .v874-shadow{position:absolute;left:-7%;right:-8%;bottom:-15%;height:22%;z-index:-3;border-radius:50%;background:rgba(0,0,0,.72);filter:blur(11px);transform:rotateX(78deg);will-change:transform,opacity,filter}
@@ -39621,7 +39524,7 @@ refreshSettingButtons();
 <script id="v874-authoritative-cinematic-runtime">
 (function(){
 'use strict';
-const C={academy:'cover-vantheir-clean-v880.webp',hero:'cover-hero-academia-v880.webp',beastbound:'cover-beastbound-clean-v880.webp',pirate:'cover-tides-clean-v880.webp',guild:'cover-guild-clean-v880.webp',starfall:'cover-starfall-v880.webp',moonwake:'cover-moonwake-v880.webp',emberwake:'cover-emberwake-v880.webp',ironhaven:'cover-ironhaven-v880.webp',veilwood:'cover-veilwood-v880.webp'};
+const C={academy:'cover-vantheir-clean-v885.webp',hero:'cover-hero-academia-v885.webp',beastbound:'cover-beastbound-clean-v885.webp',pirate:'cover-tides-clean-v885.webp',guild:'cover-guild-clean-v885.webp',starfall:'cover-starfall-v885.webp',moonwake:'cover-moonwake-v885.webp',emberwake:'cover-emberwake-v885.webp',ironhaven:'cover-ironhaven-v885.webp',veilwood:'cover-veilwood-v885.webp'};
 const A={academy:'library-hero.png',hero:'library-hero.png',beastbound:'lorespan-home.webp',pirate:'lorespan-home.webp',guild:'library-hero.png',starfall:'lorespan-home.webp',moonwake:'lorespan-home.webp',emberwake:'library-hero.png',ironhaven:'library-hero.png',veilwood:'lorespan-home.webp'};
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 const smooth=t=>t*t*(3-2*t);
@@ -39651,9 +39554,9 @@ window.runBookCinematic=function(direction,id,done,edge=null){
  function finish(){if(ended)return;ended=true;clean();requestAnimationFrame(()=>{if(epoch===window.bookAnimationEpoch)done?.()})}
  function cancel(){if(ended)return;ended=true;clean()}
  window.activeBookAnimationCancel=cancel;window.activeBookAnimationFinish=finish;skip?.addEventListener('click',finish,{once:true});const stop=()=>ended||epoch!==window.bookAnimationEpoch;
- const opening=async()=>{await Promise.all([preload(cover),preload('lorespan-desk-room-v880.webp'),preload(A[id]||A.academy)]);if(stop())return;setup(n,s,cover,id);n.room.style.opacity='1';n.room.style.transform='scale(1)';await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));if(lib)lib.style.opacity='0';await fly(n,s,true,stop);if(stop())return;await tween(260,r=>{const p=smooth(r);n.book.style.transform= n.book.style.transform.replace(/ translateY\([^)]*\)$/,'')+` translateY(${(1-p)*4}px)`},stop);if(stop())return;await new Promise(r=>setTimeout(r,120));await coverTween(n,0,-176,stop);if(stop())return;await new Promise(r=>setTimeout(r,750));await tween(520,r=>{const p=smooth(r);n.book.style.opacity=String(1-p);n.room.style.filter=`brightness(${1+.05*p})`},stop);finish()};
- const returning=async()=>{await Promise.all([preload(cover),preload('lorespan-desk-room-v880.webp'),preload(A[id]||A.academy)]);if(stop())return;setup(n,s,cover,id);pose(n,s,1);n.room.style.opacity='1';n.room.style.transform='scale(1)';n.front.style.transform='translateZ(12px) rotateY(-176deg)';if(lib)lib.style.opacity='0';await new Promise(r=>setTimeout(r,180));await coverTween(n,-176,0,stop);if(stop())return;await new Promise(r=>setTimeout(r,120));const revealStart=performance.now();const reveal=()=>{if(!lib||stop())return;const q=clamp((performance.now()-revealStart-1180)/620,0,1);lib.style.opacity=String(q);n.room.style.opacity=String(1-q);if(q<1)requestAnimationFrame(reveal)};requestAnimationFrame(reveal);await fly(n,s,false,stop);finish()};
- Promise.resolve().then(direction==='return'?returning:opening).catch(e=>{console.error('v8.7.7 cinematic failed',e);finish()});timer=setTimeout(finish,9000);return true;
+ const opening=async()=>{await Promise.all([preload(cover),preload('lorespan-desk-room-v885.webp'),preload(A[id]||A.academy)]);if(stop())return;setup(n,s,cover,id);n.room.style.opacity='1';n.room.style.transform='scale(1)';await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));if(lib)lib.style.opacity='0';await fly(n,s,true,stop);if(stop())return;await tween(260,r=>{const p=smooth(r);n.book.style.transform= n.book.style.transform.replace(/ translateY\([^)]*\)$/,'')+` translateY(${(1-p)*4}px)`},stop);if(stop())return;await new Promise(r=>setTimeout(r,120));await coverTween(n,0,-176,stop);if(stop())return;await new Promise(r=>setTimeout(r,750));await tween(520,r=>{const p=smooth(r);n.book.style.opacity=String(1-p);n.room.style.filter=`brightness(${1+.05*p})`},stop);finish()};
+ const returning=async()=>{await Promise.all([preload(cover),preload('lorespan-desk-room-v885.webp'),preload(A[id]||A.academy)]);if(stop())return;setup(n,s,cover,id);pose(n,s,1);n.room.style.opacity='1';n.room.style.transform='scale(1)';n.front.style.transform='translateZ(12px) rotateY(-176deg)';if(lib)lib.style.opacity='0';await new Promise(r=>setTimeout(r,180));await coverTween(n,-176,0,stop);if(stop())return;await new Promise(r=>setTimeout(r,120));const revealStart=performance.now();const reveal=()=>{if(!lib||stop())return;const q=clamp((performance.now()-revealStart-1180)/620,0,1);lib.style.opacity=String(q);n.room.style.opacity=String(1-q);if(q<1)requestAnimationFrame(reveal)};requestAnimationFrame(reveal);await fly(n,s,false,stop);finish()};
+ Promise.resolve().then(direction==='return'?returning:opening).catch(e=>{console.error('v8.8.3 cinematic failed',e);finish()});timer=setTimeout(finish,9000);return true;
 };
 window.runBookOpenAnimation=(id,done,r=null)=>window.runBookCinematic('open',id,done,r);
 window.runBookReturnAnimation=(id,done,r=null)=>window.runBookCinematic('return',id,done,r);
@@ -39664,54 +39567,54 @@ window.runBookReturnAnimation=(id,done,r=null)=>window.runBookCinematic('return'
 </script>
 
 
-<style id="v880-authoritative-cinematic-style">
-/* One isolated runtime. Every older animation tree is hidden while v880 runs. */
-.book-launch-overlay.cinematic-v880{display:block!important;position:fixed!important;inset:0!important;z-index:99999!important;overflow:hidden!important;background:#100806!important;perspective:1700px!important;transform-style:preserve-3d!important;touch-action:none!important;isolation:isolate!important}
-.book-launch-overlay.cinematic-v880>*:not(.v880-room-img):not(.v880-vignette):not(.v880-book):not(.skip-book-animation){display:none!important;animation:none!important}
-.v880-room-img{position:absolute;inset:0;width:100%;height:100%;z-index:1;object-fit:cover;object-position:center center;opacity:1;transform:scale(1.01);transition:none!important;pointer-events:none}
-.v880-vignette{position:absolute;inset:0;z-index:2;pointer-events:none;background:radial-gradient(ellipse at 50% 62%,transparent 24%,rgba(7,3,2,.10) 58%,rgba(2,1,1,.45) 100%)}
-.v880-book{position:absolute;left:0;top:0;z-index:8;transform-style:preserve-3d;transform-origin:center center;will-change:transform,opacity;backface-visibility:visible}
-.v880-shadow{position:absolute;left:-12%;right:-12%;bottom:-18%;height:24%;z-index:-4;border-radius:50%;background:rgba(0,0,0,.68);filter:blur(12px);transform:rotateX(78deg);will-change:transform,opacity,filter}
-.v880-back{position:absolute;inset:-1.5%;border-radius:11% 5% 5% 11%;background:linear-gradient(145deg,#3b1b0e,#180805 62%,#080201);transform:translateZ(-11px);box-shadow:inset 0 0 0 2px rgba(232,180,94,.25),0 4px 0 rgba(0,0,0,.42)}
-.v880-page-block{position:absolute;left:5.5%;right:1.8%;top:3.2%;bottom:3.5%;border-radius:8% 4% 4% 8%;background:radial-gradient(circle at 25% 42%,rgba(255,255,255,.72),transparent 34%),repeating-linear-gradient(180deg,#fff3cd 0 2px,#d3af72 2px 3px);transform:translateZ(0);box-shadow:inset 13px 0 20px rgba(70,38,14,.27),inset -5px 0 8px rgba(45,24,9,.20),0 0 0 1px rgba(105,69,34,.23);overflow:hidden}
-.v880-page-block::before{content:"";position:absolute;left:0;top:0;bottom:0;width:12%;background:linear-gradient(90deg,rgba(41,18,5,.48),rgba(112,69,25,.14),transparent);border-radius:50% 0 0 50%}
-.v880-copy{position:absolute;inset:9% 8% 8% 14%;z-index:2;color:#382614;font-family:Georgia,serif;font-size:clamp(7px,1.5vw,12px);line-height:1.42;overflow:hidden;text-shadow:0 1px rgba(255,255,255,.45)}
-.v880-copy strong{display:block;font-size:1.17em;margin-bottom:.55em;text-align:center;color:#24170c}
-.v880-page-edge{position:absolute;right:-4.1%;top:5%;width:7.2%;height:89%;border-radius:0 7px 7px 0;background:repeating-linear-gradient(90deg,#fff3cc 0 2px,#c5a16a 2px 3px);transform-origin:left center;transform:rotateY(78deg) translateZ(-2px);box-shadow:inset -4px 0 6px rgba(0,0,0,.25)}
-.v880-page-top{position:absolute;left:6%;right:2%;top:-3.6%;height:7%;border-radius:7px 7px 0 0;background:repeating-linear-gradient(0deg,#fff3cc 0 2px,#c5a16a 2px 3px);transform-origin:bottom center;transform:rotateX(77deg);box-shadow:inset 0 -2px 3px rgba(0,0,0,.16)}
-.v880-spine{position:absolute;left:-5.6%;top:.4%;bottom:1%;width:11.4%;z-index:12;border-radius:11px 5px 5px 11px;background:linear-gradient(90deg,#0b0302,#5f2915 31%,#b56c37 51%,#381309 78%,#080202);transform:translateZ(5px);box-shadow:inset 2px 0 4px rgba(255,255,255,.16),inset -4px 0 8px rgba(0,0,0,.52)}
-.v880-front{position:absolute;inset:-1%;z-index:15;transform-origin:2.8% center;transform-style:preserve-3d;will-change:transform;backface-visibility:visible}
-.v880-front-face,.v880-front-inside{position:absolute;inset:0;border-radius:11% 5% 5% 11%;backface-visibility:hidden;overflow:hidden}
-.v880-front-face{background:var(--v880-cover) center/100% 100% no-repeat;transform:translateZ(11px);box-shadow:inset 8px 0 12px rgba(255,255,255,.12),inset -11px 0 16px rgba(0,0,0,.31),0 18px 36px rgba(0,0,0,.44)}
-.v880-front-face::after{content:"";position:absolute;inset:0;background:linear-gradient(106deg,rgba(255,255,255,.16),transparent 20%,transparent 70%,rgba(0,0,0,.28))}
-.v880-front-inside{transform:rotateY(180deg) translateZ(11px);background:radial-gradient(circle at 58% 45%,#fff5d4,#e7c98c 74%,#955d2b 100%);box-shadow:inset -20px 0 24px rgba(72,38,13,.30),inset 0 0 0 2px rgba(112,72,34,.16)}
-.v880-art{position:absolute;inset:7%;border-radius:8px;background:linear-gradient(rgba(20,8,4,.07),rgba(20,8,4,.25)),var(--v880-art) center/cover no-repeat;box-shadow:inset 0 0 0 1px rgba(93,57,24,.30),inset 0 0 20px rgba(43,18,5,.28)}
-.book-launch-overlay.cinematic-v880 .skip-book-animation{display:flex!important;position:fixed!important;left:50%!important;bottom:max(18px,env(safe-area-inset-bottom))!important;transform:translateX(-50%)!important;z-index:70!important;opacity:1!important;visibility:visible!important;pointer-events:auto!important;min-height:48px!important;padding:11px 20px!important;white-space:nowrap!important}
-.book-launch-overlay:not(.cinematic-v880) .v880-room-img,.book-launch-overlay:not(.cinematic-v880) .v880-vignette,.book-launch-overlay:not(.cinematic-v880) .v880-book{display:none!important}
-@media(max-width:600px){.v880-room-img{object-position:center center}.book-launch-overlay.cinematic-v880{perspective:1450px!important}.v880-copy{font-size:clamp(6px,1.65vw,10px)}}
+<style id="v883-authoritative-cinematic-style">
+/* One isolated runtime. Every older animation tree is hidden while v883 runs. */
+.book-launch-overlay.cinematic-v883{display:block!important;position:fixed!important;inset:0!important;z-index:99999!important;overflow:hidden!important;background:#100806!important;perspective:1700px!important;transform-style:preserve-3d!important;touch-action:none!important;isolation:isolate!important}
+.book-launch-overlay.cinematic-v883>*:not(.v883-room-img):not(.v883-vignette):not(.v883-book):not(.skip-book-animation){display:none!important;animation:none!important}
+.v883-room-img{position:absolute;inset:0;width:100%;height:100%;z-index:1;object-fit:cover;object-position:center center;opacity:1;transform:scale(1.01);transition:none!important;pointer-events:none}
+.v883-vignette{position:absolute;inset:0;z-index:2;pointer-events:none;background:radial-gradient(ellipse at 50% 62%,transparent 24%,rgba(7,3,2,.10) 58%,rgba(2,1,1,.45) 100%)}
+.v883-book{position:absolute;left:0;top:0;z-index:8;transform-style:preserve-3d;transform-origin:center center;will-change:transform,opacity;backface-visibility:visible}
+.v883-shadow{position:absolute;left:-12%;right:-12%;bottom:-18%;height:24%;z-index:-4;border-radius:50%;background:rgba(0,0,0,.68);filter:blur(12px);transform:rotateX(78deg);will-change:transform,opacity,filter}
+.v883-back{position:absolute;inset:-1.5%;border-radius:11% 5% 5% 11%;background:linear-gradient(145deg,#3b1b0e,#180805 62%,#080201);transform:translateZ(-11px);box-shadow:inset 0 0 0 2px rgba(232,180,94,.25),0 4px 0 rgba(0,0,0,.42)}
+.v883-page-block{position:absolute;left:5.5%;right:1.8%;top:3.2%;bottom:3.5%;border-radius:8% 4% 4% 8%;background:radial-gradient(circle at 25% 42%,rgba(255,255,255,.72),transparent 34%),repeating-linear-gradient(180deg,#fff3cd 0 2px,#d3af72 2px 3px);transform:translateZ(0);box-shadow:inset 13px 0 20px rgba(70,38,14,.27),inset -5px 0 8px rgba(45,24,9,.20),0 0 0 1px rgba(105,69,34,.23);overflow:hidden}
+.v883-page-block::before{content:"";position:absolute;left:0;top:0;bottom:0;width:12%;background:linear-gradient(90deg,rgba(41,18,5,.48),rgba(112,69,25,.14),transparent);border-radius:50% 0 0 50%}
+.v883-copy{position:absolute;inset:9% 8% 8% 14%;z-index:2;color:#382614;font-family:Georgia,serif;font-size:clamp(7px,1.5vw,12px);line-height:1.42;overflow:hidden;text-shadow:0 1px rgba(255,255,255,.45)}
+.v883-copy strong{display:block;font-size:1.17em;margin-bottom:.55em;text-align:center;color:#24170c}
+.v883-page-edge{position:absolute;right:-4.1%;top:5%;width:7.2%;height:89%;border-radius:0 7px 7px 0;background:repeating-linear-gradient(90deg,#fff3cc 0 2px,#c5a16a 2px 3px);transform-origin:left center;transform:rotateY(78deg) translateZ(-2px);box-shadow:inset -4px 0 6px rgba(0,0,0,.25)}
+.v883-page-top{position:absolute;left:6%;right:2%;top:-3.6%;height:7%;border-radius:7px 7px 0 0;background:repeating-linear-gradient(0deg,#fff3cc 0 2px,#c5a16a 2px 3px);transform-origin:bottom center;transform:rotateX(77deg);box-shadow:inset 0 -2px 3px rgba(0,0,0,.16)}
+.v883-spine{position:absolute;left:-5.6%;top:.4%;bottom:1%;width:11.4%;z-index:12;border-radius:11px 5px 5px 11px;background:linear-gradient(90deg,#0b0302,#5f2915 31%,#b56c37 51%,#381309 78%,#080202);transform:translateZ(5px);box-shadow:inset 2px 0 4px rgba(255,255,255,.16),inset -4px 0 8px rgba(0,0,0,.52)}
+.v883-front{position:absolute;inset:-1%;z-index:15;transform-origin:2.8% center;transform-style:preserve-3d;will-change:transform;backface-visibility:visible}
+.v883-front-face,.v883-front-inside{position:absolute;inset:0;border-radius:11% 5% 5% 11%;backface-visibility:hidden;overflow:hidden}
+.v883-front-face{background:var(--v883-cover) center/100% 100% no-repeat;transform:translateZ(11px);box-shadow:inset 8px 0 12px rgba(255,255,255,.12),inset -11px 0 16px rgba(0,0,0,.31),0 18px 36px rgba(0,0,0,.44)}
+.v883-front-face::after{content:"";position:absolute;inset:0;background:linear-gradient(106deg,rgba(255,255,255,.16),transparent 20%,transparent 70%,rgba(0,0,0,.28))}
+.v883-front-inside{transform:rotateY(180deg) translateZ(11px);background:radial-gradient(circle at 58% 45%,#fff5d4,#e7c98c 74%,#955d2b 100%);box-shadow:inset -20px 0 24px rgba(72,38,13,.30),inset 0 0 0 2px rgba(112,72,34,.16)}
+.v883-art{position:absolute;inset:7%;border-radius:8px;background:linear-gradient(rgba(20,8,4,.07),rgba(20,8,4,.25)),var(--v883-art) center/cover no-repeat;box-shadow:inset 0 0 0 1px rgba(93,57,24,.30),inset 0 0 20px rgba(43,18,5,.28)}
+.book-launch-overlay.cinematic-v883 .skip-book-animation{display:flex!important;position:fixed!important;left:50%!important;bottom:max(18px,env(safe-area-inset-bottom))!important;transform:translateX(-50%)!important;z-index:70!important;opacity:1!important;visibility:visible!important;pointer-events:auto!important;min-height:48px!important;padding:11px 20px!important;white-space:nowrap!important}
+.book-launch-overlay:not(.cinematic-v883) .v883-room-img,.book-launch-overlay:not(.cinematic-v883) .v883-vignette,.book-launch-overlay:not(.cinematic-v883) .v883-book{display:none!important}
+@media(max-width:600px){.v883-room-img{object-position:center center}.book-launch-overlay.cinematic-v883{perspective:1450px!important}.v883-copy{font-size:clamp(6px,1.65vw,10px)}}
 /* Keep the selector usable above Android's keyboard. Never autofocus on touch devices. */
 @media(max-width:699px){.setup-overlay.open{align-items:flex-start!important;padding:max(8px,env(safe-area-inset-top)) 7px max(8px,env(safe-area-inset-bottom))!important;overflow:hidden!important}.setup-overlay.open .setup-card{max-height:calc(100dvh - 16px)!important;overflow-y:auto!important;overscroll-behavior:contain!important;scroll-padding-bottom:42dvh!important}}
 </style>
-<script id="v880-authoritative-cinematic-runtime">
+<script id="v883-authoritative-cinematic-runtime">
 (function(){
 'use strict';
-const COVER={academy:'cover-vantheir-clean-v880.webp',hero:'cover-hero-academia-v880.webp',beastbound:'cover-beastbound-clean-v880.webp',pirate:'cover-tides-clean-v880.webp',guild:'cover-guild-clean-v880.webp',starfall:'cover-starfall-v880.webp',moonwake:'cover-moonwake-v880.webp',emberwake:'cover-emberwake-v880.webp',ironhaven:'cover-ironhaven-v880.webp',veilwood:'cover-veilwood-v880.webp'};
+const COVER={academy:'cover-vantheir-clean-v885.webp',hero:'cover-hero-academia-v885.webp',beastbound:'cover-beastbound-clean-v885.webp',pirate:'cover-tides-clean-v885.webp',guild:'cover-guild-clean-v885.webp',starfall:'cover-starfall-v885.webp',moonwake:'cover-moonwake-v885.webp',emberwake:'cover-emberwake-v885.webp',ironhaven:'cover-ironhaven-v885.webp',veilwood:'cover-veilwood-v885.webp'};
 const ART={academy:'library-hero.png',hero:'library-hero.png',beastbound:'lorespan-home.webp',pirate:'lorespan-home.webp',guild:'library-hero.png',starfall:'lorespan-home.webp',moonwake:'lorespan-home.webp',emberwake:'library-hero.png',ironhaven:'library-hero.png',veilwood:'lorespan-home.webp'};
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 const ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
 const cubic=(a,b,c,d,t)=>{const u=1-t;return u*u*u*a+3*u*u*t*b+3*u*t*t*c+t*t*t*d};
 function ensure(o){
- let room=o.querySelector('.v880-room-img');if(!room){room=document.createElement('img');room.className='v880-room-img';room.alt='';room.decoding='async';room.src='lorespan-desk-room-v880.webp';o.appendChild(room)}
- let vig=o.querySelector('.v880-vignette');if(!vig){vig=document.createElement('div');vig.className='v880-vignette';o.appendChild(vig)}
- let book=o.querySelector('.v880-book');if(!book){book=document.createElement('div');book.className='v880-book';book.innerHTML='<div class="v880-shadow"></div><div class="v880-back"></div><div class="v880-page-block"><div class="v880-copy"></div></div><div class="v880-page-edge"></div><div class="v880-page-top"></div><div class="v880-front"><div class="v880-front-face"></div><div class="v880-front-inside"><div class="v880-art"></div></div></div><div class="v880-spine"></div>';o.appendChild(book)}
- return{room,book,shadow:book.querySelector('.v880-shadow'),front:book.querySelector('.v880-front'),copy:book.querySelector('.v880-copy')};
+ let room=o.querySelector('.v883-room-img');if(!room){room=document.createElement('img');room.className='v883-room-img';room.alt='';room.decoding='async';room.src='lorespan-desk-room-v885.webp';o.appendChild(room)}
+ let vig=o.querySelector('.v883-vignette');if(!vig){vig=document.createElement('div');vig.className='v883-vignette';o.appendChild(vig)}
+ let book=o.querySelector('.v883-book');if(!book){book=document.createElement('div');book.className='v883-book';book.innerHTML='<div class="v883-shadow"></div><div class="v883-back"></div><div class="v883-page-block"><div class="v883-copy"></div></div><div class="v883-page-edge"></div><div class="v883-page-top"></div><div class="v883-front"><div class="v883-front-face"></div><div class="v883-front-inside"><div class="v883-art"></div></div></div><div class="v883-spine"></div>';o.appendChild(book)}
+ return{room,book,shadow:book.querySelector('.v883-shadow'),front:book.querySelector('.v883-front'),copy:book.querySelector('.v883-copy')};
 }
 function imgReady(img,timeout=2800){return new Promise(ok=>{if(img.complete&&img.naturalWidth){ok();return}let done=false;const finish=()=>{if(done)return;done=true;ok()};const t=setTimeout(finish,timeout);img.addEventListener('load',()=>{clearTimeout(t);finish()},{once:true});img.addEventListener('error',()=>{clearTimeout(t);finish()},{once:true})})}
 function preload(src,timeout=2200){return new Promise(ok=>{const i=new Image();let done=false;const f=()=>{if(done)return;done=true;ok()};const t=setTimeout(f,timeout);i.onload=i.onerror=()=>{clearTimeout(t);f()};i.src=src;if(i.complete){clearTimeout(t);f()}})}
 function sourceRect(r){const w=clamp(Number(r?.width)||82,58,150),h=clamp(Number(r?.height)||124,86,220);return{cx:(Number(r?.left)||innerWidth/2-w/2)+w/2,cy:(Number(r?.top)||innerHeight*.18)+h/2,w,h,rot:Number(r?.rotation)||0}}
 function target(s){const h=clamp(innerHeight*.27,205,285);return{cx:innerWidth*.57,cy:clamp(innerHeight*.64,innerHeight*.57,innerHeight-170),scale:h/s.h}}
 function excerpt(id){try{const b=window.BOOKS?.[id],n=b?.nodes?.[b.start],raw=[n?.narration,n?.npc].filter(Boolean).join(' ');return{title:b?.title||'Opening Page',text:String(raw||'The story begins here.').replace(/\s+/g,' ').slice(0,430)}}catch{return{title:'Opening Page',text:'The story begins here.'}}}
-function setup(n,s,id){const cover=COVER[id]||COVER.academy;n.book.style.width=s.w+'px';n.book.style.height=s.h+'px';n.book.style.opacity='1';n.book.style.setProperty('--v880-cover',`url("${cover}")`);n.book.style.setProperty('--v880-art',`url("${ART[id]||ART.academy}")`);const e=excerpt(id);n.copy.innerHTML=`<strong>${e.title}</strong>${e.text}`;n.front.style.transform='translateZ(11px) rotateY(0deg)';return cover}
+function setup(n,s,id){const cover=COVER[id]||COVER.academy;n.book.style.width=s.w+'px';n.book.style.height=s.h+'px';n.book.style.opacity='1';n.book.style.setProperty('--v883-cover',`url("${cover}")`);n.book.style.setProperty('--v883-art',`url("${ART[id]||ART.academy}")`);const e=excerpt(id);n.copy.innerHTML=`<strong>${e.title}</strong>${e.text}`;n.front.style.transform='translateZ(11px) rotateY(0deg)';return cover}
 function closedPose(n,s,p){const d=target(s),side=s.cx<innerWidth/2?1:-1,arc=Math.sin(Math.PI*p),x=cubic(s.cx,s.cx+side*innerWidth*.15,d.cx-side*innerWidth*.11,d.cx,p),y=cubic(s.cy,s.cy-innerHeight*.18,d.cy-innerHeight*.09,d.cy,p),z=arc*190,sc=1+(d.scale-1)*p,rx=4+52*p-7*arc,ry=-side*16*arc,rz=s.rot*(1-p)+side*5*arc-1.5*p;n.book.style.transform=`translate3d(${x-s.w/2}px,${y-s.h/2}px,${z}px) rotateX(${rx}deg) rotateY(${ry}deg) rotateZ(${rz}deg) scale(${sc})`;n.shadow.style.opacity=String(.17+.48*(1-arc));n.shadow.style.filter=`blur(${9+arc*20}px)`;n.shadow.style.transform=`rotateX(78deg) translateY(${11+arc*34}px) scale(${.84+.16*p},${.66-.34*arc})`}
 function tween(ms,step,stopped){return new Promise(ok=>{const start=performance.now();let raf=0;function tick(now){if(stopped()){cancelAnimationFrame(raf);ok();return}const raw=clamp((now-start)/ms,0,1);step(raw);if(raw<1)raf=requestAnimationFrame(tick);else ok()}step(0);raf=requestAnimationFrame(tick)})}
 function fly(n,s,toDesk,stop){return tween(1650,r=>closedPose(n,s,toDesk?ease(r):1-ease(r)),stop)}
@@ -39720,14 +39623,20 @@ window.runBookCinematic=function(direction,id,done,edge){
  try{window.cancelBookOpenAnimation?.()}catch{}
  const epoch=++window.bookAnimationEpoch,o=document.getElementById('bookLaunchOverlay');if(!o){done?.();return false}
  const n=ensure(o),s=sourceRect(edge),skip=document.getElementById('skipBookAnimation'),lib=document.getElementById('library');let ended=false,timer=0;const cover=setup(n,s,id);
- window.bookOpeningInProgress=true;document.body.classList.add('book-opening');lib?.setAttribute('inert','');o.className=`book-launch-overlay open cinematic-v880${direction==='return'?' returning':''}`;o.setAttribute('aria-hidden','false');o.setAttribute('aria-busy','true');n.room.style.opacity='1';if(lib){lib.style.pointerEvents='none';lib.style.opacity='0'}if(skip){skip.firstChild.textContent=direction==='return'?'Skip return animation ':'Skip opening animation ';skip.disabled=false}
- function cleanup(){clearTimeout(timer);skip?.removeEventListener('click',finish);skip?.removeEventListener('pointerup',finish);n.book.style.opacity='0';o.className='book-launch-overlay';o.setAttribute('aria-hidden','true');o.removeAttribute('aria-busy');lib?.removeAttribute('inert');if(lib){lib.style.opacity='';lib.style.pointerEvents=''}document.body.classList.remove('book-opening');window.bookOpeningInProgress=false;if(window.activeBookAnimationCancel===cancel)window.activeBookAnimationCancel=null;if(window.activeBookAnimationFinish===finish)window.activeBookAnimationFinish=null}
- function finish(e){e?.preventDefault?.();if(ended)return;ended=true;cleanup();requestAnimationFrame(()=>{if(epoch===window.bookAnimationEpoch)done?.()})}
- function cancel(){if(ended)return;ended=true;cleanup()}
+ window.bookOpeningInProgress=true;document.body.classList.add('book-opening');lib?.setAttribute('inert','');o.className=`book-launch-overlay open cinematic-v883${direction==='return'?' returning':''}`;o.setAttribute('aria-hidden','false');o.setAttribute('aria-busy','true');n.room.style.opacity='1';if(lib){lib.style.pointerEvents='none';lib.style.opacity='0'}if(skip){skip.firstChild.textContent=direction==='return'?'Skip return animation ':'Skip opening animation ';skip.disabled=false}
+ function cleanup(restoreLibrary=true){clearTimeout(timer);skip?.removeEventListener('click',finish);skip?.removeEventListener('pointerup',finish);n.book.style.opacity='0';o.className='book-launch-overlay';o.setAttribute('aria-hidden','true');o.removeAttribute('aria-busy');lib?.removeAttribute('inert');if(lib){lib.style.opacity='';lib.style.pointerEvents='';if(restoreLibrary)lib.classList.remove('hidden')}document.body.classList.remove('book-opening');window.bookOpeningInProgress=false;if(window.activeBookAnimationCancel===cancel)window.activeBookAnimationCancel=null;if(window.activeBookAnimationFinish===finish)window.activeBookAnimationFinish=null}
+ function finish(e){e?.preventDefault?.();if(ended)return;ended=true;clearTimeout(timer);skip?.removeEventListener('click',finish);skip?.removeEventListener('pointerup',finish);if(direction==='open'){
+   try{done?.()}catch(err){console.error('Opening handoff failed',err)}
+   requestAnimationFrame(()=>requestAnimationFrame(()=>cleanup(false)));
+ }else{
+   cleanup(true);
+   requestAnimationFrame(()=>{if(epoch===window.bookAnimationEpoch)done?.()});
+ }}
+ function cancel(){if(ended)return;ended=true;cleanup(direction==='return')}
  window.activeBookAnimationCancel=cancel;window.activeBookAnimationFinish=finish;skip?.addEventListener('click',finish,{once:true});skip?.addEventListener('pointerup',finish,{once:true});const stop=()=>ended||epoch!==window.bookAnimationEpoch;
- const opening=async()=>{await Promise.all([imgReady(n.room),preload(cover),preload(ART[id]||ART.academy)]);if(stop())return;setup(n,s,id);closedPose(n,s,0);await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));await fly(n,s,true,stop);if(stop())return;await tween(260,r=>{const p=ease(r),d=target(s);n.book.style.transform=`translate3d(${d.cx-s.w/2}px,${d.cy-s.h/2+(1-p)*8}px,0) rotateX(${52+(1-p)*3}deg) rotateY(0deg) rotateZ(-1.5deg) scale(${d.scale})`},stop);if(stop())return;await openCover(n,0,-158,stop);if(stop())return;await new Promise(r=>setTimeout(r,900));await tween(420,r=>{n.book.style.opacity=String(1-ease(r))},stop);finish()};
+ const opening=async()=>{await Promise.all([imgReady(n.room),preload(cover),preload(ART[id]||ART.academy)]);if(stop())return;setup(n,s,id);closedPose(n,s,0);await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));await fly(n,s,true,stop);if(stop())return;await tween(260,r=>{const p=ease(r),d=target(s);n.book.style.transform=`translate3d(${d.cx-s.w/2}px,${d.cy-s.h/2+(1-p)*8}px,0) rotateX(${52+(1-p)*3}deg) rotateY(0deg) rotateZ(-1.5deg) scale(${d.scale})`},stop);if(stop())return;await openCover(n,0,-158,stop);if(stop())return;await new Promise(r=>setTimeout(r,520));await tween(260,r=>{n.book.style.opacity=String(1-ease(r))},stop);finish()};
  const returning=async()=>{await Promise.all([imgReady(n.room),preload(cover),preload(ART[id]||ART.academy)]);if(stop())return;setup(n,s,id);closedPose(n,s,1);n.front.style.transform='translateZ(11px) rotateY(-158deg)';await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));await openCover(n,-158,0,stop);if(stop())return;await fly(n,s,false,stop);finish()};
- Promise.resolve().then(direction==='return'?returning:opening).catch(err=>{console.error('v8.7.7 cinematic failed',err);finish()});timer=setTimeout(finish,8000);return true
+ Promise.resolve().then(direction==='return'?returning:opening).catch(err=>{console.error('v8.8.3 cinematic failed',err);finish()});timer=setTimeout(finish,8000);return true
 };
 window.runBookOpenAnimation=(id,done,r=null)=>window.runBookCinematic('open',id,done,r);
 window.runBookReturnAnimation=(id,done,r=null)=>window.runBookCinematic('return',id,done,r);

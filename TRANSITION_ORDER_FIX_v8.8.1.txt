@@ -1,0 +1,3 @@
+Lorespan v8.8.1 transition-order repair
+
+Opening completion now performs the reader/page-one handoff before removing the cinematic overlay. The library remains hidden throughout the handoff, preventing the bookshelf from flashing back before page one appears. Return animation still restores the library after cleanup. Skip uses the same completion path.

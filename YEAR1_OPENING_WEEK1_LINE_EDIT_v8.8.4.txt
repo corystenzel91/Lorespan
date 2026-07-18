@@ -1,0 +1,10 @@
+Lorespan v8.8.4
+Year 1 opening through end of Week 1 manual line edit
+
+Completed:
+- Varied repeated player gestures and sentence openings.
+- Tightened first introductions for Lyra, Finn, Thorne, and Cassian.
+- Improved dialogue pacing and scene continuity.
+- Removed awkward or meta-sounding phrasing in the opening sequence.
+- Preserved all node IDs, destinations, choices, free-response mappings, flags, and saves.
+- Checked choice destinations, JavaScript syntax, service-worker syntax, duplicate IDs, and local assets.

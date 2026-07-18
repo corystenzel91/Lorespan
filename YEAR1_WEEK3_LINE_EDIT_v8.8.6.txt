@@ -1,0 +1,21 @@
+Lorespan v8.8.6 — Vantheir Academy Year 1 Week 3
+
+Manual line-edit scope:
+- autumnMorning through afterBellTower
+- 20 story nodes
+
+Editorial repairs:
+- Removed an unrelated training-floor sentence from the dining-hall rumor scene.
+- Removed duplicated food/tea ambience from the black-lantern scene.
+- Replaced a repeated knuckle-rubbing response with direct dialogue.
+- Removed repeated full descriptions of established characters.
+- Removed a stray dorm-room description that appeared before the false room opened.
+- Tightened the assessment, lantern workshop, bell-tower, underwater stair, escape, and shifting-stair transitions.
+- Smoothed choppy dialogue and repeated sentence structures.
+- Preserved all node IDs, destinations, choices, free-response mappings, flags, profiles, and save keys.
+
+Validation:
+- 20/20 Week 3 nodes present.
+- No broken Week 3 choice or typed-response destinations.
+- No repeated-word errors found in the edited section.
+- No exposed NPC-memory or choice-mechanic language found in the edited section.
