@@ -1,0 +1,12 @@
+Lorespan v8.8.0
+
+Repairs in this build:
+- Corrected stale animation asset references that pointed to missing v877 files.
+- Unified active shelf, desk, and all ten cover references under v880 names.
+- Kept hidden choice-consequence tracking internal rather than adding system explanations to prose.
+- Improved age-comparison phrasing so it reads as character context rather than mechanics.
+- After a button choice, the selected response and continuation are brought into view together.
+- Typed answers use the same continuation positioning.
+- The mobile keyboard is dismissed after typed submission and is not forced open again.
+- Clarification replies use the same continuation scroll behavior.
+- Existing node IDs, routes, save keys, flags, and typed routing are preserved.

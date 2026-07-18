@@ -1,0 +1,32 @@
+{
+  "version": "8.8.0",
+  "passed": true,
+  "checks": {
+    "no_stale_v877_refs": true,
+    "no_stale_v879_refs": true,
+    "current_version_in_html": true,
+    "current_cache": true,
+    "shared_choice_continuation_scroll": true,
+    "button_and_typed_share_advance": true,
+    "typed_keyboard_blurs": true,
+    "hidden_consequence_prose_removed": true,
+    "natural_age_wording": true,
+    "no_visible_open_book": true,
+    "no_duplicate_ids": true,
+    "no_missing_local_assets": true,
+    "ten_current_cover_assets": true,
+    "academy_nodes_present": true,
+    "character_setup_all_books": true,
+    "no_accidental_duplicate_words": true,
+    "no_space_before_punctuation": true,
+    "no_common_typo_tokens": true
+  },
+  "missing_assets": [],
+  "academy_prose_blocks_scanned": 2347,
+  "notes": [
+    "Choice buttons and typed responses now use the same continuation positioning.",
+    "Typed submission dismisses the mobile keyboard so the continuation remains readable.",
+    "Automated prose hygiene scanned Academy template-literal passages for repeated words, punctuation spacing, and common typo tokens.",
+    "This is a static/runtime-code audit; physical Android visual rendering still requires deployment."
+  ]
+}
