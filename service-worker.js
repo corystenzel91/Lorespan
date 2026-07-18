@@ -1,12 +1,12 @@
 const CACHE_PREFIX="lorespan-";
-const CACHE_NAME='lorespan-v8.9.28';
+const CACHE_NAME='lorespan-v8.9.30';
 const CORE=[
   "./",
   "./index.html",
   "./offline.html",
   "./manifest.webmanifest",
   "./library-concept-shelf-v885.webp",
-  "./lorespan-desk-room-v885.webp",
+  "./lorespan-desk-room-v8930.webp",
   "./magic-book-192-v2.png",
   "./magic-book-512.png",
   "./magic-book-maskable-192.png",
@@ -16,7 +16,7 @@ const CORE=[
   "./library-hero.png",
   "./lorespan-home.webp",
   "./cover-vantheir-clean-v885.webp",
-  "./cover-hero-academia-v885.webp",
+  "./cover-hero-academia-v8930.webp",
   "./cover-beastbound-clean-v885.webp",
   "./cover-tides-clean-v885.webp",
   "./cover-guild-clean-v885.webp",

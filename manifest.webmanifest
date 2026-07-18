@@ -1,5 +1,5 @@
 {
-  "name": "Lorespan — Interactive Story Library",
+  "name": "Lorespan \u2014 Interactive Story Library",
   "short_name": "Lorespan",
   "description": "An installable choice-and-typed-response fantasy library with stories delivered through app updates.",
   "start_url": "./",
@@ -34,5 +34,5 @@
       "purpose": "maskable"
     }
   ],
-  "version": "8.9.28"
+  "version": "8.9.30"
 }

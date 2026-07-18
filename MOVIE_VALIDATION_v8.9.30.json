@@ -1,0 +1,206 @@
+{
+  "version": "8.9.30",
+  "movies": [
+    {
+      "file": "movies/academy-open.mp4",
+      "codec": "h264",
+      "width": 540,
+      "height": 960,
+      "pixel_format": "yuv420p",
+      "frame_rate": "24/1",
+      "duration_seconds": 4.0,
+      "size_bytes": 866806
+    },
+    {
+      "file": "movies/academy-return.mp4",
+      "codec": "h264",
+      "width": 540,
+      "height": 960,
+      "pixel_format": "yuv420p",
+      "frame_rate": "24/1",
+      "duration_seconds": 4.0,
+      "size_bytes": 812835
+    },
+    {
+      "file": "movies/beastbound-open.mp4",
+      "codec": "h264",
+      "width": 540,
+      "height": 960,
+      "pixel_format": "yuv420p",
+      "frame_rate": "24/1",
+      "duration_seconds": 4.0,
+      "size_bytes": 909084
+    },
+    {
+      "file": "movies/beastbound-return.mp4",
+      "codec": "h264",
+      "width": 540,
+      "height": 960,
+      "pixel_format": "yuv420p",
+      "frame_rate": "24/1",
+      "duration_seconds": 4.0,
+      "size_bytes": 835883
+    },
+    {
+      "file": "movies/emberwake-open.mp4",
+      "codec": "h264",
+      "width": 540,
+      "height": 960,
+      "pixel_format": "yuv420p",
+      "frame_rate": "24/1",
+      "duration_seconds": 4.0,
+      "size_bytes": 767764
+    },
+    {
+      "file": "movies/emberwake-return.mp4",
+      "codec": "h264",
+      "width": 540,
+      "height": 960,
+      "pixel_format": "yuv420p",
+      "frame_rate": "24/1",
+      "duration_seconds": 4.0,
+      "size_bytes": 682645
+    },
+    {
+      "file": "movies/guild-open.mp4",
+      "codec": "h264",
+      "width": 540,
+      "height": 960,
+      "pixel_format": "yuv420p",
+      "frame_rate": "24/1",
+      "duration_seconds": 4.0,
+      "size_bytes": 777769
+    },
+    {
+      "file": "movies/guild-return.mp4",
+      "codec": "h264",
+      "width": 540,
+      "height": 960,
+      "pixel_format": "yuv420p",
+      "frame_rate": "24/1",
+      "duration_seconds": 4.0,
+      "size_bytes": 697090
+    },
+    {
+      "file": "movies/hero-open.mp4",
+      "codec": "h264",
+      "width": 540,
+      "height": 960,
+      "pixel_format": "yuv420p",
+      "frame_rate": "24/1",
+      "duration_seconds": 4.0,
+      "size_bytes": 816728
+    },
+    {
+      "file": "movies/hero-return.mp4",
+      "codec": "h264",
+      "width": 540,
+      "height": 960,
+      "pixel_format": "yuv420p",
+      "frame_rate": "24/1",
+      "duration_seconds": 4.0,
+      "size_bytes": 752216
+    },
+    {
+      "file": "movies/ironhaven-open.mp4",
+      "codec": "h264",
+      "width": 540,
+      "height": 960,
+      "pixel_format": "yuv420p",
+      "frame_rate": "24/1",
+      "duration_seconds": 4.0,
+      "size_bytes": 795609
+    },
+    {
+      "file": "movies/ironhaven-return.mp4",
+      "codec": "h264",
+      "width": 540,
+      "height": 960,
+      "pixel_format": "yuv420p",
+      "frame_rate": "24/1",
+      "duration_seconds": 4.0,
+      "size_bytes": 705417
+    },
+    {
+      "file": "movies/moonwake-open.mp4",
+      "codec": "h264",
+      "width": 540,
+      "height": 960,
+      "pixel_format": "yuv420p",
+      "frame_rate": "24/1",
+      "duration_seconds": 4.0,
+      "size_bytes": 798510
+    },
+    {
+      "file": "movies/moonwake-return.mp4",
+      "codec": "h264",
+      "width": 540,
+      "height": 960,
+      "pixel_format": "yuv420p",
+      "frame_rate": "24/1",
+      "duration_seconds": 4.0,
+      "size_bytes": 715658
+    },
+    {
+      "file": "movies/pirate-open.mp4",
+      "codec": "h264",
+      "width": 540,
+      "height": 960,
+      "pixel_format": "yuv420p",
+      "frame_rate": "24/1",
+      "duration_seconds": 4.0,
+      "size_bytes": 876334
+    },
+    {
+      "file": "movies/pirate-return.mp4",
+      "codec": "h264",
+      "width": 540,
+      "height": 960,
+      "pixel_format": "yuv420p",
+      "frame_rate": "24/1",
+      "duration_seconds": 4.0,
+      "size_bytes": 822031
+    },
+    {
+      "file": "movies/starfall-open.mp4",
+      "codec": "h264",
+      "width": 540,
+      "height": 960,
+      "pixel_format": "yuv420p",
+      "frame_rate": "24/1",
+      "duration_seconds": 4.0,
+      "size_bytes": 787826
+    },
+    {
+      "file": "movies/starfall-return.mp4",
+      "codec": "h264",
+      "width": 540,
+      "height": 960,
+      "pixel_format": "yuv420p",
+      "frame_rate": "24/1",
+      "duration_seconds": 4.0,
+      "size_bytes": 693324
+    },
+    {
+      "file": "movies/veilwood-open.mp4",
+      "codec": "h264",
+      "width": 540,
+      "height": 960,
+      "pixel_format": "yuv420p",
+      "frame_rate": "24/1",
+      "duration_seconds": 4.0,
+      "size_bytes": 802944
+    },
+    {
+      "file": "movies/veilwood-return.mp4",
+      "codec": "h264",
+      "width": 540,
+      "height": 960,
+      "pixel_format": "yuv420p",
+      "frame_rate": "24/1",
+      "duration_seconds": 4.0,
+      "size_bytes": 728690
+    }
+  ],
+  "all_github_compatible": true
+}
