@@ -38471,6 +38471,39 @@ let bookOpeningInProgress=false;
 let activeBookAnimationCancel=null;
 let activeBookAnimationFinish=null;
 let bookAnimationEpoch=0;
+function ensureBookLaunchOverlayChrome(){
+  const overlay=$("bookLaunchOverlay");
+  if(!overlay)return null;
+  let origin=overlay.querySelector(".book-launch-origin-shelf");
+  if(!origin){
+    origin=document.createElement("div");
+    origin.className="book-launch-origin-shelf";
+    origin.setAttribute("aria-hidden","true");
+  }
+  let skip=$("skipBookAnimation");
+  if(!skip){
+    skip=document.createElement("button");
+    skip.id="skipBookAnimation";
+    skip.className="skip-book-animation";
+    skip.type="button";
+  }
+  let flash=overlay.querySelector(".page-zoom-flash");
+  if(!flash){
+    flash=document.createElement("div");
+    flash.className="page-zoom-flash";
+    flash.setAttribute("aria-hidden","true");
+  }
+  return {overlay,origin,skip,flash};
+}
+function resetBookAnimationSkipButton(skip,label="Skip animation"){
+  if(!skip)return;
+  skip.disabled=true;
+  skip.replaceChildren(document.createTextNode(`${label} `));
+  const arrow=document.createElement("span");
+  arrow.setAttribute("aria-hidden","true");
+  arrow.textContent="›";
+  skip.appendChild(arrow);
+}
 function cancelBookOpenAnimation(){
   bookAnimationEpoch+=1;
   if(typeof activeBookAnimationCancel==="function"){
@@ -38487,8 +38520,9 @@ function cancelBookOpenAnimation(){
     shelf.dataset.opening="false";
     shelf.querySelectorAll(".concept-book.is-pulling,.concept-book.is-returning").forEach(el=>el.classList.remove("is-pulling","is-returning"));
   }
-  const overlay=$("bookLaunchOverlay");
-  if(overlay){
+  const chrome=ensureBookLaunchOverlayChrome();
+  if(chrome){
+    const {overlay,origin,skip,flash}=chrome;
     overlay.className="book-launch-overlay";
     overlay.setAttribute("aria-hidden","true");
     overlay.removeAttribute("aria-busy");
@@ -38496,9 +38530,9 @@ function cancelBookOpenAnimation(){
       el.style.opacity="0";
       if(el.classList.contains("v862-source-mask"))el.style.display="none";
     });
+    resetBookAnimationSkipButton(skip);
+    overlay.replaceChildren(origin,skip,flash);
   }
-  const skip=$("skipBookAnimation");
-  if(skip)skip.disabled=true;
 }
 
 function prepareCinematicBookNodes(overlay){
@@ -39308,7 +39342,7 @@ window.addEventListener("unhandledrejection",event=>{
   }
 });
 
-const LORESPAN_VERSION="v8.9.42";
+const LORESPAN_VERSION="v8.9.43";
 const LORESPAN_BUILD_ID="vantheir-adaptive-novel-github";
 const isIOS=/iPad|iPhone|iPod/.test(navigator.userAgent) ||
   (navigator.platform==="MacIntel" && navigator.maxTouchPoints>1);
@@ -39472,7 +39506,7 @@ if("serviceWorker" in navigator && location.protocol!=="file:"){
     }
   });
 
-  navigator.serviceWorker.register("./service-worker.js?v=8.9.42",{updateViaCache:"none"}).then(registration=>{
+  navigator.serviceWorker.register("./service-worker.js?v=8.9.43",{updateViaCache:"none"}).then(registration=>{
     swRegistration=registration;
 
     if(registration.waiting && navigator.serviceWorker.controller){
@@ -40022,7 +40056,8 @@ refreshSettingButtons();
     videoWrap.appendChild(video); stage.appendChild(videoWrap);
     const proxy=makeBookProxy(bookId); stage.appendChild(proxy);
     const reveal=direction==='open'?makePageReveal(bookId):null; if(reveal) stage.appendChild(reveal);
-    overlay.replaceChildren(stage); if(skip) overlay.appendChild(skip);
+    overlay.replaceChildren(stage);
+    if(skip)overlay.appendChild(skip);
     overlay.className='book-launch-overlay movie-v8938 open'; overlay.setAttribute('aria-hidden','false');
     document.body.classList.add('book-opening'); document.getElementById('library')?.setAttribute('inert','');
     const vw=Math.max(1,window.innerWidth), vh=Math.max(1,window.innerHeight);
@@ -40357,7 +40392,7 @@ refreshSettingButtons();
 @media(prefers-reduced-motion:reduce){.v8941-layer,.v8941-spread.show,.v8941-spread.hide{animation-duration:.22s!important}.v8941-flight .v8941-front-cover,.v8941-flight .v8941-back-cover,.v8941-flight .v8941-leaf,.v8941-flight .v8941-paper-edge,.v8941-book{transition-duration:.16s!important}}
 </style>
 <style id="v8942-bookshelf-preview-and-cinematic-polish">
-/* v8.9.42 — smoother shelf-to-desk motion, persistent cover art, and clearer preview actions. */
+/* v8.9.43 — smoother shelf-to-desk motion, persistent cover art, and resilient overlay controls. */
 #shelf .concept-card-actions{
   display:grid!important;
   grid-template-columns:repeat(2,minmax(0,1fr))!important;
@@ -40513,20 +40548,13 @@ refreshSettingButtons();
     const right=short(first?.npc || first?.response || first?.text || book.desc || 'The story remembers its first witness.', 360) || 'The story remembers its first witness.';
     return {eyebrow:label.eyebrow || book.title || 'Lorespan', title:label.title || book.title || 'Story', left, right, extra: short(book.desc||'',200)};
   }
-  function cleanup(overlay,skip,finishRef,cancelRef){
+  function cleanup(overlay,skip,originChrome,flashChrome,finishRef,cancelRef){
     clearTimers();
     if(skip && state.skipHandler){ ['click','pointerup','touchend'].forEach(evt=>skip.removeEventListener(evt,state.skipHandler)); state.skipHandler=null; }
-    if(skip){
-      skip.disabled=true;
-      skip.textContent='Skip animation ';
-      const arrow=document.createElement('span');
-      arrow.setAttribute('aria-hidden','true');
-      arrow.textContent='›';
-      skip.appendChild(arrow);
-    }
+    if(skip)resetBookAnimationSkipButton(skip);
     overlay.className='book-launch-overlay';
     overlay.setAttribute('aria-hidden','true');
-    overlay.replaceChildren();
+    overlay.replaceChildren(...[originChrome,skip,flashChrome].filter(Boolean));
     document.body.classList.remove('book-opening');
     q('library')?.removeAttribute('inert');
     if(activeBookAnimationFinish===finishRef) activeBookAnimationFinish=null;
@@ -40581,7 +40609,11 @@ refreshSettingButtons();
   }
   function run(direction,bookId,done,edgeRect){
     if(typeof cancelBookOpenAnimation==='function') cancelBookOpenAnimation();
-    const overlay=q('bookLaunchOverlay'), skip=q('skipBookAnimation');
+    const chrome=typeof ensureBookLaunchOverlayChrome==="function"?ensureBookLaunchOverlayChrome():null;
+    const overlay=chrome?.overlay||q('bookLaunchOverlay');
+    const skip=chrome?.skip||q('skipBookAnimation');
+    const originChrome=chrome?.origin||overlay?.querySelector('.book-launch-origin-shelf');
+    const flashChrome=chrome?.flash||overlay?.querySelector('.page-zoom-flash');
     if(!overlay){ done(); return false; }
     let completed=false;
     const stage=document.createElement('div'); stage.className='v8941-stage '+(direction==='return'?'returning':'opening');
@@ -40593,17 +40625,13 @@ refreshSettingButtons();
     document.body.classList.add('book-opening'); q('library')?.setAttribute('inert','');
     const {source,hover}=getRects(edgeRect);
     built.flight.style.width=hover.width+'px'; built.flight.style.height=hover.height+'px';
-    const finish=()=>{ if(completed) return; completed=true; cleanup(overlay,skip,finish,cancel); done(); };
-    const cancel=()=>{ if(completed) return; completed=true; cleanup(overlay,skip,finish,cancel); };
+    const finish=()=>{ if(completed) return; completed=true; cleanup(overlay,skip,originChrome,flashChrome,finish,cancel); done(); };
+    const cancel=()=>{ if(completed) return; completed=true; cleanup(overlay,skip,originChrome,flashChrome,finish,cancel); };
     activeBookAnimationFinish=finish; activeBookAnimationCancel=cancel;
     state.skipHandler=(ev)=>{ ev?.preventDefault?.(); finish(); };
     if(skip){
+      resetBookAnimationSkipButton(skip,direction==='return'?'Skip return animation':'Skip opening animation');
       skip.disabled=false;
-      skip.textContent=direction==='return'?'Skip return animation ':'Skip opening animation ';
-      const arrow=document.createElement('span');
-      arrow.setAttribute('aria-hidden','true');
-      arrow.textContent='›';
-      skip.appendChild(arrow);
       skip.setAttribute('aria-label',direction==='return'?'Skip return animation':'Skip opening animation');
       ['click','pointerup','touchend'].forEach(evt=>skip.addEventListener(evt,state.skipHandler,{once:true,passive:false}));
     }

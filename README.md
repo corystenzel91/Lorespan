@@ -1,5 +1,5 @@
 # Lorespan
 
-Version 8.9.36 — GitHub Pages-ready interactive story library.
+Version 8.9.43 — GitHub Pages-ready interactive story library.
 
-See `README_v8.9.36.md` and `VALIDATION_v8.9.36.json`.
+See `CHANGELOG.md` for the latest release notes.

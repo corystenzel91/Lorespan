@@ -191,3 +191,8 @@
 - Added a more realistic procedural 3D open/return transition with a mid-air fanned-book pose before the spread appears.
 - Tightened overlay cleanup and skip handling during open/return transitions.
 - Kept bookshelf restoration and prior asset repairs intact while bumping the app version to 8.9.41.
+
+## v8.9.43
+- Fixed the book-launch overlay cleanup so the persistent Skip button survives repeated opening and return animations.
+- Hardened the active cinematic runtime so it restores the overlay's static controls instead of deleting them during setup/cleanup.
+- Updated the shipped app/service-worker/manifest version metadata to 8.9.43.
