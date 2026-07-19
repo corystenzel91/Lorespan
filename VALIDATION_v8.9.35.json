@@ -1,0 +1,45 @@
+{
+  "version": "8.9.35",
+  "ids_removed": [],
+  "ids_added": [
+    "v8935-real-book-model-fix"
+  ],
+  "choice_targets_removed": [],
+  "choice_targets_added": [],
+  "save_keys_removed": [],
+  "save_keys_added": [],
+  "functions_removed": [],
+  "functions_added": [],
+  "duplicate_ids": [],
+  "javascript_checks": [
+    {
+      "script": 0,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "script": 1,
+      "ok": true,
+      "error": ""
+    },
+    {
+      "script": 2,
+      "ok": true,
+      "error": ""
+    }
+  ],
+  "missing_assets": [],
+  "cover_assets": [
+    "cover-beastbound-clean-v885.webp",
+    "cover-emberwake-v885.webp",
+    "cover-guild-clean-v885.webp",
+    "cover-hero-academia-v8930.webp",
+    "cover-ironhaven-v885.webp",
+    "cover-moonwake-v885.webp",
+    "cover-starfall-v885.webp",
+    "cover-tides-clean-v885.webp",
+    "cover-vantheir-clean-v885.webp",
+    "cover-veilwood-v885.webp"
+  ],
+  "browser_render_note": "Chromium launch was attempted but the container browser process did not terminate reliably; static DOM, JavaScript, asset, route, and package checks passed."
+}

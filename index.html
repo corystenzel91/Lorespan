@@ -230,7 +230,7 @@ html[data-portraits="hidden"] .character-portrait-strip{display:none}
 /* Definitive Edition v4.3.6 — Gold Master QA5 polish
    Narrative tense, callbacks, transitions, and repeated meta-language refined. */
 
-/* Guild Bound continuity is intentionally background-only: no meters, scores, or relationship panels. */
+/* The Ashen Circlet continuity is intentionally background-only: no meters, scores, or relationship panels. */
 
 /* Vantheir Definitive Edition 2.0 Passes 1–3 — 45 Weeks 1–18 decisions promoted to long-term callbacks. */
 
@@ -4169,7 +4169,7 @@ body.book-opening{overflow:hidden!important;touch-action:none}
           </button>
           <input id="importSaveInput" type="file" accept="application/json,.json" hidden>
         </div>
-        <p id="appVersion" class="launcher-version">Lorespan v8.9.29</p>
+        <p id="appVersion" class="launcher-version">Lorespan v8.9.35</p>
       </aside>
       <div id="appStatus" class="sr-status" role="status" aria-live="polite"></div>
 
@@ -31794,7 +31794,7 @@ But the road remains available.`,
 
 
  beastbound:{
-  title:"Beastbound Rebirth",genre:"Beast Fantasy",className:"green",
+  title:"Wildkin Reawakening",genre:"Beast Fantasy",className:"green",
   desc:"A reborn bond, a changing wilderness, and a life shaped by the creature that answers your call.",
   start:"beastboundComingSoon",
   nodes:{
@@ -31838,7 +31838,7 @@ The tide answers.`,
  },
 
  guild:{
-  title:"Guild Bound — Book One: Weeks 1–8",genre:"Guild Fantasy",className:"red",
+  title:"The Ashen Circlet — Book One: Weeks 1–8",genre:"Guild Fantasy",className:"red",
   desc:"A disgraced guild, a stolen seal, and a first contract beneath a city that remembers every debt.",
   start:"guildGate",
   nodes:{
@@ -33019,14 +33019,14 @@ Rook turns the key between two fingers.
 
 “So a warrant dated tomorrow means time is broken or paperwork has finally become honest.”
 
-Elias closes the Guild Bound Contract.
+Elias closes the Ashen Circlet Charter.
 
 “Either way, we need evidence.”`,
     choices:[["Enter the council tower before dawn.","councilApproach"],["Meet Selene and compare both guilds' warrants.","highwatchMeeting"],["Ask Sera Kest what she knows about the archive.","seraReturn"]],
     free:{tower:"councilApproach",council:"councilApproach",selene:"highwatchMeeting",highwatch:"highwatchMeeting",stoneward:"highwatchMeeting",sera:"seraReturn",archive:"seraReturn",default:"highwatchMeeting"}
    },
    futureWarrant:{
-    narration:`You spread Stoneward Guild's warrant beside the Guild Bound Contract.
+    narration:`You spread Stoneward Guild's warrant beside the Ashen Circlet Charter.
 
 The black wax signatures match. The paper does not.
 
@@ -33117,7 +33117,7 @@ It orders Stoneward Guild to arrest the Iron Lantern tomorrow at noon.`,
 
 “We did not accept it.”
 
-Mira places the Guild Bound Contract beside it.
+Mira places the Ashen Circlet Charter beside it.
 
 “Neither did we.”
 
@@ -33852,7 +33852,7 @@ Both were assigned roles.`,
 
 “No,” it replies. “I completed it.”
 
-Mira places the Guild Bound Contract over the ledger.
+Mira places the Ashen Circlet Charter over the ledger.
 
 “Authority without consent is only a threat wearing stationery.”`,
     choices:[["Ask Stoneward Guild to revoke every future warrant publicly.","juryAwakening"],["Ask Mira to void the assigned guild outcomes.","authorChamber"],["Call the citizens outside as present-day witnesses.","peoplePlea"]],
@@ -34517,7 +34517,7 @@ Sera smiles slightly. “Good answer.”`,
 
 {gbAllyLegacy}
 
-Stoneward Guild witnesses sit beside Dawnbridge survivors. Mira places the Hollow Registry next to Hearthward's restored name. Elias sets down the Guild Bound Contract.
+Stoneward Guild witnesses sit beside Dawnbridge survivors. Mira places the Hollow Registry next to Hearthward's restored name. Elias sets down the Ashen Circlet Charter.
 
 No chair stands at the head of the table.`,
     npc:`Selene looks at the child. “A crown is evidence before it is authority.”
@@ -34655,7 +34655,7 @@ A shared meal.
 A refusal to leave.
 
 By dawn, the Ashen Circlet controls Ashport's records—but not everyone inside them.`,
-    choices:[["Begin Week Eight at the eastern wall.","weekEightOpening"],["Return to the Lorespan library.","LIBRARY"],["Begin Guild Bound again.","RESET"]],
+    choices:[["Begin Week Eight at the eastern wall.","weekEightOpening"],["Return to the Lorespan library.","LIBRARY"],["Begin The Ashen Circlet again.","RESET"]],
     free:{eight:"weekEightOpening",wall:"weekEightOpening",library:"LIBRARY",again:"RESET",default:"weekEightOpening"}
    },
    weekEightOpening:{
@@ -34914,7 +34914,7 @@ Instead, a new contract arrives from an S-rank guild member who has been missing
 ORIN VALECROW IS NOT THE ROAD SAINT.
 
 FIND THE REAL ONE.`,
-    choices:[["Return to the Lorespan library.","LIBRARY"],["Remain with the guild and study the Week Nine contract.","weekEightQuiet"],["Begin Guild Bound again.","RESET"]],
+    choices:[["Return to the Lorespan library.","LIBRARY"],["Remain with the guild and study the Week Nine contract.","weekEightQuiet"],["Begin The Ashen Circlet again.","RESET"]],
     free:{library:"LIBRARY",remain:"weekEightQuiet",nine:"weekEightQuiet",contract:"weekEightQuiet",again:"RESET",default:"weekEightQuiet"}
    },
    weekEightQuiet:{
@@ -34933,7 +34933,7 @@ They show different men.
 Both carry the same S-rank pin.
 
 Outside, the Sovereign's Way divides in two.`,
-    choices:[["Return to the Lorespan library.","LIBRARY"],["Begin Guild Bound again.","RESET"],["Open Vantheir Academy.","ACADEMY"]],
+    choices:[["Return to the Lorespan library.","LIBRARY"],["Begin The Ashen Circlet again.","RESET"],["Open Vantheir Academy.","ACADEMY"]],
     free:{library:"LIBRARY",again:"RESET",vantheir:"ACADEMY",academy:"ACADEMY",default:"LIBRARY"}
    },
    weekFourEnd:{
@@ -34978,12 +34978,12 @@ Mira stands beneath the Iron Lantern emblem.
 Its cracked flame burns steadily.
 
 On the table, the courthouse mark waits for Week Five.`,
-    choices:[["Return to the Lorespan library.","LIBRARY"],["Begin Guild Bound again.","RESET"],["Open Vantheir Academy.","ACADEMY"]],
+    choices:[["Return to the Lorespan library.","LIBRARY"],["Begin The Ashen Circlet again.","RESET"],["Open Vantheir Academy.","ACADEMY"]],
     free:{library:"LIBRARY",again:"RESET",vantheir:"ACADEMY",academy:"ACADEMY",default:"LIBRARY"}
    }
   }
  },
- trainer:{title:"Beastbound Rebirth",genre:"Creature Fantasy",className:"green",desc:"A world where magical creatures choose their own partners.",start:"soon",nodes:{
+ trainer:{title:"Wildkin Reawakening",genre:"Creature Fantasy",className:"green",desc:"A world where magical creatures choose their own partners.",start:"soon",nodes:{
   soon:{narration:"A painted creature moves faintly across the cover, but the story has not awakened yet.",choices:[["Return to the library.","LIBRARY"],["Open Vantheir Academy.","ACADEMY"],["Remain on this page.","STAY"]],free:{library:"LIBRARY",academy:"ACADEMY",remain:"STAY",default:"LIBRARY"}}
  }},
  hero:{title:"Vanguard Institute",genre:"Hero Academy",className:"gold",desc:"Train among future heroes and decide what courage means.",start:"soon",nodes:{
@@ -36926,7 +36926,7 @@ const CHOICE_FLAGS={
   y2ReservoirEntry:{y2EnteredUnusedAnswersReservoir:true},
   y2ReservoirResolution:{y2EstablishedPossibilityConsent:true},
   y2Week4End:{y2CompletedWeekFour:true},
-  // Guild Bound — background-only continuity flags (never displayed as meters)
+  // The Ashen Circlet — background-only continuity flags (never displayed as meters)
   contractNotice:{gbAcceptedRecruitment:true},
   maskedWarning:{gbHeededMaskedWarning:true},
   guildHall:{gbEnteredIronLantern:true},
@@ -37232,7 +37232,7 @@ setPortraits(localStorage.getItem("lorespan-portraits")||"shown");
 
 
 BOOKS.hero={
-  title:"Hero Academia",genre:"Heroic School Adventure",className:"blue",
+  title:"Halcyon Vanguard",genre:"Heroic School Adventure",className:"blue",
   desc:"A separate academy adventure centered on first awakenings, new rivalries, and the pressure of becoming a hero before adulthood is finished with you.",
   start:"heroIntro",
   nodes:{
@@ -37326,7 +37326,7 @@ Steam curls above the station roof while a city of iron bridges and clock towers
 };
 
 BOOKS.veilwood={
-  title:"Veilwood Hollow",genre:"Mythic Horror Fantasy",className:"violet",
+  title:"Gloamroot Vale",genre:"Mythic Horror Fantasy",className:"violet",
   desc:"A future story of hidden shrines, beautiful wrong turns, and a forest that offers comfort in exchange for memory.",
   start:"veilwoodPreview",
   nodes:{veilwoodPreview:{
@@ -37355,27 +37355,27 @@ const LIBRARY_COVERS={
 };
 const LIBRARY_LABELS={
   academy:{eyebrow:"Vantheir Academy",title:"Years 1–5",status:"Expanding volume"},
-  hero:{eyebrow:"Hero Academia",title:"First Term",status:"Story preview"},
-  beastbound:{eyebrow:"Beastbound Rebirth",title:"The Wild Remembers",status:"Story preview"},
+  hero:{eyebrow:"Halcyon Vanguard",title:"First Term",status:"Story preview"},
+  beastbound:{eyebrow:"Wildkin Reawakening",title:"The Wild Remembers",status:"Story preview"},
   pirate:{eyebrow:"Tides of the Shattered Crown",title:"The Crown Below",status:"Story preview"},
-  guild:{eyebrow:"Guild Bound",title:"Beyond the Academy",status:"Archive"},
+  guild:{eyebrow:"The Ashen Circlet",title:"Beyond the Academy",status:"Archive"},
   starfall:{eyebrow:"Starfall Archive",title:"The Sky Remembers",status:"Future volume"},
   moonwake:{eyebrow:"Moonwake Covenant",title:"Bargains of the Tide",status:"Future volume"},
   emberwake:{eyebrow:"Emberwake Court",title:"Ashes and Oaths",status:"Future volume"},
   ironhaven:{eyebrow:"Ironhaven Ledger",title:"The City Keeps Score",status:"Future volume"},
-  veilwood:{eyebrow:"Veilwood Hollow",title:"Where Paths Forget",status:"Future volume"}
+  veilwood:{eyebrow:"Gloamroot Vale",title:"Where Paths Forget",status:"Future volume"}
 };
 const CHARACTER_SETUP_COPY={
   academy:{title:"Create your character for Vantheir Academy — Years 1–5",prompt:"Choose the student who will enter Vantheir Academy. This character belongs only to this book."},
-  hero:{title:"Create your character for Hero Academia — First Term",prompt:"Choose the trainee beginning this heroic first term. This character belongs only to this book."},
-  beastbound:{title:"Create your character for Beastbound Rebirth",prompt:"Choose the traveler who will face the choosing and form a bond. This character belongs only to this book."},
+  hero:{title:"Create your character for Halcyon Vanguard — First Term",prompt:"Choose the trainee beginning this heroic first term. This character belongs only to this book."},
+  beastbound:{title:"Create your character for Wildkin Reawakening",prompt:"Choose the traveler who will face the choosing and form a bond. This character belongs only to this book."},
   pirate:{title:"Create your character for Tides of the Shattered Crown",prompt:"Choose the adventurer who will sail with the crew and face the crown below. This character belongs only to this book."},
-  guild:{title:"Create your character for Guild Bound",prompt:"Choose the guild member whose choices shape this archive. This character belongs only to this book."},
+  guild:{title:"Create your character for The Ashen Circlet",prompt:"Choose the guild member whose choices shape this archive. This character belongs only to this book."},
   starfall:{title:"Create your character for Starfall Archive",prompt:"Choose the observer who enters the archive beneath a changing sky. This character belongs only to this book."},
   moonwake:{title:"Create your character for Moonwake Covenant",prompt:"Choose the traveler drawn toward the tide and its bargains. This character belongs only to this book."},
   emberwake:{title:"Create your character for Emberwake Court",prompt:"Choose the court-bound adventurer who will face ashes and oaths. This character belongs only to this book."},
   ironhaven:{title:"Create your character for Ironhaven Ledger",prompt:"Choose the newcomer whose actions will be recorded by Ironhaven. This character belongs only to this book."},
-  veilwood:{title:"Create your character for Veilwood Hollow",prompt:"Choose the traveler entering the hollow where paths and memories change. This character belongs only to this book."}
+  veilwood:{title:"Create your character for Gloamroot Vale",prompt:"Choose the traveler entering the hollow where paths and memories change. This character belongs only to this book."}
 };
 const BOOK_EFFECTS={
   academy:{spark1:"#ff9f8d",spark2:"#ff745f",spark3:"#ffdbc8",pageGlow1:"#fff4ee",pageGlow2:"#ffc8ba"},
@@ -37641,7 +37641,7 @@ function buildShelf(){
     hotspot.classList.add('is-pulling');
     const visibleFace=hotspot.querySelector(".concept-book-face");
     const rawRect=(visibleFace&&visibleFace.getBoundingClientRect().width)?visibleFace.getBoundingClientRect():hotspot.getBoundingClientRect();
-    const sourceRect={left:rawRect.left,top:rawRect.top,width:rawRect.width,height:rawRect.height,rotation:Number(placements[bookId]?.r||0)};
+    const sourceRect={left:rawRect.left,top:rawRect.top,width:rawRect.width,height:rawRect.height,rotation:0};
     const handoff=()=>{
       hotspot.classList.remove('is-pulling');
       shelf.dataset.opening="false";
@@ -38340,8 +38340,8 @@ function prepareCinematicBookNodes(overlay){
       +'<div class="v862-cover-board v862-cover-board-right"></div>'
       +'<div class="v862-page-stack v862-page-stack-left"></div>'
       +'<div class="v862-page-stack v862-page-stack-right"></div>'
-      +'<div class="v862-page v862-page-left"></div>'
-      +'<div class="v862-page v862-page-right"></div>'
+      +'<div class="v862-page v862-page-left"><div class="v8935-page-copy v8935-page-copy-left"></div></div>'
+      +'<div class="v862-page v862-page-right"><div class="v8935-page-copy v8935-page-copy-right"></div></div>'
       +'<div class="v862-turn-page v862-turn-page-1"></div>'
       +'<div class="v862-turn-page v862-turn-page-2"></div>'
       +'<div class="v862-turn-page v862-turn-page-3"></div>'
@@ -38470,6 +38470,26 @@ function runBookProceduralCinematic(direction,bookId,done,edgeRect=null){
   const {start,closed,spread:spreadBox}=cinematicGeometry(edgeRect);
   const animations=[];
   let finished=false,timer=0;
+
+  const labels=LIBRARY_LABELS[bookId]||{eyebrow:BOOKS[bookId]?.title||"Lorespan",title:"A Living Story"};
+  const firstNode=BOOKS[bookId]?.nodes?.[BOOKS[bookId]?.start];
+  const cleanText=value=>String(value||"")
+    .replace(/\{[^}]+\}/g,"")
+    .replace(/^[A-Z][A-Z\s—'-]{4,}\n+/m,"")
+    .replace(/\s+/g," ")
+    .trim();
+  const storyExcerpt=cleanText(firstNode?.narration||BOOKS[bookId]?.desc||"The story waits beyond this page.");
+  const leftCopy=spread.querySelector('.v8935-page-copy-left');
+  const rightCopy=spread.querySelector('.v8935-page-copy-right');
+  if(leftCopy)leftCopy.innerHTML=`<span class="v8935-running-head">${labels.eyebrow}</span><h2>${labels.title}</h2><p>${cleanText(BOOKS[bookId]?.desc)}</p><span class="v8935-page-number">1</span>`;
+  if(rightCopy)rightCopy.innerHTML=`<span class="v8935-running-head">First Page</span><p>${storyExcerpt.slice(0,520)}</p><span class="v8935-page-number">2</span>`;
+  flight.style.setProperty('--v8935-cover',`url("${coverUrl}")`);
+  flight.style.filter='none';
+  if(flightCover){
+    flightCover.style.backgroundImage=`url("${coverUrl}")`;
+    flightCover.style.backgroundColor='transparent';
+    flightCover.style.filter='none';
+  }
 
   bookOpeningInProgress=true;
   document.body.classList.add("book-opening");
@@ -39093,7 +39113,7 @@ window.addEventListener("unhandledrejection",event=>{
   }
 });
 
-const LORESPAN_VERSION="v8.9.33";
+const LORESPAN_VERSION="v8.9.35";
 const LORESPAN_BUILD_ID="vantheir-adaptive-novel-github";
 const isIOS=/iPad|iPhone|iPod/.test(navigator.userAgent) ||
   (navigator.platform==="MacIntel" && navigator.maxTouchPoints>1);
@@ -39257,7 +39277,7 @@ if("serviceWorker" in navigator && location.protocol!=="file:"){
     }
   });
 
-  navigator.serviceWorker.register("./service-worker.js?v=8.9.29",{updateViaCache:"none"}).then(registration=>{
+  navigator.serviceWorker.register("./service-worker.js?v=8.9.35",{updateViaCache:"none"}).then(registration=>{
     swRegistration=registration;
 
     if(registration.waiting && navigator.serviceWorker.controller){
@@ -39449,7 +39469,7 @@ refreshSettingButtons();
 
 
 <style id="v8933-realistic-selection-and-flight-fix">
-/* v8.9.33 — shelf-selected books stay integrated with the painted shelf until selected. */
+/* v8.9.34 — shelf-selected books stay integrated with the painted shelf until selected. */
 #shelf{isolation:isolate!important}
 #shelf::before{
   content:"";position:absolute;z-index:3;left:39.2%;top:.8%;width:27%;height:29%;
@@ -39504,6 +39524,78 @@ refreshSettingButtons();
   #shelf::before{left:39%;width:28%;height:29.5%}
   #shelf .concept-book.selected .concept-book-face,#shelf .concept-book.active .concept-book-face{transform:perspective(1200px) translate3d(0,7%,50px) rotateX(1deg) rotateY(-7deg) scale(1.065)!important}
   #shelf .concept-book.selected .concept-book-depth,#shelf .concept-book.active .concept-book-depth{transform:perspective(1200px) translate3d(-3%,9%,36px) rotateX(1deg) rotateY(-7deg) scale(1.055)!important}
+}
+</style>
+
+
+<style id="v8935-real-book-model-fix">
+/* v8.9.35 — preserve true cover color and use one physical 3D model everywhere. */
+#shelf .concept-book{perspective:1500px!important;transform-style:preserve-3d!important;overflow:visible!important}
+#shelf .concept-book-face{
+  filter:none!important;mix-blend-mode:normal!important;opacity:1;
+  object-fit:fill!important;background:transparent!important;
+  border-radius:7px 12px 12px 7px!important;
+  clip-path:none!important;backface-visibility:hidden!important;
+  box-shadow:inset 7px 0 9px rgba(255,255,255,.10),inset -10px 0 15px rgba(0,0,0,.27),0 16px 22px rgba(0,0,0,.52)!important;
+}
+#shelf .concept-book-depth{
+  background:repeating-linear-gradient(180deg,#fff8df 0 2px,#d9be86 2px 3px,#f4e6c1 3px 5px)!important;
+  border-radius:7px 12px 12px 7px!important;
+  box-shadow:-8px 1px 0 #2e1409,10px 12px 18px rgba(0,0,0,.42),inset -8px 0 10px rgba(95,59,25,.20)!important;
+}
+#shelf .concept-book.selected .concept-book-face,#shelf .concept-book.active .concept-book-face{
+  transform:perspective(1500px) translate3d(0,8%,62px) rotateX(1deg) rotateY(-8deg) scale(1.075)!important;
+  filter:none!important;
+}
+#shelf .concept-book.selected .concept-book-depth,#shelf .concept-book.active .concept-book-depth{
+  transform:perspective(1500px) translate3d(-3.5%,10%,43px) rotateX(1deg) rotateY(-8deg) scale(1.065)!important;
+}
+#shelf .concept-book.is-pulling .concept-book-face{
+  transform:perspective(1600px) translate3d(0,12%,115px) rotateX(4deg) rotateY(-13deg) scale(1.15)!important;
+  filter:none!important;
+}
+#shelf .concept-book.is-pulling .concept-book-depth{
+  transform:perspective(1600px) translate3d(-5%,14%,92px) rotateX(4deg) rotateY(-13deg) scale(1.14)!important;
+}
+#shelf .concept-book.preview-pulse .concept-book-face{animation:v8935Preview .48s ease both!important}
+@keyframes v8935Preview{0%,100%{transform:perspective(1500px) translate3d(0,8%,62px) rotateX(1deg) rotateY(-8deg) scale(1.075)}50%{transform:perspective(1500px) translate3d(0,10%,78px) rotateX(2deg) rotateY(-10deg) scale(1.095)}}
+
+/* Closed cinematic book: cover image is never tinted or replaced by a flat color. */
+.book-launch-overlay.cinematic-v862 .v862-flight{perspective:1900px!important;transform-style:preserve-3d!important;filter:none!important;overflow:visible!important}
+.book-launch-overlay.cinematic-v862 .v862-book-cover{
+  background-image:var(--v8935-cover)!important;background-size:100% 100%!important;background-position:center!important;background-repeat:no-repeat!important;
+  background-color:transparent!important;filter:none!important;mix-blend-mode:normal!important;
+  border-radius:9px 15px 15px 8px!important;transform:translateZ(18px)!important;
+  box-shadow:inset 8px 0 12px rgba(255,255,255,.12),inset -14px 0 19px rgba(0,0,0,.30),0 28px 42px rgba(0,0,0,.56)!important;
+}
+.book-launch-overlay.cinematic-v862 .v862-book-cover::before{content:"";position:absolute;inset:0;border-radius:inherit;border:1px solid rgba(236,201,131,.24);pointer-events:none}
+.book-launch-overlay.cinematic-v862 .v862-book-cover::after{background:linear-gradient(103deg,rgba(255,255,255,.15),transparent 20%,transparent 74%,rgba(0,0,0,.22))!important;mix-blend-mode:normal!important}
+.book-launch-overlay.cinematic-v862 .v862-cover-title,.book-launch-overlay.cinematic-v862 .v862-cover-mark{display:none!important}
+.book-launch-overlay.cinematic-v862 .v862-back-cover{transform:translateZ(-18px)!important;border-radius:9px 15px 15px 8px!important;background:#2b1309!important}
+.book-launch-overlay.cinematic-v862 .v862-page-side{right:-13%!important;width:20%!important;top:4%!important;height:92%!important;transform:rotateY(79deg) translateZ(1px)!important;background:repeating-linear-gradient(90deg,#fff8df 0 2px,#d4b77d 2px 3px,#f8ebc7 3px 5px)!important}
+.book-launch-overlay.cinematic-v862 .v862-page-top{top:-9%!important;height:16%!important;left:4%!important;right:0!important;transform:rotateX(76deg) translateZ(1px)!important;background:repeating-linear-gradient(0deg,#fff8df 0 2px,#d4b77d 2px 3px,#f8ebc7 3px 5px)!important}
+.book-launch-overlay.cinematic-v862 .v862-page-block{bottom:-9%!important;height:16%!important;left:4%!important;right:-9%!important;transform:rotateX(73deg) translateZ(0)!important;background:repeating-linear-gradient(180deg,#fff8df 0 2px,#d4b77d 2px 3px,#f8ebc7 3px 5px)!important}
+.book-launch-overlay.cinematic-v862 .v862-book-spine{left:-10%!important;width:19%!important;top:1%!important;height:98%!important;transform:rotateY(72deg) translateZ(3px)!important;background:linear-gradient(90deg,#100603,#6f3b1d 28%,#b27b42 50%,#4b2110 76%,#100603)!important}
+
+/* Open book has readable content instead of blank lined pages. */
+.book-launch-overlay.cinematic-v862 .v862-page-left,.book-launch-overlay.cinematic-v862 .v862-page-right{
+  background:linear-gradient(90deg,#dbc18e 0,#fff9e4 8%,#f8edcf 94%,#c6a66d 100%)!important;
+  overflow:hidden!important;color:#392816!important;
+}
+.v8935-page-copy{position:absolute;inset:7% 8%;font:clamp(9px,1.55vw,16px)/1.5 Georgia,serif;text-align:left;overflow:hidden;text-shadow:0 1px rgba(255,255,255,.45)}
+.v8935-page-copy h2{font:700 clamp(15px,3.1vw,30px)/1.1 Georgia,serif;margin:8% 0 7%;color:#281708;letter-spacing:.015em}
+.v8935-page-copy p{margin:0;color:#4a321b}
+.v8935-running-head{display:block;padding-bottom:4%;border-bottom:1px solid rgba(92,57,24,.28);font-size:.72em;letter-spacing:.16em;text-transform:uppercase;color:#79562e}
+.v8935-page-number{position:absolute;bottom:0;left:50%;transform:translateX(-50%);font-size:.72em;color:#8c6a40}
+.v862-turn-page::before{background:repeating-linear-gradient(180deg,transparent 0 15px,rgba(76,49,23,.13) 16px 17px)!important}
+
+/* Natural flight: front cover stays readable while page depth remains visible. */
+.book-launch-overlay.cinematic-v862 .v862-flight{transform-origin:center center!important}
+.book-launch-overlay.cinematic-v862 .v862-source-mask{display:none!important}
+@media(max-width:600px){
+ #shelf .concept-book.selected .concept-book-face,#shelf .concept-book.active .concept-book-face{transform:perspective(1300px) translate3d(0,7%,52px) rotateX(1deg) rotateY(-7deg) scale(1.06)!important}
+ #shelf .concept-book.selected .concept-book-depth,#shelf .concept-book.active .concept-book-depth{transform:perspective(1300px) translate3d(-3%,9%,36px) rotateX(1deg) rotateY(-7deg) scale(1.05)!important}
+ .v8935-page-copy{font-size:9px;line-height:1.42;inset:7% 7%}.v8935-page-copy h2{font-size:15px}
 }
 </style>
 

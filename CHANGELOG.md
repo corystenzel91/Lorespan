@@ -1,6 +1,24 @@
+# Lorespan v8.9.35
+
+- Rebuilt the live book presentation to preserve true cover artwork and visible physical depth.
+- Removed selected-cover color filters and tinting.
+- Added readable text to the cinematic open-page spread.
+- Refined shelf pull-out and closed-book flight geometry.
+- Updated cache and release metadata.
+
+# Lorespan v8.9.34
+
+- Completed non-Vantheir title conflict audit.
+- Renamed Hero Academia to Halcyon Vanguard.
+- Renamed Guild Bound to The Ashen Circlet.
+- Renamed Beastbound Rebirth to Wildkin Reawakening.
+- Renamed Veilwood Hollow to Gloamroot Vale.
+- Updated the Halcyon Vanguard cover title.
+- Preserved all internal book keys, story routes, choices, save structures, and interaction logic.
+
 # Lorespan changelog
 
-## v8.9.33
+## v8.9.34
 - Subdued the purple tree book and its magic until selected.
 - Standardized every book to the same half-pull selection preview.
 - Reduced flat/blocky shelf overlays and restrained selection scale.
@@ -28,7 +46,7 @@
 - Removed the floating purple background volume from the desk animation.
 - Enlarged the selected book on the desk and added smoother page-opening presentation.
 - Added upright, dimensional cover overlays on the shelf and removed sideways launch rotations.
-- Replaced the placeholder Hero Academia cover with a detailed high-resolution cover.
+- Replaced the placeholder Halcyon Vanguard cover with a detailed high-resolution cover.
 - Advanced the manifest and service-worker cache to v8.9.31 and removed obsolete release-audit clutter.
 
 ## v8.9.29 — Replacement ZIP audit and release validation
@@ -60,7 +78,7 @@
 - Removed the remaining duplicate cinematic animation runtime so only one authoritative shelf-flight engine remains.
 - Unified opening, return, Skip Animation, cancellation, and cleanup state.
 - Confirmed the return sequence no longer programmatically clicks a shelf book or reopens the reader.
-- Renamed the Guild Bound registry-trial resolution node to `guildTrialResolution`, preventing it from overwriting Vantheir Academy's `trialResolution` node.
+- Renamed the The Ashen Circlet registry-trial resolution node to `guildTrialResolution`, preventing it from overwriting Vantheir Academy's `trialResolution` node.
 - Updated every related guild choice target, typed-response route, progress flag, optional event, and progression mapping.
 - Updated the service-worker cache to `lorespan-v8.9.23`.
 - Revalidated HTML IDs, JavaScript syntax, local assets, and ZIP integrity.
