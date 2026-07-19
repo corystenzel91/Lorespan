@@ -4408,8 +4408,8 @@ body.book-opening{overflow:hidden!important;touch-action:none}
     <h2 id="setupTitle">Create your character</h2>
     <p id="setupBookPrompt">Choose how this book addresses you. You can use a different character in every story.</p>
     <div class="content-warning" role="note" aria-label="Content warning">
-      <strong>Content notice: ages 15 and older</strong>
-      <span>This interactive novel may include fantasy violence, danger, grief, conflict, discrimination, and age-appropriate romantic themes. It is not intended for children under 15.</span>
+      <strong>Warning: readers must be ages 15 and older</strong>
+      <span>This interactive novel may include fantasy violence, danger, grief, conflict, discrimination, and age-appropriate romantic themes. It is not intended for anyone under 15.</span>
     </div>
     <div class="setup-grid">
       <div class="setup-full"><label for="setupName">Name</label><input id="setupName" value="" placeholder="Traveler" autocomplete="name"></div>
@@ -4429,14 +4429,14 @@ body.book-opening{overflow:hidden!important;touch-action:none}
       </select></div>
       <div id="customPronounsWrap" class="setup-full hidden"><label for="setupCustomPronouns">Custom pronouns</label><input id="setupCustomPronouns" placeholder="Example: ey/em/eir" autocomplete="off"></div>
       <fieldset class="setup-full setup-setting-fieldset">
-        <legend>Story setting</legend>
+        <legend>Story version</legend>
         <label class="setup-setting-option">
           <input type="radio" name="setupSetting" value="standard" checked>
-          <span><strong>Original setting</strong><small>The existing cast and story presentation.</small></span>
+          <span><strong>Standard story version</strong><small>The original cast and story presentation.</small></span>
         </label>
         <label class="setup-setting-option">
           <input type="radio" name="setupSetting" value="lgbtq">
-          <span><strong>LGBTQ+ inclusive setting</strong><small>Recurring LGBTQ+ characters, families, and everyday community details appear naturally. Romance is never required.</small></span>
+          <span><strong>LGBTQ+ inclusive story version</strong><small>Recurring LGBTQ+ characters, families, and everyday community details appear naturally. Romance is never required.</small></span>
         </label>
       </fieldset>
       <div class="setup-full"><p class="setup-emergent-note">Relationships develop naturally through choices, time, compatibility, consent, and shared experiences. Romance is never required and remains non-explicit and age-appropriate.</p></div>
@@ -37585,9 +37585,14 @@ function markBookOpened(bookId){
 function fillSetupFromProfile(bookId,reset=false){
   const existing=!reset?getProfile(bookId):null;
   const labels=LIBRARY_LABELS[bookId]||{title:BOOKS[bookId]?.title||"this book"};
-  const setupCopy=CHARACTER_SETUP_COPY[bookId]||{title:`Create your character for ${labels.title}`,prompt:"Choose your name, age, pronouns, and story setting for this book. Other books use separate characters."};
+  const setupCopy=CHARACTER_SETUP_COPY[bookId]||{title:`Create your character for ${labels.title}`,prompt:"Choose the reader who belongs to this book."};
+  const setupPromptParts=[
+    setupCopy.prompt,
+    "Enter a name, age, and pronouns, then choose the standard or LGBTQ+ inclusive story version.",
+    "Readers must be 15 or older."
+  ];
   $("setupTitle").textContent=setupCopy.title;
-  $("setupBookPrompt").textContent=setupCopy.prompt;
+  $("setupBookPrompt").textContent=setupPromptParts.join(" ");
   $("setupName").value=existing?.name&&existing.name!=="Traveler"?existing.name:"";
   $("setupAge").value=existing?.age>=15?existing.age:"";
   $("setupError").textContent="";
@@ -37718,6 +37723,9 @@ function buildShelf(){
   }
 
   let selectedId="academy";
+  let lastTapBookId=null;
+  let lastTapAt=0;
+  const DOUBLE_TAP_WINDOW_MS=360;
 
   function renderCard(bookId,withMagic=true){
     selectedId=bookId;
@@ -37843,7 +37851,8 @@ function buildShelf(){
     slot.dataset.book=bookId;
     slot.setAttribute('aria-pressed','false');
     const label=(LIBRARY_LABELS[bookId]?.title)||BOOKS[bookId].title;
-    slot.setAttribute('aria-label', `Select ${label}`);
+    slot.setAttribute('aria-label', `Select ${label}. Double tap to open it.`);
+    slot.title=`Tap once to preview ${label}. Double tap to open it.`;
     slot.style.left=`${p.x}%`;
     slot.style.top=`${p.y}%`;
     slot.style.width=`${p.w}%`;
@@ -37853,7 +37862,27 @@ function buildShelf(){
     slot.style.setProperty("--book-glow",(BOOK_EFFECTS[bookId]||BOOK_EFFECTS.academy).spark2||"#b478ff");
     slot.innerHTML=`<span class="concept-book-depth" aria-hidden="true"></span><img class="concept-book-face" src="${LIBRARY_COVERS[bookId]}" alt="" aria-hidden="true"><span class="hitbox"></span>`;
     const selectBook=()=>{if(bookOpeningInProgress||shelf.dataset.opening==="true")return;renderCard(bookId);};
+    const openFromShelf=()=>{
+      if(bookOpeningInProgress||shelf.dataset.opening==="true")return;
+      renderCard(bookId,false);
+      openSelectedBook(bookId);
+    };
     slot.addEventListener('click',selectBook);
+    slot.addEventListener('dblclick',event=>{
+      event.preventDefault();
+      openFromShelf();
+    });
+    slot.addEventListener('pointerup',event=>{
+      if(event.pointerType!=="touch"&&event.pointerType!=="pen")return;
+      const now=Date.now();
+      const isDoubleTap=lastTapBookId===bookId && now-lastTapAt<=DOUBLE_TAP_WINDOW_MS;
+      lastTapBookId=bookId;
+      lastTapAt=now;
+      if(!isDoubleTap)return;
+      event.preventDefault();
+      lastTapBookId=null;
+      openFromShelf();
+    });
     slot.addEventListener('mouseenter',()=>{if(!window.matchMedia('(pointer:coarse)').matches)renderCard(bookId)});
     slot.addEventListener('focus',()=>renderCard(bookId));
     shelf.appendChild(slot);
@@ -38354,7 +38383,7 @@ function showFirstPageBeforeSetup(id,reset=false){
   const entry=document.createElement("section");
   entry.className="setup-entry-section";
   entry.setAttribute("aria-label","Continue to character creation");
-  entry.innerHTML=`<p class="setup-entry-copy">When you are ready, create the character who will enter this story.</p><button type="button" class="setup-entry-button">Continue to Character Setup</button>`;
+  entry.innerHTML=`<p class="setup-entry-copy">When you are ready, create the character who will enter this story.</p><button type="button" class="setup-entry-button">Continue to Character Selector</button>`;
   feed.appendChild(entry);
   const setupButton=entry.querySelector(".setup-entry-button");
   setupButton.addEventListener("click",()=>{
