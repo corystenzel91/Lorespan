@@ -1,3 +1,21 @@
+<!DOCTYPE html>
+<!-- v8.9.5: Weeks 1-10 polish; Year 1 Week 11 coherence and typed-response intent branching. -->
+
+<html lang="en" data-theme="dark" data-font="medium" data-spacing="comfortable">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" id="themeMeta" content="#101010">
+<meta name="application-name" content="Lorespan">
+<meta name="description" content="A choice-and-typed-response interactive fantasy novel.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Lorespan">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="magic-book-192-v2.png">
+<link rel="apple-touch-icon" href="magic-book-192-v2.png">
+<title>Lorespan — Personalized Choice-and-Typed Adventures</title>
+<style>
 /* === Bookshelf cinematic flow patch === */
 :root{
   --cinema-duration: 900ms;
@@ -142,21 +160,7 @@
   border-radius:10px;
   padding:10px;
   cursor:pointer;
-}<!DOCTYPE html>
-<!-- v8.9.5: Weeks 1-10 polish; Year 1 Week 11 coherence and typed-response intent branching. -->
-
-<html lang="en" data-theme="dark" data-font="medium" data-spacing="comfortable">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" id="themeMeta" content="#101010">
-<meta name="application-name" content="Lorespan">
-<meta name="description" content="A choice-and-typed-response interactive fantasy novel.">
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" href="magic-book-192-v2.png">
-<link rel="apple-touch-icon" href="magic-book-192-v2.png">
-<title>Lorespan — Personalized Choice-and-Typed Adventures</title>
-<style>
+}
 :root{
   --bg:#101010;--panel:#181818;--panel2:#202020;--line:#313131;
   --text:#e8e3da;--muted:#aaa39a;--player:#fff;--accent:#d9c3a4;
@@ -4333,7 +4337,7 @@ body.book-opening{overflow:hidden!important;touch-action:none}
           </button>
           <input id="importSaveInput" type="file" accept="application/json,.json" hidden>
         </div>
-        <p id="appVersion" class="launcher-version">Lorespan v8.9.41</p>
+        <p id="appVersion" class="launcher-version">Lorespan v8.9.42</p>
       </aside>
       <div id="appStatus" class="sr-status" role="status" aria-live="polite"></div>
 
@@ -39304,7 +39308,7 @@ window.addEventListener("unhandledrejection",event=>{
   }
 });
 
-const LORESPAN_VERSION="v8.9.41";
+const LORESPAN_VERSION="v8.9.42";
 const LORESPAN_BUILD_ID="vantheir-adaptive-novel-github";
 const isIOS=/iPad|iPhone|iPod/.test(navigator.userAgent) ||
   (navigator.platform==="MacIntel" && navigator.maxTouchPoints>1);
@@ -39468,7 +39472,7 @@ if("serviceWorker" in navigator && location.protocol!=="file:"){
     }
   });
 
-  navigator.serviceWorker.register("./service-worker.js?v=8.9.36",{updateViaCache:"none"}).then(registration=>{
+  navigator.serviceWorker.register("./service-worker.js?v=8.9.42",{updateViaCache:"none"}).then(registration=>{
     swRegistration=registration;
 
     if(registration.waiting && navigator.serviceWorker.controller){
@@ -40301,7 +40305,7 @@ refreshSettingButtons();
   ];
 
   const SHELF_BG = 'library-concept-shelf-v885.webp';
-  const DESK_BG = 'lorespan-desk-room-v885.webp';
+  const DESK_BG = 'lorespan-desk-room-v8930.webp';
 
   const overlay = document.getElementById('cinemaOverlay');
   const stage = document.getElementById('cinemaStage');
