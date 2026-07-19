@@ -1,4 +1,148 @@
-<!DOCTYPE html>
+/* === Bookshelf cinematic flow patch === */
+:root{
+  --cinema-duration: 900ms;
+  --cinema-ease: cubic-bezier(.2,.8,.2,1);
+}
+
+.book{
+  position: relative;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.book.doubletap-hint::after{
+  content:"Double tap to open";
+  position:absolute;
+  right:10px; bottom:10px;
+  font:700 .68rem/1.1 system-ui,-apple-system,sans-serif;
+  color:#f6e6c8;
+  background:#0008;
+  border:1px solid #d6b67f66;
+  border-radius:8px;
+  padding:6px 8px;
+}
+
+.cinema-overlay{
+  position:fixed; inset:0; z-index:140;
+  display:none; place-items:center;
+  background:#000c;
+}
+.cinema-overlay.open{ display:grid; }
+
+.cinema-stage{
+  width:min(1200px,96vw);
+  height:min(92vh,900px);
+  border:1px solid #d6b67f55;
+  border-radius:14px;
+  overflow:hidden;
+  position:relative;
+  background:#100b08;
+  box-shadow:0 24px 70px #000c;
+}
+
+.cinema-bg{
+  position:absolute; inset:0;
+  background:center/cover no-repeat;
+  transition:opacity 260ms ease;
+}
+.cinema-bg.shelf{ opacity:1; }
+.cinema-bg.desk{ opacity:0; }
+
+.cinema-stage.to-desk .cinema-bg.shelf{ opacity:0; }
+.cinema-stage.to-desk .cinema-bg.desk{ opacity:1; }
+
+.cinema-book{
+  position:absolute;
+  width:min(28vw,290px);
+  aspect-ratio: 2/3;
+  left:12%; top:28%;
+  background:center/cover no-repeat;
+  border:1px solid #d6b67f77;
+  border-radius:12px;
+  box-shadow:0 16px 38px #000a;
+  transform-origin:center;
+  transition:
+    left var(--cinema-duration) var(--cinema-ease),
+    top var(--cinema-duration) var(--cinema-ease),
+    transform var(--cinema-duration) var(--cinema-ease),
+    opacity 220ms ease;
+}
+
+.cinema-stage.to-desk .cinema-book{
+  left:52%;
+  top:58%;
+  transform:translate(-50%,-50%) scale(1.08) rotate(-2deg);
+}
+
+.cinema-video{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  object-fit:cover;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity 180ms ease;
+  background:#000;
+}
+.cinema-video.playing{ opacity:1; }
+
+.reader-first-page{
+  position:absolute;
+  inset:8% 8% 20% 8%;
+  overflow:auto;
+  background:#f9f2e6;
+  color:#2a2118;
+  border-radius:12px;
+  border:1px solid #d6b67f88;
+  padding:22px;
+  font:500 1rem/1.55 Georgia, "Times New Roman", serif;
+  opacity:0; transform:translateY(8px);
+  transition:opacity 220ms ease, transform 220ms ease;
+}
+.reader-first-page.open{
+  opacity:1; transform:none;
+}
+
+.first-page-actions{
+  position:absolute; left:0; right:0; bottom:10px;
+  display:flex; justify-content:center; gap:10px;
+}
+.first-page-actions button{
+  min-height:46px; border-radius:10px; cursor:pointer;
+  border:1px solid #d3ad70;
+  padding:10px 14px;
+  font:700 .9rem/1 system-ui,-apple-system,sans-serif;
+}
+.btn-secondary{ background:#160f0b; color:#f0d5a6; }
+.btn-primary{ background:linear-gradient(180deg,#f6dca8,#c99b55); color:#241507; }
+
+.agegate{
+  margin:10px 0 0;
+  padding:10px 12px;
+  border:1px solid #b74b4b88;
+  border-radius:10px;
+  background:#2b1111;
+  color:#ffd4d4;
+  font:700 .85rem/1.35 system-ui,-apple-system,sans-serif;
+}
+.age-error{
+  margin-top:8px;
+  color:#ffb4b4;
+  font:700 .82rem/1.3 system-ui,-apple-system,sans-serif;
+}
+
+.mode-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+}
+.mode-row label{
+  display:flex; align-items:center; gap:8px;
+  border:1px solid var(--line);
+  background:var(--panel2);
+  border-radius:10px;
+  padding:10px;
+  cursor:pointer;
+}<!DOCTYPE html>
 <!-- v8.9.5: Weeks 1-10 polish; Year 1 Week 11 coherence and typed-response intent branching. -->
 
 <html lang="en" data-theme="dark" data-font="medium" data-spacing="comfortable">
