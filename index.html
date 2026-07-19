@@ -37706,12 +37706,12 @@ function buildShelf(){
   const placements={
     academy:{x:4.2,y:5.0,w:18.7,h:24.8,r:0},
     hero:{x:23.5,y:5.7,w:18.1,h:23.8,r:0},
-    veilwood:{x:42.2,y:4.4,w:21.5,h:25.8,r:0},
+    veilwood:{x:42.4,y:5.1,w:21.1,h:25.1,r:-0.8},
     beastbound:{x:66.2,y:5.2,w:19.2,h:24.4,r:0},
     moonwake:{x:5.0,y:33.1,w:20.6,h:22.2,r:0},
     pirate:{x:25.8,y:33.5,w:17.2,h:22.1,r:0},
     starfall:{x:43.3,y:32.4,w:20.5,h:23.2,r:0},
-    guild:{x:46.0,y:70.5,w:12.6,h:19.5,r:0},
+    guild:{x:46.0,y:70.8,w:12.6,h:19.1,r:-0.4},
     emberwake:{x:58.1,y:70.4,w:12.8,h:19.7,r:0},
     ironhaven:{x:70.5,y:70.5,w:12.8,h:19.8,r:0}
   };
@@ -37766,10 +37766,9 @@ function buildShelf(){
     previewCard.style.setProperty("--cardGlow",effect.spark2);
     previewCard.style.setProperty("--cardEdge",effect.spark1);
     previewCard.classList.add("active-glow");
-    const isPreview=["Story preview","Future volume"].includes(labels.status);
-    const profileReady=hasCompletedBookProfile(bookId);
     const openedBefore=hasOpenedBook(bookId);
-    const primaryLabel=openedBefore||hasProgress?"Continue":(isPreview?"Open Preview":"Open Book");
+    const hasOpenedState=openedBefore||hasProgress;
+    const showContinue=hasOpenedState;
     const tags=tagWords(bookId,b).map(t=>`<span>${t}</span>`).join('');
     previewCard.setAttribute("aria-label",`${labels.eyebrow}: ${labels.title}`);
     previewCard.setAttribute("aria-busy","false");
@@ -37780,18 +37779,13 @@ function buildShelf(){
       <p class="concept-card-desc">${b.desc}</p>
       <div class="concept-card-tags">${tags}</div>
       <div class="concept-card-actions">
-        <button class="secondary-link preview-action" type="button">Preview Book</button>
-        <button class="cover-action primary-action" type="button">${primaryLabel}</button>
-        ${(hasProgress||openedBefore)?'<button class="secondary-link restart-action" type="button">Start Over</button>':''}
+        ${showContinue?'<button class="cover-action continue-action" type="button">Continue Reading</button>':''}
+        <button class="cover-action open-action" type="button">Open Book</button>
+        ${hasOpenedState?'<button class="restart-action" type="button">Start Over</button>':''}
       </div>`;
-    previewCard.querySelector('.preview-action').onclick=()=>{
-      const selected=shelf.querySelector(`.concept-book[data-book="${bookId}"]`);
-      selected?.classList.remove('preview-pulse');
-      requestAnimationFrame(()=>selected?.classList.add('preview-pulse'));
-      selected?.focus({preventScroll:true});
-      window.setTimeout(()=>selected?.classList.remove('preview-pulse'),650);
-    };
-    previewCard.querySelector('.primary-action').onclick=()=>openSelectedBook(bookId);
+    const continueButton=previewCard.querySelector('.continue-action');
+    if(continueButton)continueButton.onclick=()=>openSelectedBook(bookId);
+    previewCard.querySelector('.open-action').onclick=()=>openSelectedBook(bookId);
     const restart=previewCard.querySelector('.restart-action');
     if(restart)restart.onclick=()=>{
       pendingRestartBook=bookId;
@@ -40426,12 +40420,143 @@ refreshSettingButtons();
 @media(max-width:640px){.v8941-flight{width:220px;height:330px}.v8941-page{padding:6.5vh 5.8vw 7vh}.v8941-page-content{font-size:14px;line-height:1.5}.v8941-page-content h2{font-size:30px}}
 @media(prefers-reduced-motion:reduce){.v8941-layer,.v8941-spread.show,.v8941-spread.hide{animation-duration:.22s!important}.v8941-flight .v8941-front-cover,.v8941-flight .v8941-back-cover,.v8941-flight .v8941-leaf,.v8941-flight .v8941-paper-edge,.v8941-book{transition-duration:.16s!important}}
 </style>
+<style id="v8942-bookshelf-preview-and-cinematic-polish">
+/* v8.9.42 — smoother shelf-to-desk motion, persistent cover art, and clearer preview actions. */
+#shelf .concept-card-actions{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  gap:8px!important;
+  align-items:stretch!important;
+}
+#shelf .concept-card-actions .cover-action,
+#shelf .concept-card-actions .restart-action{
+  width:100%!important;
+  min-height:44px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  padding:10px 12px!important;
+  border-radius:10px!important;
+  font:800 .78rem/1 system-ui,sans-serif!important;
+  letter-spacing:.04em!important;
+  text-transform:uppercase!important;
+}
+#shelf .concept-card-actions .continue-action{
+  border:1px solid rgba(228,190,119,.42)!important;
+  background:rgba(24,12,8,.58)!important;
+  color:#f7e4bf!important;
+  box-shadow:inset 0 1px rgba(255,240,209,.08),0 8px 18px rgba(0,0,0,.24)!important;
+}
+#shelf .concept-card-actions .open-action{
+  border:1px solid rgba(246,207,133,.56)!important;
+  background:linear-gradient(180deg,#f7e2b3,#c59145)!important;
+  color:#241306!important;
+  box-shadow:0 10px 22px rgba(0,0,0,.28),inset 0 1px rgba(255,255,255,.22)!important;
+}
+#shelf .concept-card-actions .open-action:only-child{grid-column:1/-1!important}
+#shelf .concept-card-actions .restart-action{
+  grid-column:1/-1!important;
+  border:1px solid rgba(236,194,121,.52)!important;
+  background:linear-gradient(180deg,rgba(95,39,27,.92),rgba(48,16,14,.96))!important;
+  color:#fff0d1!important;
+  box-shadow:0 8px 18px rgba(0,0,0,.28)!important;
+}
+#shelf .concept-book{
+  transform-origin:50% 100%!important;
+}
+#shelf .concept-book::after{
+  left:10%!important;
+  right:10%!important;
+  bottom:-1.2%!important;
+  height:8%!important;
+  background:radial-gradient(ellipse at center,rgba(0,0,0,.64),rgba(0,0,0,.18) 68%,transparent 100%)!important;
+  filter:blur(4px)!important;
+  opacity:.92!important;
+  transition:transform .34s ease,opacity .34s ease!important;
+}
+#shelf .concept-book.selected::after,
+#shelf .concept-book.active::after{
+  transform:scaleX(1.08) translateY(2px)!important;
+  opacity:1!important;
+}
+#shelf .concept-book[data-book="veilwood"]::after{
+  left:12%!important;
+  right:12%!important;
+  bottom:-.8%!important;
+}
+#shelf .concept-book[data-book="veilwood"].selected .concept-book-face,
+#shelf .concept-book[data-book="veilwood"].active .concept-book-face{
+  transform:perspective(1650px) translate3d(0,7%,68px) rotateX(1deg) rotateY(-7deg) rotateZ(-.5deg) scale(1.065)!important;
+}
+#shelf .concept-book[data-book="veilwood"].selected .concept-book-depth,
+#shelf .concept-book[data-book="veilwood"].active .concept-book-depth{
+  transform:perspective(1650px) translate3d(-3.8%,10%,46px) rotateX(1deg) rotateY(-7deg) rotateZ(-.5deg) scale(1.055)!important;
+}
+.v8941-layer.shelf{filter:brightness(.7) saturate(.98)!important}
+.v8941-layer.room{filter:brightness(.82) saturate(.98)!important}
+.v8941-stage.opening .v8941-layer.shelf{animation:v8942ShelfAway 3.9s cubic-bezier(.18,.76,.2,1) both!important}
+.v8941-stage.opening .v8941-layer.room{animation:v8942RoomIn 3.9s cubic-bezier(.18,.76,.2,1) both!important}
+.v8941-stage.returning .v8941-layer.shelf{animation:v8942ShelfBack 3.05s cubic-bezier(.24,.78,.2,1) both!important}
+.v8941-stage.returning .v8941-layer.room{animation:v8942RoomOut 3.05s cubic-bezier(.24,.78,.2,1) both!important}
+@keyframes v8942ShelfAway{
+  0%{opacity:1;transform:translateZ(0) rotateY(0deg) scale(1)}
+  58%{opacity:.82;transform:translateZ(-90px) rotateY(-3deg) scale(1.02)}
+  100%{opacity:.42;transform:translateZ(-255px) rotateY(-8deg) scale(1.065)}
+}
+@keyframes v8942RoomIn{
+  0%,38%{opacity:0;transform:translateZ(-120px) scale(1.06)}
+  100%{opacity:1;transform:translateZ(0) scale(1)}
+}
+@keyframes v8942ShelfBack{
+  0%{opacity:.42;transform:translateZ(-255px) rotateY(-8deg) scale(1.065)}
+  42%{opacity:.8;transform:translateZ(-86px) rotateY(-3deg) scale(1.02)}
+  100%{opacity:1;transform:translateZ(0) rotateY(0deg) scale(1)}
+}
+@keyframes v8942RoomOut{
+  0%{opacity:1;transform:translateZ(0) scale(1)}
+  100%{opacity:0;transform:translateZ(-96px) scale(1.02)}
+}
+.v8941-flight{
+  width:280px!important;
+  height:416px!important;
+}
+.v8941-front-cover img{
+  object-fit:fill!important;
+  object-position:center top!important;
+  filter:none!important;
+}
+.v8941-flight .v8941-front-cover,
+.v8941-flight .v8941-back-cover,
+.v8941-flight .v8941-leaf,
+.v8941-flight .v8941-paper-edge,
+.v8941-book{
+  transition:transform 1.02s cubic-bezier(.18,.82,.18,1),opacity .42s ease,filter .42s ease!important;
+}
+.v8941-flight.fan .v8941-book{transform:rotateX(66deg) rotateY(-9deg) rotateZ(-4deg) scale(1.045)!important}
+.v8941-flight.fan .v8941-front-cover{transform:translateZ(16px) rotateY(-166deg) rotateX(7deg)!important}
+.v8941-flight.fan .v8941-back-cover{transform:translateZ(-16px) rotateY(32deg) rotateX(-4deg)!important}
+.v8941-flight.fan .v8941-paper-edge{opacity:.32!important;transform:translateZ(2px) scale(.985)!important}
+.v8941-flight.fan .v8941-leaf:nth-child(2){transform:translateZ(7px) rotateY(-9deg) rotateX(2deg)!important}
+.v8941-flight.fan .v8941-leaf:nth-child(3){transform:translateZ(9px) rotateY(-21deg) rotateX(2deg)!important}
+.v8941-flight.fan .v8941-leaf:nth-child(4){transform:translateZ(11px) rotateY(-36deg) rotateX(2deg)!important}
+.v8941-flight.fan .v8941-leaf:nth-child(5){transform:translateZ(13px) rotateY(-54deg) rotateX(3deg)!important}
+.v8941-flight.fan .v8941-leaf:nth-child(6){transform:translateZ(15px) rotateY(-74deg) rotateX(3deg)!important}
+.v8941-flight.fan .v8941-leaf:nth-child(7){transform:translateZ(17px) rotateY(-96deg) rotateX(4deg)!important}
+.v8941-flight.fan .v8941-leaf:nth-child(8){transform:translateZ(19px) rotateY(-118deg) rotateX(4deg)!important}
+.v8941-flight.fan .v8941-leaf:nth-child(9){transform:translateZ(21px) rotateY(-138deg) rotateX(5deg)!important}
+.v8941-flight.fan .v8941-leaf:nth-child(10){transform:translateZ(23px) rotateY(-154deg) rotateX(6deg)!important}
+@media(max-width:640px){
+  #shelf .concept-card-actions{grid-template-columns:1fr!important}
+  #shelf .concept-card-actions .restart-action{grid-column:1!important}
+  .v8941-flight{width:228px!important;height:340px!important}
+}
+</style>
 <script id="v8941-cinematic-book-pass-script">
 (function(){
-  const OPEN_MS=3450;
-  const RETURN_MS=2700;
-  const FAN_AT=980;
-  const SPREAD_AT=2280;
+  const OPEN_MS=3720;
+  const RETURN_MS=2980;
+  const FAN_AT=1120;
+  const SPREAD_AT=2480;
   const state={timers:[],skipHandler:null};
   const reg={
     books:()=>typeof BOOKS!=="undefined"?BOOKS:(globalThis.BOOKS||{}),
@@ -40455,6 +40580,14 @@ refreshSettingButtons();
   function cleanup(overlay,skip,finishRef,cancelRef){
     clearTimers();
     if(skip && state.skipHandler){ ['click','pointerup','touchend'].forEach(evt=>skip.removeEventListener(evt,state.skipHandler)); state.skipHandler=null; }
+    if(skip){
+      skip.disabled=true;
+      skip.textContent='Skip animation ';
+      const arrow=document.createElement('span');
+      arrow.setAttribute('aria-hidden','true');
+      arrow.textContent='›';
+      skip.appendChild(arrow);
+    }
     overlay.className='book-launch-overlay';
     overlay.setAttribute('aria-hidden','true');
     overlay.replaceChildren();
@@ -40483,7 +40616,7 @@ refreshSettingButtons();
     const vw=Math.max(1,window.innerWidth), vh=Math.max(1,window.innerHeight);
     const source=edgeRect || {left:vw*.12,top:vh*.18,width:Math.min(120,vw*.16),height:Math.min(180,vh*.22),rotation:0};
     const targetW=Math.min(vw*.33,260), targetH=targetW*1.5;
-    const hover={left:vw*.5-targetW/2, top:vh*.46-targetH/2, width:targetW, height:targetH, rotation:0};
+    const hover={left:vw*.5-targetW/2, top:vh*.49-targetH/2, width:targetW, height:targetH, rotation:0};
     return {vw,vh,source,hover};
   }
   function animateIn(flight,source,hover){
@@ -40492,22 +40625,23 @@ refreshSettingButtons();
     const startScale=source.width/hover.width;
     flight.animate([
       {transform:`translate3d(${sx-hover.width/2}px,${sy-hover.height/2}px,0) scale(${startScale}) rotateX(0deg) rotateY(0deg) rotateZ(${source.rotation||0}deg)`, opacity:1},
-      {offset:.28,transform:`translate3d(${sx+(hx-sx)*.44-hover.width/2}px,${sy+(hy-sy)*.44-hover.height/2}px,70px) scale(${startScale+(1-startScale)*.42}) rotateX(8deg) rotateY(-18deg) rotateZ(-5deg)`,opacity:1},
-      {offset:.58,transform:`translate3d(${sx+(hx-sx)*.84-hover.width/2}px,${sy+(hy-sy)*.84-hover.height/2}px,155px) scale(.98) rotateX(14deg) rotateY(-26deg) rotateZ(-8deg)`,opacity:1},
-      {offset:1,transform:`translate3d(${hx-hover.width/2}px,${hy-hover.height/2}px,220px) scale(1.06) rotateX(16deg) rotateY(-16deg) rotateZ(-6deg)`,opacity:1}
-    ],{duration:1340,easing:'cubic-bezier(.18,.84,.16,1)',fill:'forwards'});
+      {offset:.22,transform:`translate3d(${sx+(hx-sx)*.26-hover.width/2}px,${sy+(hy-sy)*.26-hover.height/2}px,44px) scale(${startScale+(1-startScale)*.24}) rotateX(5deg) rotateY(-12deg) rotateZ(-4deg)`,opacity:1},
+      {offset:.52,transform:`translate3d(${sx+(hx-sx)*.66-hover.width/2}px,${sy+(hy-sy)*.66-hover.height/2}px,136px) scale(${startScale+(1-startScale)*.76}) rotateX(11deg) rotateY(-21deg) rotateZ(-7deg)`,opacity:1},
+      {offset:.82,transform:`translate3d(${sx+(hx-sx)*.94-hover.width/2}px,${sy+(hy-sy)*.94-hover.height/2}px,214px) scale(1.02) rotateX(15deg) rotateY(-18deg) rotateZ(-5deg)`,opacity:1},
+      {offset:1,transform:`translate3d(${hx-hover.width/2}px,${hy-hover.height/2}px,236px) scale(1.05) rotateX(15deg) rotateY(-12deg) rotateZ(-4deg)`,opacity:1}
+    ],{duration:1520,easing:'cubic-bezier(.18,.84,.16,1)',fill:'forwards'});
   }
   function animateOut(flight,hover,source){
     const sx=hover.left+hover.width/2, sy=hover.top+hover.height/2;
     const tx=source.left+source.width/2, ty=source.top+source.height/2;
     const endScale=source.width/hover.width;
     flight.animate([
-      {transform:`translate3d(${sx-hover.width/2}px,${sy-hover.height/2}px,220px) scale(1.06) rotateX(16deg) rotateY(-16deg) rotateZ(-6deg)`,opacity:0},
-      {offset:.14,transform:`translate3d(${sx-hover.width/2}px,${sy-hover.height/2}px,220px) scale(1.06) rotateX(16deg) rotateY(-16deg) rotateZ(-6deg)`,opacity:1},
-      {offset:.48,transform:`translate3d(${sx+(tx-sx)*.36-hover.width/2}px,${sy+(ty-sy)*.36-hover.height/2}px,120px) scale(${1.02-(1.02-endScale)*.24}) rotateX(9deg) rotateY(-11deg) rotateZ(-4deg)`,opacity:1},
-      {offset:.78,transform:`translate3d(${sx+(tx-sx)*.82-hover.width/2}px,${sy+(ty-sy)*.82-hover.height/2}px,45px) scale(${1.02-(1.02-endScale)*.74}) rotateX(3deg) rotateY(-5deg) rotateZ(-2deg)`,opacity:1},
+      {transform:`translate3d(${sx-hover.width/2}px,${sy-hover.height/2}px,236px) scale(1.05) rotateX(15deg) rotateY(-12deg) rotateZ(-4deg)`,opacity:0},
+      {offset:.1,transform:`translate3d(${sx-hover.width/2}px,${sy-hover.height/2}px,236px) scale(1.05) rotateX(15deg) rotateY(-12deg) rotateZ(-4deg)`,opacity:1},
+      {offset:.4,transform:`translate3d(${sx+(tx-sx)*.28-hover.width/2}px,${sy+(ty-sy)*.28-hover.height/2}px,138px) scale(${1.03-(1.03-endScale)*.2}) rotateX(10deg) rotateY(-10deg) rotateZ(-4deg)`,opacity:1},
+      {offset:.72,transform:`translate3d(${sx+(tx-sx)*.74-hover.width/2}px,${sy+(ty-sy)*.74-hover.height/2}px,58px) scale(${1.03-(1.03-endScale)*.68}) rotateX(4deg) rotateY(-4deg) rotateZ(-2deg)`,opacity:1},
       {transform:`translate3d(${tx-hover.width/2}px,${ty-hover.height/2}px,0) scale(${endScale}) rotateX(0deg) rotateY(0deg) rotateZ(${source.rotation||0}deg)`,opacity:0}
-    ],{duration:1580,easing:'cubic-bezier(.22,.82,.18,1)',fill:'forwards'});
+    ],{duration:1720,easing:'cubic-bezier(.22,.82,.18,1)',fill:'forwards'});
   }
   function run(direction,bookId,done,edgeRect){
     if(typeof cancelBookOpenAnimation==='function') cancelBookOpenAnimation();
@@ -40527,12 +40661,21 @@ refreshSettingButtons();
     const cancel=()=>{ if(completed) return; completed=true; cleanup(overlay,skip,finish,cancel); };
     activeBookAnimationFinish=finish; activeBookAnimationCancel=cancel;
     state.skipHandler=(ev)=>{ ev?.preventDefault?.(); finish(); };
-    if(skip) ['click','pointerup','touchend'].forEach(evt=>skip.addEventListener(evt,state.skipHandler,{once:true,passive:false}));
+    if(skip){
+      skip.disabled=false;
+      skip.textContent=direction==='return'?'Skip return animation ':'Skip opening animation ';
+      const arrow=document.createElement('span');
+      arrow.setAttribute('aria-hidden','true');
+      arrow.textContent='›';
+      skip.appendChild(arrow);
+      skip.setAttribute('aria-label',direction==='return'?'Skip return animation':'Skip opening animation');
+      ['click','pointerup','touchend'].forEach(evt=>skip.addEventListener(evt,state.skipHandler,{once:true,passive:false}));
+    }
     if(direction==='open'){
       animateIn(built.flight,source,hover);
       addTimer(()=>built.flight.classList.add('fan'), FAN_AT);
       addTimer(()=>spread.classList.add('show'), SPREAD_AT);
-      addTimer(()=>{ built.flight.style.opacity='0'; }, SPREAD_AT+120);
+      addTimer(()=>{ built.flight.style.opacity='0'; }, SPREAD_AT+220);
       addTimer(finish, OPEN_MS);
     } else {
       spread.classList.add('show');
