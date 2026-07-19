@@ -1,4 +1,13 @@
-# Changelog
+# Lorespan changelog
+
+## v8.9.33
+- Subdued the purple tree book and its magic until selected.
+- Standardized every book to the same half-pull selection preview.
+- Reduced flat/blocky shelf overlays and restrained selection scale.
+- Kept the flying cover visible by reducing edge-on rotation.
+- Enlarged the book at the desk and removed the black rectangular return mask.
+- Made Continue available after the first open, before or after character creation.
+- Preserved Preview Book, Open Book/Open Preview, Continue, and Start Over controls.
 
 ## v8.9.32
 

@@ -1,0 +1,296 @@
+{
+  "version": "8.9.33",
+  "javascript_syntax": "passed",
+  "duplicate_ids": [],
+  "missing_assets": [],
+  "library_order": [
+    "academy",
+    "hero",
+    "beastbound",
+    "pirate",
+    "guild",
+    "starfall",
+    "moonwake",
+    "emberwake",
+    "ironhaven",
+    "veilwood"
+  ],
+  "book_checks": {
+    "academy": {
+      "placement": true,
+      "cover_mapping": true,
+      "cover_exists": true,
+      "label": true
+    },
+    "hero": {
+      "placement": true,
+      "cover_mapping": true,
+      "cover_exists": true,
+      "label": true
+    },
+    "beastbound": {
+      "placement": true,
+      "cover_mapping": true,
+      "cover_exists": true,
+      "label": true
+    },
+    "pirate": {
+      "placement": true,
+      "cover_mapping": true,
+      "cover_exists": true,
+      "label": true
+    },
+    "guild": {
+      "placement": true,
+      "cover_mapping": true,
+      "cover_exists": true,
+      "label": true
+    },
+    "starfall": {
+      "placement": true,
+      "cover_mapping": true,
+      "cover_exists": true,
+      "label": true
+    },
+    "moonwake": {
+      "placement": true,
+      "cover_mapping": true,
+      "cover_exists": true,
+      "label": true
+    },
+    "emberwake": {
+      "placement": true,
+      "cover_mapping": true,
+      "cover_exists": true,
+      "label": true
+    },
+    "ironhaven": {
+      "placement": true,
+      "cover_mapping": true,
+      "cover_exists": true,
+      "label": true
+    },
+    "veilwood": {
+      "placement": true,
+      "cover_mapping": true,
+      "cover_exists": true,
+      "label": true
+    }
+  },
+  "behavior_checks": {
+    "preview_button": true,
+    "open_continue_button": true,
+    "start_over_after_open": true,
+    "continue_after_any_open": true,
+    "opened_flag_written": true,
+    "purple_dimmed_until_selected": true,
+    "selected_book_state_marker": true,
+    "first_page_before_setup": true,
+    "shared_open_return_engine": true,
+    "desk_background": true,
+    "black_return_mask_disabled": true,
+    "edge_on_rotation_reduced": true,
+    "stale_movies_absent": true
+  },
+  "technical_invariants": {
+    "ids": {
+      "original": 53,
+      "new": 54,
+      "removed": [
+        "movie-animation-v8928"
+      ],
+      "added": [
+        "v8932-library-runtime-audit-fix",
+        "v8933-realistic-selection-and-flight-fix"
+      ]
+    },
+    "local_storage_keys": {
+      "original": 13,
+      "new": 13,
+      "removed": [],
+      "added": []
+    },
+    "function_names": {
+      "original": 261,
+      "new": 262,
+      "removed": [
+        "fallback",
+        "runBookMovieCinematicLegacy"
+      ],
+      "added": [
+        "bookOpenedStorageKey",
+        "hasOpenedBook",
+        "markBookOpened"
+      ]
+    },
+    "route_tokens": {
+      "original": 1140,
+      "new": 1140,
+      "removed": [],
+      "added": []
+    }
+  },
+  "images": {
+    "cover-beastbound-clean-v885.webp": {
+      "size": [
+        877,
+        1390
+      ],
+      "format": "WEBP",
+      "ok": true
+    },
+    "cover-emberwake-v885.webp": {
+      "size": [
+        877,
+        1390
+      ],
+      "format": "WEBP",
+      "ok": true
+    },
+    "cover-guild-clean-v885.webp": {
+      "size": [
+        877,
+        1390
+      ],
+      "format": "WEBP",
+      "ok": true
+    },
+    "cover-hero-academia-v8930.webp": {
+      "size": [
+        900,
+        1390
+      ],
+      "format": "WEBP",
+      "ok": true
+    },
+    "cover-ironhaven-v885.webp": {
+      "size": [
+        877,
+        1390
+      ],
+      "format": "WEBP",
+      "ok": true
+    },
+    "cover-moonwake-v885.webp": {
+      "size": [
+        877,
+        1390
+      ],
+      "format": "WEBP",
+      "ok": true
+    },
+    "cover-starfall-v885.webp": {
+      "size": [
+        877,
+        1390
+      ],
+      "format": "WEBP",
+      "ok": true
+    },
+    "cover-tides-clean-v885.webp": {
+      "size": [
+        877,
+        1390
+      ],
+      "format": "WEBP",
+      "ok": true
+    },
+    "cover-vantheir-clean-v885.webp": {
+      "size": [
+        877,
+        1390
+      ],
+      "format": "WEBP",
+      "ok": true
+    },
+    "cover-veilwood-v885.webp": {
+      "size": [
+        877,
+        1390
+      ],
+      "format": "WEBP",
+      "ok": true
+    },
+    "hero-book-v512-clean.webp": {
+      "size": [
+        1200,
+        820
+      ],
+      "format": "WEBP",
+      "ok": true
+    },
+    "hero-top-blue-book.webp": {
+      "size": [
+        900,
+        1450
+      ],
+      "format": "WEBP",
+      "ok": true
+    },
+    "library-concept-shelf-v885.webp": {
+      "size": [
+        814,
+        1261
+      ],
+      "format": "WEBP",
+      "ok": true
+    },
+    "library-hero.png": {
+      "size": [
+        1536,
+        1536
+      ],
+      "format": "JPEG",
+      "ok": true
+    },
+    "lorespan-desk-room-v8930.webp": {
+      "size": [
+        941,
+        535
+      ],
+      "format": "WEBP",
+      "ok": true
+    },
+    "lorespan-home.webp": {
+      "size": [
+        1600,
+        1000
+      ],
+      "format": "WEBP",
+      "ok": true
+    },
+    "magic-book-192-v2.png": {
+      "size": [
+        192,
+        192
+      ],
+      "format": "PNG",
+      "ok": true
+    },
+    "magic-book-512.png": {
+      "size": [
+        512,
+        512
+      ],
+      "format": "PNG",
+      "ok": true
+    },
+    "magic-book-maskable-192.png": {
+      "size": [
+        192,
+        192
+      ],
+      "format": "PNG",
+      "ok": true
+    },
+    "magic-book-maskable-512.png": {
+      "size": [
+        512,
+        512
+      ],
+      "format": "PNG",
+      "ok": true
+    }
+  },
+  "browser_note": "Chromium navigation was blocked by the execution environment administrator. JavaScript syntax, DOM structure, all ten book mappings, controls, asset references, image decoding, service-worker files, and package integrity were validated statically."
+}

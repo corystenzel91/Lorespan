@@ -37557,6 +37557,7 @@ function buildShelf(){
 
   function renderCard(bookId,withMagic=true){
     selectedId=bookId;
+    shelf.dataset.selectedBook=bookId;
     const placement=placements[bookId];
     const effect=BOOK_EFFECTS[bookId]||BOOK_EFFECTS.academy;
     if(withMagic&&placement){
@@ -37596,7 +37597,7 @@ function buildShelf(){
     const isPreview=["Story preview","Future volume"].includes(labels.status);
     const profileReady=hasCompletedBookProfile(bookId);
     const openedBefore=hasOpenedBook(bookId);
-    const primaryLabel=(hasProgress&&profileReady)||openedBefore?"Continue":(isPreview?"Open Preview":"Open Book");
+    const primaryLabel=openedBefore||hasProgress?"Continue":(isPreview?"Open Preview":"Open Book");
     const tags=tagWords(bookId,b).map(t=>`<span>${t}</span>`).join('');
     previewCard.setAttribute("aria-label",`${labels.eyebrow}: ${labels.title}`);
     previewCard.setAttribute("aria-busy","false");
@@ -38371,7 +38372,7 @@ function animationPoint(rect,fallbackRotation=0){
 }
 function cinematicGeometry(sourceRect=null){
   const start=animationPoint(sourceRect);
-  const closedW=Math.min(Math.max(window.innerWidth*.36,150),226);
+  const closedW=Math.min(Math.max(window.innerWidth*.46,190),300);
   const closedH=closedW*1.42;
   const closed={
     left:(window.innerWidth-closedW)/2,
@@ -38421,10 +38422,10 @@ function physicalBookPose(start,closed,direction,raw){
   const sx=(startSX+(1-startSX)*travel)*(1+altitude*.07);
   const sy=(startSY+(1-startSY)*travel)*(1+altitude*.07);
   const settle=smoothCinematicEase(Math.max(0,(travel-.80)/.20));
-  const pitch=18*(1-travel)+32*travel-13*altitude*(1-settle);
+  const pitch=7*(1-travel)+16*travel-7*altitude*(1-settle);
   // Keep one page edge visible throughout the flight so the object never reads as a flat card.
-  const yaw=side*(-38-26*altitude)*(1-settle)+side*-28*settle;
-  const roll=(start.rotation||0)*(1-travel)+side*(9+8*altitude)*(1-settle);
+  const yaw=side*(-10-9*altitude)*(1-settle)+side*-6*settle;
+  const roll=(start.rotation||0)*(1-travel)+side*(3+3*altitude)*(1-settle);
   return {raw,travel,altitude,landing:settle,transform:`translate3d(${point.x-closed.width/2}px,${point.y-closed.height/2}px,${Math.round(altitude*175)}px) perspective(1700px) rotateX(${pitch}deg) rotateY(${yaw}deg) rotateZ(${roll}deg) scale(${sx},${sy})`};
 }
 function applyPhysicalBookPose(el,shadow,start,closed,direction,raw){
@@ -38485,13 +38486,7 @@ function runBookProceduralCinematic(direction,bookId,done,edgeRect=null){
     const title=flightCover.querySelector('.v862-cover-title');
     if(title)title.textContent=BOOKS[bookId]?.title||'Lorespan';
   }
-  if(sourceMask){
-    const padX=Math.max(1,start.width*.035),padY=Math.max(1,start.height*.02);
-    Object.assign(sourceMask.style,{
-      left:`${start.left-padX}px`,top:`${start.top-padY}px`,width:`${start.width+padX*2}px`,height:`${start.height+padY*2}px`,
-      opacity:'1',display:'block'
-    });
-  }
+  if(sourceMask){ sourceMask.style.opacity='0'; sourceMask.style.display='none'; }
   if(cover){
     cover.style.setProperty("background-image",`url("${coverUrl}")`,"important");
     cover.style.transform=direction==="return"?"translateZ(13px) rotateY(-174deg)":"translateZ(13px) rotateY(0deg)";
@@ -38541,7 +38536,6 @@ function runBookProceduralCinematic(direction,bookId,done,edgeRect=null){
   const opening=async()=>{
     const roomIn=animateSafe(room,[{opacity:0,transform:'scale(1.025)'},{opacity:1,transform:'scale(1)'}],{duration:760,fill:'forwards',easing:'ease-out'},animations);
     const shelfOut=animateSafe(origin,[{opacity:1},{opacity:.18,offset:.64},{opacity:0}],{duration:920,fill:'forwards',easing:'ease-in-out'},animations);
-    animateSafe(sourceMask,[{opacity:1},{opacity:1,offset:.72},{opacity:0}],{duration:980,fill:'forwards',easing:'ease-in-out'},animations);
     await Promise.all([wait(roomIn),animatePhysicalBookFlight(flight,shadow,start,closed,'open',2700,stop)]);
     if(stop())return;
 
@@ -38612,7 +38606,6 @@ function runBookProceduralCinematic(direction,bookId,done,edgeRect=null){
     await Promise.all([wait(hideSpread),wait(showFlight)]);if(stop())return;
     const roomOut=animateSafe(room,[{opacity:1},{opacity:0}],{duration:1300,fill:'forwards',easing:'ease-in-out'},animations);
     animateSafe(origin,[{opacity:0},{opacity:.15,offset:.45},{opacity:1}],{duration:820,delay:1000,fill:'forwards',easing:'ease-out'},animations);
-    animateSafe(sourceMask,[{opacity:1},{opacity:1,offset:.84},{opacity:0}],{duration:2700,fill:'forwards',easing:'ease-out'},animations);
     await animatePhysicalBookFlight(flight,shadow,start,closed,'return',2700,stop);
     await wait(roomOut);finish();
   };
@@ -39100,7 +39093,7 @@ window.addEventListener("unhandledrejection",event=>{
   }
 });
 
-const LORESPAN_VERSION="v8.9.32";
+const LORESPAN_VERSION="v8.9.33";
 const LORESPAN_BUILD_ID="vantheir-adaptive-novel-github";
 const isIOS=/iPad|iPhone|iPod/.test(navigator.userAgent) ||
   (navigator.platform==="MacIntel" && navigator.maxTouchPoints>1);
@@ -39453,6 +39446,66 @@ refreshSettingButtons();
 @media(prefers-reduced-motion:reduce){.v8919-vignette{background:rgba(0,0,0,.25)}}
 </style>
 
+
+
+<style id="v8933-realistic-selection-and-flight-fix">
+/* v8.9.33 — shelf-selected books stay integrated with the painted shelf until selected. */
+#shelf{isolation:isolate!important}
+#shelf::before{
+  content:"";position:absolute;z-index:3;left:39.2%;top:.8%;width:27%;height:29%;
+  border-radius:10% 10% 5% 5%;pointer-events:none;
+  background:radial-gradient(ellipse at 52% 34%,rgba(21,9,20,.42) 0 33%,rgba(13,8,10,.24) 57%,transparent 78%);
+  -webkit-backdrop-filter:saturate(.42) brightness(.70);backdrop-filter:saturate(.42) brightness(.70);
+  opacity:1;transition:opacity .28s ease;
+}
+#shelf[data-selected-book="veilwood"]::before{opacity:0}
+#shelf .concept-book{transform-style:preserve-3d!important;perspective:1400px!important}
+#shelf .concept-book-face,#shelf .concept-book-depth{will-change:transform,opacity,filter!important}
+#shelf .concept-book:not(.selected):not(.active) .concept-book-face,
+#shelf .concept-book:not(.selected):not(.active) .concept-book-depth{opacity:0!important;visibility:hidden!important}
+#shelf .concept-book.selected .concept-book-face,
+#shelf .concept-book.active .concept-book-face{
+  opacity:1!important;visibility:visible!important;left:8%!important;bottom:1.5%!important;width:84%!important;height:96%!important;
+  border-radius:5% 7% 7% 5%!important;clip-path:polygon(2.5% 0,98.5% 1%,100% 97%,1% 99%)!important;
+  transform-origin:50% 100%!important;
+  transform:perspective(1400px) translate3d(0,8%,64px) rotateX(2deg) rotateY(-8deg) rotateZ(.25deg) scale(1.075)!important;
+  filter:saturate(.98) contrast(1.04) brightness(1.01)!important;
+  box-shadow:-7px 4px 0 rgba(31,14,7,.92),-11px 8px 12px rgba(0,0,0,.50),0 19px 23px rgba(0,0,0,.68),0 0 14px color-mix(in srgb,var(--book-glow) 24%,transparent)!important;
+}
+#shelf .concept-book.selected .concept-book-depth,
+#shelf .concept-book.active .concept-book-depth{
+  opacity:1!important;visibility:visible!important;left:4%!important;right:7%!important;bottom:0!important;height:93%!important;
+  border-radius:8% 3% 3% 8%!important;
+  background:linear-gradient(90deg,#180905 0 5%,#70411f 6% 10%,#f1e3bd 11% 92%,#9b703e 94% 100%)!important;
+  transform:perspective(1400px) translate3d(-3.5%,10%,46px) rotateX(2deg) rotateY(-8deg) scale(1.065)!important;
+  box-shadow:0 16px 20px rgba(0,0,0,.58)!important;
+}
+#shelf .concept-book.selected .hitbox::before,#shelf .concept-book.active .hitbox::before{
+  inset:-7% -5%!important;background:radial-gradient(ellipse at 50% 56%,color-mix(in srgb,var(--book-glow) 16%,transparent),transparent 68%)!important;filter:blur(8px)!important;
+}
+#shelf .concept-book.is-pulling .concept-book-face{
+  transform:perspective(1500px) translate3d(0,14%,112px) rotateX(4deg) rotateY(-11deg) rotateZ(.4deg) scale(1.16)!important;
+}
+#shelf .concept-book.is-pulling .concept-book-depth{
+  transform:perspective(1500px) translate3d(-4%,16%,92px) rotateX(4deg) rotateY(-11deg) scale(1.15)!important;
+}
+#shelf .concept-book.preview-pulse .concept-book-face{animation:v8933PreviewPulse .55s ease both!important}
+@keyframes v8933PreviewPulse{0%,100%{filter:saturate(.98) brightness(1.01)}50%{filter:saturate(1.08) brightness(1.10)}}
+/* Remove the rectangular hole seen during return. */
+.book-launch-overlay.cinematic-v862 .v862-source-mask{display:none!important;opacity:0!important}
+/* Preserve the cover face while exposing restrained, realistic depth. */
+.book-launch-overlay.cinematic-v862 .v862-flight{--book-depth:18px!important;filter:drop-shadow(0 26px 30px rgba(0,0,0,.58))!important}
+.book-launch-overlay.cinematic-v862 .v862-book-cover{border-radius:8px 14px 14px 8px!important;box-shadow:inset 8px 0 12px rgba(255,255,255,.13),inset -12px 0 18px rgba(0,0,0,.35),0 20px 34px rgba(0,0,0,.46)!important}
+.book-launch-overlay.cinematic-v862 .v862-page-side{right:-10%!important;width:15%!important}
+.book-launch-overlay.cinematic-v862 .v862-book-spine{left:-8%!important;width:16%!important}
+.book-launch-overlay.cinematic-v862 .v862-page-top{top:-7%!important;height:12%!important}
+.book-launch-overlay.cinematic-v862 .v862-page-block{bottom:-7%!important;height:12%!important}
+@media(max-width:600px){
+  #shelf::before{left:39%;width:28%;height:29.5%}
+  #shelf .concept-book.selected .concept-book-face,#shelf .concept-book.active .concept-book-face{transform:perspective(1200px) translate3d(0,7%,50px) rotateX(1deg) rotateY(-7deg) scale(1.065)!important}
+  #shelf .concept-book.selected .concept-book-depth,#shelf .concept-book.active .concept-book-depth{transform:perspective(1200px) translate3d(-3%,9%,36px) rotateX(1deg) rotateY(-7deg) scale(1.055)!important}
+}
+</style>
 
 </body>
 </html>
