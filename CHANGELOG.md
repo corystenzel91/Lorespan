@@ -169,9 +169,8 @@
 - Switched opening and return to the live 3D procedural animation to eliminate blocky/stale movie backgrounds.
 - Aligned opening and return geometry to the visible selected cover.
 
-## v8.9.37
-- Restored movie-based book animation using the supplied 9733.mp4 sequence.
-- Added 3D shelf-facing turn during takeoff and reverse turn during return.
-- Added full-screen final page zoom.
-- Added reverse return movie and offline cache entries.
-- Added movie load fallback and cleanup safeguards.
+## v8.9.38
+- Added all missing local asset files referenced by the app so shelf covers, home artwork, and cinematic backgrounds resolve correctly.
+- Added book-open-movie.mp4 and book-return-movie.mp4 to the package.
+- Replaced the movie cinematic controller with a stronger version that keeps the selected book visually identified, supports skip more reliably, and reveals readable page copy before entering the reader.
+- Updated visible app version string to 8.9.38.

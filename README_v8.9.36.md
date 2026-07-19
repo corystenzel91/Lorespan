@@ -1,4 +1,4 @@
-# Lorespan v8.9.37
+# Lorespan v8.9.36
 
 GitHub-ready repair release.
 
@@ -6,4 +6,4 @@ GitHub-ready repair release.
 - Uses a layered live 3D book for shelf preview, opening flight, desk landing, and return.
 - Adds readable title, description, and first-story excerpt to the animated open pages.
 - Keeps Preview Book, Open/Continue, Start Over, first-page-before-character-setup, Back to Library, and skip controls.
-- Advances service-worker cache and registration to v8.9.37.
+- Advances service-worker cache and registration to v8.9.36.
