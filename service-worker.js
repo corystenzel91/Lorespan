@@ -1,5 +1,5 @@
 const CACHE_PREFIX="lorespan-";
-const CACHE_NAME='lorespan-v8.9.30';
+const CACHE_NAME='lorespan-v8.9.31';
 const CORE=[
   "./",
   "./index.html",
@@ -25,26 +25,6 @@ const CORE=[
   "./cover-emberwake-v885.webp",
   "./cover-ironhaven-v885.webp",
   "./cover-veilwood-v885.webp",
-  "./movies/academy-open.mp4",
-  "./movies/academy-return.mp4",
-  "./movies/hero-open.mp4",
-  "./movies/hero-return.mp4",
-  "./movies/beastbound-open.mp4",
-  "./movies/beastbound-return.mp4",
-  "./movies/pirate-open.mp4",
-  "./movies/pirate-return.mp4",
-  "./movies/guild-open.mp4",
-  "./movies/guild-return.mp4",
-  "./movies/starfall-open.mp4",
-  "./movies/starfall-return.mp4",
-  "./movies/moonwake-open.mp4",
-  "./movies/moonwake-return.mp4",
-  "./movies/emberwake-open.mp4",
-  "./movies/emberwake-return.mp4",
-  "./movies/ironhaven-open.mp4",
-  "./movies/ironhaven-return.mp4",
-  "./movies/veilwood-open.mp4",
-  "./movies/veilwood-return.mp4"
 ];
 self.addEventListener("install",e=>e.waitUntil((async()=>{const c=await caches.open(CACHE_NAME);await c.addAll(CORE);await self.skipWaiting()})()));
 self.addEventListener("activate",e=>e.waitUntil((async()=>{for(const k of await caches.keys())if(k.startsWith(CACHE_PREFIX)&&k!==CACHE_NAME)await caches.delete(k);await self.clients.claim()})()));

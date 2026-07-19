@@ -4046,16 +4046,16 @@ body.book-opening{overflow:hidden!important;touch-action:none}
 </style>
 
 <style id="movie-animation-v8928">
-.book-launch-overlay.movie-v8930{display:block!important;position:fixed!important;inset:0!important;z-index:10050!important;background:#050302!important;overflow:hidden!important}
-.book-launch-overlay.movie-v8930>*:not(.book-animation-movie):not(.skip-book-animation){display:none!important}
-.book-launch-overlay.movie-v8930 .book-animation-movie{display:block!important;position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:cover!important;background:#050302!important;z-index:1!important;pointer-events:none!important}
-.book-launch-overlay.movie-v8930 .skip-book-animation{display:flex!important;position:fixed!important;left:50%!important;right:auto!important;bottom:max(16px,env(safe-area-inset-bottom))!important;transform:translateX(-50%)!important;z-index:4!important;opacity:1!important;visibility:visible!important;pointer-events:auto!important;min-height:48px!important;white-space:nowrap!important}
-@media (orientation:landscape){.book-launch-overlay.movie-v8930 .book-animation-movie{object-fit:cover!important}}
+.book-launch-overlay.live3d-v8931{display:block!important;position:fixed!important;inset:0!important;z-index:10050!important;background:#050302!important;overflow:hidden!important}
+.book-launch-overlay.live3d-v8931>*:not(.book-animation-movie):not(.skip-book-animation){display:none!important}
+.book-launch-overlay.live3d-v8931 .book-animation-movie{display:block!important;position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:cover!important;background:#050302!important;z-index:1!important;pointer-events:none!important}
+.book-launch-overlay.live3d-v8931 .skip-book-animation{display:flex!important;position:fixed!important;left:50%!important;right:auto!important;bottom:max(16px,env(safe-area-inset-bottom))!important;transform:translateX(-50%)!important;z-index:4!important;opacity:1!important;visibility:visible!important;pointer-events:auto!important;min-height:48px!important;white-space:nowrap!important}
+@media (orientation:landscape){.book-launch-overlay.live3d-v8931 .book-animation-movie{object-fit:cover!important}}
 </style>
 
 
 <style id="v8930-polish">
-/* v8.9.30 shelf, preview, and cinematic polish */
+/* v8.9.31 shelf, preview, and cinematic polish */
 .concept-book{transform:rotate(0deg)!important;perspective:900px;overflow:visible!important}
 .concept-book-face{position:absolute;left:7%;bottom:1%;width:86%;height:97%;display:block;object-fit:cover;border-radius:5px 7px 7px 4px;box-shadow:-5px 2px 0 rgba(36,19,9,.85),0 9px 12px rgba(0,0,0,.62),inset 0 0 0 1px rgba(245,210,139,.25);filter:saturate(.96) contrast(1.04);transform:translateZ(0);transition:transform .2s ease,filter .2s ease,box-shadow .2s ease;pointer-events:none}
 .concept-book::after{content:"";position:absolute;left:8%;right:7%;bottom:-2px;height:7px;border-radius:50%;background:rgba(0,0,0,.58);filter:blur(3px);z-index:-1}
@@ -4066,6 +4066,60 @@ body.book-opening{overflow:hidden!important;touch-action:none}
 .reader.first-page-preview .setup-entry-section{position:relative;z-index:4}
 #backBtn,#skipBookAnimation,.restart-action{touch-action:manipulation}
 @media(max-width:560px){.concept-book-face{left:5%;width:90%}.concept-book:hover .concept-book-face{transform:none}}
+</style>
+
+<style id="v8931-real-shelf-live-3d-fix">
+/* Keep the illustrated shelf as the source of truth. Only the selected volume is overlaid. */
+.concept-book{perspective:1100px!important;transform-style:preserve-3d!important;overflow:visible!important}
+.concept-book-face,
+.concept-book-depth{opacity:0!important;visibility:hidden!important;transition:opacity .18s ease,transform .42s cubic-bezier(.18,.82,.2,1),filter .3s ease,box-shadow .3s ease!important}
+.concept-book.selected .concept-book-face,
+.concept-book.active .concept-book-face,
+.concept-book.selected .concept-book-depth,
+.concept-book.active .concept-book-depth{opacity:1!important;visibility:visible!important}
+.concept-book-face{
+  left:7%!important;bottom:1%!important;width:86%!important;height:97%!important;
+  object-fit:cover!important;border-radius:5px 8px 8px 5px!important;
+  transform-origin:50% 100%!important;
+  transform:perspective(1100px) translate3d(0,8%,36px) rotateX(-3deg) rotateY(-7deg) scale(1.11)!important;
+  filter:saturate(1.03) contrast(1.05) brightness(1.03)!important;
+  box-shadow:-9px 4px 0 rgba(30,13,6,.94),-13px 8px 14px rgba(0,0,0,.5),0 24px 28px rgba(0,0,0,.72),0 0 18px color-mix(in srgb,var(--book-glow) 30%,transparent)!important;
+  clip-path:polygon(2% 0,100% 1.5%,98% 99%,0 98%)!important;
+}
+.concept-book-depth{
+  position:absolute!important;left:1%!important;right:7%!important;bottom:-1%!important;height:94%!important;
+  border-radius:7px 3px 3px 7px!important;pointer-events:none!important;
+  transform-origin:50% 100%!important;
+  transform:perspective(1100px) translate3d(-4%,10%,22px) rotateX(-3deg) rotateY(-7deg) scale(1.10)!important;
+  background:linear-gradient(90deg,#120704 0 5%,#6f421f 6% 10%,#efe2bd 11% 94%,#9a6f3d 95% 100%)!important;
+  box-shadow:0 18px 24px rgba(0,0,0,.62)!important;
+}
+.concept-book.selected .hitbox::before,
+.concept-book.active .hitbox::before{content:"";position:absolute;inset:-12% -9%;border-radius:16px;background:radial-gradient(ellipse at 50% 58%,color-mix(in srgb,var(--book-glow) 22%,transparent),transparent 67%);filter:blur(7px);pointer-events:none}
+.concept-book:not(.selected):not(.active) .concept-book-face,
+.concept-book:not(.selected):not(.active) .concept-book-depth{display:block!important;opacity:0!important}
+.concept-book.is-pulling .concept-book-face{
+  transform:perspective(1300px) translate3d(0,17%,150px) rotateX(7deg) rotateY(-18deg) rotateZ(1deg) scale(1.28)!important;
+  box-shadow:-13px 6px 0 #260e05,-19px 13px 22px rgba(0,0,0,.6),0 34px 42px rgba(0,0,0,.78),0 0 28px color-mix(in srgb,var(--book-glow) 44%,transparent)!important;
+}
+.concept-book.is-pulling .concept-book-depth{
+  transform:perspective(1300px) translate3d(-7%,18%,128px) rotateX(7deg) rotateY(-18deg) scale(1.27)!important;
+}
+.concept-selection-glow{opacity:0!important}
+/* The preview remains readable while the selected physical cover is pulled forward. */
+.concept-preview-card{z-index:30!important}
+/* Live 3D cinematic: larger desk book and more visible page/spine depth. */
+.book-launch-overlay .v862-flight{transform-style:preserve-3d!important;will-change:transform,opacity!important}
+.book-launch-overlay .v862-flight .v862-page-block{transform:translateZ(-12px)!important;box-shadow:inset 0 0 0 1px rgba(103,69,34,.28),8px 7px 0 rgba(234,220,183,.9),13px 11px 12px rgba(0,0,0,.35)!important}
+.book-launch-overlay .v862-flight .v862-book-spine{width:24%!important;left:-12%!important;transform:rotateY(68deg) translateZ(3px)!important}
+.book-launch-overlay .v862-flight .v862-book-cover{box-shadow:0 25px 48px rgba(0,0,0,.68),inset 0 0 0 2px rgba(238,192,111,.28)!important}
+@media(max-width:620px){
+  .concept-book-face{transform:perspective(900px) translate3d(0,7%,25px) rotateX(-2deg) rotateY(-6deg) scale(1.08)!important}
+  .concept-book-depth{transform:perspective(900px) translate3d(-4%,9%,14px) rotateX(-2deg) rotateY(-6deg) scale(1.07)!important}
+  .concept-book.is-pulling .concept-book-face{transform:perspective(1000px) translate3d(0,14%,105px) rotateX(6deg) rotateY(-15deg) scale(1.20)!important}
+  .concept-book.is-pulling .concept-book-depth{transform:perspective(1000px) translate3d(-6%,15%,88px) rotateX(6deg) rotateY(-15deg) scale(1.19)!important}
+}
+@media(prefers-reduced-motion:reduce){.concept-book-face,.concept-book-depth{transition-duration:.12s!important}}
 </style>
 </head>
 <body>
@@ -37546,7 +37600,8 @@ function buildShelf(){
     if(!document.body.contains(hotspot)){shelf.dataset.opening="false";return;}
     previewCard.setAttribute("aria-busy","true");
     hotspot.classList.add('is-pulling');
-    const rawRect=hotspot.getBoundingClientRect();
+    const visibleFace=hotspot.querySelector(".concept-book-face");
+    const rawRect=(visibleFace&&visibleFace.getBoundingClientRect().width)?visibleFace.getBoundingClientRect():hotspot.getBoundingClientRect();
     const sourceRect={left:rawRect.left,top:rawRect.top,width:rawRect.width,height:rawRect.height,rotation:Number(placements[bookId]?.r||0)};
     const handoff=()=>{
       hotspot.classList.remove('is-pulling');
@@ -37591,7 +37646,9 @@ function buildShelf(){
     slot.style.width=`${p.w}%`;
     slot.style.height=`${p.h}%`;
     slot.style.transform=`rotate(${p.r||0}deg)`;
-    slot.innerHTML=`<img class="concept-book-face" src="${LIBRARY_COVERS[bookId]}" alt="" aria-hidden="true"><span class="hitbox"></span>`;
+    slot.style.setProperty("--book-rotation",`${p.r||0}deg`);
+    slot.style.setProperty("--book-glow",(BOOK_EFFECTS[bookId]||BOOK_EFFECTS.academy).spark2||"#b478ff");
+    slot.innerHTML=`<span class="concept-book-depth" aria-hidden="true"></span><img class="concept-book-face" src="${LIBRARY_COVERS[bookId]}" alt="" aria-hidden="true"><span class="hitbox"></span>`;
     const selectBook=()=>{if(bookOpeningInProgress||shelf.dataset.opening==="true")return;renderCard(bookId);};
     slot.addEventListener('click',selectBook);
     slot.addEventListener('mouseenter',()=>{if(!window.matchMedia('(pointer:coarse)').matches)renderCard(bookId)});
@@ -38527,6 +38584,11 @@ function runBookProceduralCinematic(direction,bookId,done,edgeRect=null){
 }
 
 function runBookCinematic(direction,bookId,done,edgeRect=null){
+  // v8.9.31: use the live DOM/CSS 3D book for both directions.
+  // Pre-rendered movies flattened the book and could show stale shelf artwork.
+  return runBookProceduralCinematic(direction,bookId,done,edgeRect);
+}
+function runBookMovieCinematicLegacy(direction,bookId,done,edgeRect=null){
   const moviePath=`movies/${bookId}-${direction==='return'?'return':'open'}.mp4`;
   const overlay=$("bookLaunchOverlay");
   const skip=$("skipBookAnimation");
@@ -38565,7 +38627,7 @@ function runBookCinematic(direction,bookId,done,edgeRect=null){
   bookOpeningInProgress=true;
   document.body.classList.add('book-opening');
   library?.setAttribute('inert','');
-  overlay.className=`book-launch-overlay open movie-v8930${direction==='return'?' returning':''}`;
+  overlay.className=`book-launch-overlay open live3d-v8931${direction==='return'?' returning':''}`;
   overlay.setAttribute('aria-hidden','false');
   overlay.setAttribute('aria-busy','true');
   video.style.display='block';
@@ -38681,7 +38743,9 @@ function closeBook(){
     if(!hotspot){finishReturn();return;}
     $("shelf")?.querySelectorAll(".selection-magic").forEach(el=>el.remove());
     hotspot.classList.add("is-returning");
-    const raw=hotspot.getBoundingClientRect();
+    hotspot.classList.add("selected","active");
+    const visibleFace=hotspot.querySelector(".concept-book-face");
+    const raw=(visibleFace&&visibleFace.getBoundingClientRect().width)?visibleFace.getBoundingClientRect():hotspot.getBoundingClientRect();
     const targetRect={left:raw.left,top:raw.top,width:raw.width,height:raw.height,rotation:0};
     runBookReturnAnimation(returningBook,()=>{hotspot.classList.remove("is-returning");finishReturn();},targetRect);
   }));
@@ -39099,7 +39163,7 @@ window.addEventListener("unhandledrejection",event=>{
   }
 });
 
-const LORESPAN_VERSION="v8.9.30";
+const LORESPAN_VERSION="v8.9.31";
 const LORESPAN_BUILD_ID="vantheir-adaptive-novel-github";
 const isIOS=/iPad|iPhone|iPod/.test(navigator.userAgent) ||
   (navigator.platform==="MacIntel" && navigator.maxTouchPoints>1);

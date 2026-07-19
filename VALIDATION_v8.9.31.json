@@ -1,0 +1,27 @@
+{
+  "version": "8.9.31",
+  "shelf_background": "library-concept-shelf-v885.webp",
+  "book_count": 10,
+  "selection_behavior": "selected book cover only; pulled halfway forward with visible depth",
+  "preview_behavior": "title, synopsis, tags, Begin/Continue, Start Over preserved",
+  "transition_engine": "live procedural DOM/CSS 3D for opening and return",
+  "movie_assets_removed": true,
+  "first_page_before_character_selection": true,
+  "back_to_library_handler": true,
+  "skip_both_directions": true,
+  "duplicate_ids": 0,
+  "javascript_syntax": "passed",
+  "required_assets_present": true,
+  "story_node_keys_unchanged": true,
+  "choice_targets_unchanged": true,
+  "story_node_key_count": 268,
+  "choice_target_count": 1198,
+  "html_id_count": 53,
+  "runtime_browser_test": "not executed because local/file navigation is blocked in this environment; static HTML and JavaScript validation passed",
+  "existing_html_ids_preserved": true,
+  "added_html_ids": [
+    "v8930-polish",
+    "v8931-real-shelf-live-3d-fix"
+  ],
+  "removed_html_ids": []
+}

@@ -1,6 +1,6 @@
 # Changelog
 
-## v8.9.30
+## v8.9.31
 - Preserved all ten book preview cards and Start Over confirmation controls.
 - Preserved first-page reading before character creation for fresh starts.
 - Hardened Back to Library and two-way Skip Animation handoffs.
@@ -9,7 +9,7 @@
 - Enlarged the selected book on the desk and added smoother page-opening presentation.
 - Added upright, dimensional cover overlays on the shelf and removed sideways launch rotations.
 - Replaced the placeholder Hero Academia cover with a detailed high-resolution cover.
-- Advanced the manifest and service-worker cache to v8.9.30 and removed obsolete release-audit clutter.
+- Advanced the manifest and service-worker cache to v8.9.31 and removed obsolete release-audit clutter.
 
 ## v8.9.29 — Replacement ZIP audit and release validation
 - Rebuilt the GitHub-ready package from the complete v8.9.28 ZIP master.
@@ -115,3 +115,9 @@
 - Fixed service-worker registration version mismatch.
 - Extended the emergency handoff timeout so a fallback animation can fully clean up before the reader opens.
 - Audited scripts, IDs, shelf controls, opening/return state, asset references, movie encoding, cache entries, manifest, and ZIP structure.
+
+## v8.9.31
+- Removed always-visible flat cover overlays from the illustrated shelf.
+- Added halfway-out selected-book preview with cover, page depth, shadow, title card, and per-book selection.
+- Switched opening and return to the live 3D procedural animation to eliminate blocky/stale movie backgrounds.
+- Aligned opening and return geometry to the visible selected cover.
