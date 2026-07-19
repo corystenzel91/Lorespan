@@ -4169,7 +4169,7 @@ body.book-opening{overflow:hidden!important;touch-action:none}
           </button>
           <input id="importSaveInput" type="file" accept="application/json,.json" hidden>
         </div>
-        <p id="appVersion" class="launcher-version">Lorespan v8.9.38</p>
+        <p id="appVersion" class="launcher-version">Lorespan v8.9.41</p>
       </aside>
       <div id="appStatus" class="sr-status" role="status" aria-live="polite"></div>
 
@@ -39117,7 +39117,7 @@ window.addEventListener("unhandledrejection",event=>{
   }
 });
 
-const LORESPAN_VERSION="v8.9.38";
+const LORESPAN_VERSION="v8.9.41";
 const LORESPAN_BUILD_ID="vantheir-adaptive-novel-github";
 const isIOS=/iPad|iPhone|iPod/.test(navigator.userAgent) ||
   (navigator.platform==="MacIntel" && navigator.maxTouchPoints>1);
@@ -39892,6 +39892,402 @@ refreshSettingButtons();
   window.runBookCinematic=movieBookCinematic;
   window.runBookOpenAnimation=(bookId,done,sourceRect)=>movieBookCinematic('open',bookId,done,sourceRect);
   window.runBookReturnAnimation=(bookId,done,targetRect)=>movieBookCinematic('return',bookId,done,targetRect);
+})();
+</script>
+
+
+<style id="v8939-procedural-3d-book-fix">
+.book-launch-overlay.v8939-3d{position:fixed!important;inset:0!important;z-index:99999!important;display:block!important;visibility:visible!important;opacity:1!important;overflow:hidden!important;isolation:isolate!important;background:#040203!important;pointer-events:auto!important}
+.book-launch-overlay.v8939-3d > *:not(.v8939-stage):not(.skip-book-animation){display:none!important}
+.v8939-stage{position:absolute;inset:0;overflow:hidden;perspective:2200px;transform-style:preserve-3d;background:#070304}
+.v8939-bg{position:absolute;inset:-2%;background-position:center;background-size:cover;background-repeat:no-repeat;will-change:transform,opacity;filter:saturate(.92) brightness(.65)}
+.v8939-bg.shelf{background-image:linear-gradient(180deg,rgba(8,4,4,.08),rgba(8,4,4,.28)),url("library-concept-shelf-v885.webp");opacity:1}
+.v8939-bg.room{background-image:linear-gradient(180deg,rgba(4,2,2,.26),rgba(4,2,2,.52)),url("lorespan-desk-room-v8930.webp");opacity:0}
+.v8939-stage.opening .v8939-bg.shelf{animation:v8939ShelfDepthOut 3.25s ease both}
+.v8939-stage.opening .v8939-bg.room{animation:v8939RoomFadeIn 3.25s ease both}
+.v8939-stage.returning .v8939-bg.shelf{animation:v8939ShelfDepthIn 2.6s ease both}
+.v8939-stage.returning .v8939-bg.room{animation:v8939RoomFadeOut 2.6s ease both}
+@keyframes v8939ShelfDepthOut{0%{transform:scale(1) rotateY(0deg);opacity:1}100%{transform:scale(1.06) rotateY(-8deg) translateX(-3%);opacity:.32}}
+@keyframes v8939RoomFadeIn{0%,46%{opacity:0;transform:scale(1.07)}100%{opacity:1;transform:scale(1)}}
+@keyframes v8939ShelfDepthIn{0%{transform:scale(1.06) rotateY(-8deg) translateX(-3%);opacity:.32}100%{transform:scale(1) rotateY(0deg) translateX(0);opacity:1}}
+@keyframes v8939RoomFadeOut{0%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.05)}}
+.v8939-magic{position:absolute;left:50%;top:17%;width:min(42vw,340px);height:min(72vh,680px);transform:translateX(-50%);pointer-events:none;opacity:.88;filter:blur(.2px)}
+.v8939-magic::before{content:"";position:absolute;left:50%;top:0;bottom:20%;width:22%;transform:translateX(-50%);background:radial-gradient(circle at 50% 0%,rgba(255,255,255,.78),rgba(214,116,255,.55) 18%,rgba(140,48,198,.25) 48%,transparent 75%);filter:blur(16px)}
+.v8939-magic::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 15%,rgba(255,255,255,.78) 0 1px,transparent 2px),radial-gradient(circle at 40% 30%,rgba(255,220,140,.72) 0 1px,transparent 2px),radial-gradient(circle at 63% 36%,rgba(255,255,255,.85) 0 1px,transparent 2px),radial-gradient(circle at 55% 52%,rgba(255,220,140,.7) 0 1px,transparent 2px),radial-gradient(circle at 45% 67%,rgba(255,255,255,.9) 0 1px,transparent 2px);background-size:36px 36px,54px 54px,70px 70px,64px 64px,58px 58px;animation:v8939Sparkle 4.4s linear infinite;opacity:.8}
+@keyframes v8939Sparkle{0%{transform:translateY(12px)}100%{transform:translateY(-22px)}}
+.v8939-flight{position:absolute;left:0;top:0;transform-style:preserve-3d;will-change:transform,opacity;pointer-events:none}
+.v8939-book{position:relative;width:100%;height:100%;transform-style:preserve-3d;transform-origin:50% 50%}
+.v8939-shadow{position:absolute;left:-8%;right:-8%;bottom:-9%;height:16%;background:radial-gradient(ellipse at center,rgba(0,0,0,.58),transparent 70%);filter:blur(10px);transform:translateZ(-60px) rotateX(82deg)}
+.v8939-core{position:absolute;inset:0;transform-style:preserve-3d}
+.v8939-spine{position:absolute;left:-5%;top:4%;bottom:4%;width:10%;border-radius:10px 0 0 10px;background:linear-gradient(90deg,#120804,#764325 30%,#c28a4a 55%,#562c15 82%,#120804);transform:rotateY(90deg) translateZ(8px);transform-origin:right center;box-shadow:inset 0 0 0 1px rgba(255,236,192,.13)}
+.v8939-back-cover,.v8939-front-cover{position:absolute;top:0;bottom:0;width:100%;border-radius:12px 16px 16px 12px;overflow:hidden;transform-style:preserve-3d;backface-visibility:hidden;box-shadow:0 18px 30px rgba(0,0,0,.36),inset 8px 0 12px rgba(255,255,255,.07),inset -14px 0 20px rgba(0,0,0,.32)}
+.v8939-back-cover{left:0;background:linear-gradient(135deg,#2b1308,#5a2a15 46%,#1c0d08);transform:translateZ(-10px) rotateY(0deg);border-radius:16px 12px 12px 16px}
+.v8939-front-cover{left:0;background:#160b06;transform:translateZ(10px) rotateY(0deg);transform-origin:left center}
+.v8939-front-cover img{width:100%;height:100%;display:block;object-fit:cover}
+.v8939-page-block{position:absolute;left:3.5%;right:3.5%;top:3.5%;bottom:3.5%;border-radius:10px 13px 13px 10px;background:linear-gradient(180deg,#fff7e8,#ecd6af 18%,#fff4dc 55%,#d7bc8a 100%);transform:translateZ(0);box-shadow:0 0 0 1px rgba(90,57,25,.10)}
+.v8939-pages{position:absolute;inset:3.5%;transform-style:preserve-3d}
+.v8939-leaf{position:absolute;left:4%;top:2.2%;width:92%;height:95%;background:linear-gradient(90deg,#fff9eb,#f0ddba 15%,#fff6de 86%,#dec394);border-radius:8px 12px 12px 8px;transform-origin:left center;box-shadow:0 0 0 1px rgba(90,57,25,.08);opacity:.98}
+.v8939-leaf::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(180deg,transparent 0 1.32em,rgba(100,68,37,.12) 1.32em 1.37em)}
+.v8939-stage .v8939-flight .v8939-book.is-opening .v8939-front-cover{transform:translateZ(10px) rotateY(-152deg)}
+.v8939-stage .v8939-flight .v8939-book.is-opening .v8939-back-cover{transform:translateZ(-10px) rotateY(14deg)}
+.v8939-stage .v8939-flight .v8939-book.is-opening .v8939-leaf:nth-child(1){transform:translateZ(6px) rotateY(-12deg) rotateX(1deg)}
+.v8939-stage .v8939-flight .v8939-book.is-opening .v8939-leaf:nth-child(2){transform:translateZ(8px) rotateY(-26deg) rotateX(1deg)}
+.v8939-stage .v8939-flight .v8939-book.is-opening .v8939-leaf:nth-child(3){transform:translateZ(10px) rotateY(-45deg) rotateX(2deg)}
+.v8939-stage .v8939-flight .v8939-book.is-opening .v8939-leaf:nth-child(4){transform:translateZ(12px) rotateY(-68deg) rotateX(2deg)}
+.v8939-stage .v8939-flight .v8939-book.is-opening .v8939-leaf:nth-child(5){transform:translateZ(14px) rotateY(-92deg) rotateX(3deg)}
+.v8939-stage .v8939-flight .v8939-book.is-opening .v8939-leaf:nth-child(6){transform:translateZ(16px) rotateY(-116deg) rotateX(3deg)}
+.v8939-stage .v8939-flight .v8939-book.is-opening .v8939-leaf:nth-child(7){transform:translateZ(18px) rotateY(-136deg) rotateX(4deg)}
+.v8939-stage .v8939-flight .v8939-book.is-opening .v8939-page-block{opacity:.45}
+.v8939-book .v8939-front-cover,.v8939-book .v8939-back-cover,.v8939-book .v8939-leaf,.v8939-book .v8939-page-block{transition:transform .72s cubic-bezier(.24,.84,.18,1),opacity .42s ease,box-shadow .42s ease}
+.v8939-stage.opening .v8939-flight{animation:v8939FloatIn 3.2s cubic-bezier(.2,.82,.16,1) both}
+.v8939-stage.returning .v8939-flight{animation:v8939FloatOut 2.55s cubic-bezier(.22,.82,.2,1) both}
+@keyframes v8939FloatIn{0%{opacity:1}68%{opacity:1}100%{opacity:0}}
+@keyframes v8939FloatOut{0%{opacity:0}18%{opacity:1}84%{opacity:1}100%{opacity:0}}
+.v8939-spread{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr;opacity:0;transform:scale(.9);pointer-events:none;z-index:5;will-change:transform,opacity}
+.v8939-spread.show{animation:v8939SpreadIn .65s cubic-bezier(.22,.8,.2,1) both}
+.v8939-spread.hide{animation:v8939SpreadOut .44s ease both}
+@keyframes v8939SpreadIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+@keyframes v8939SpreadOut{from{opacity:1;transform:scale(1)}to{opacity:0;transform:scale(.94)}}
+.v8939-page{position:relative;padding:8vh 6vw 8vh;background:linear-gradient(90deg,#d1b27b 0,#fff8e0 5%,#f9edd0 96%,#c39e67 100%);overflow:hidden;color:#362414;box-shadow:inset 0 0 28px rgba(88,52,18,.16)}
+.v8939-page.left{border-right:2px solid rgba(106,67,25,.34)}
+.v8939-page::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(180deg,transparent 0 1.55em,rgba(110,72,36,.14) 1.55em 1.6em);pointer-events:none}
+.v8939-page-content{position:relative;z-index:2;max-width:36ch;font:clamp(16px,2.1vw,24px)/1.6 Georgia,serif;text-shadow:0 1px rgba(255,255,255,.38)}
+.v8939-page-content .eyebrow{display:block;margin-bottom:1.1em;padding-bottom:.6em;border-bottom:1px solid rgba(104,66,27,.25);font-size:.72em;letter-spacing:.16em;text-transform:uppercase;color:#6f5029}
+.v8939-page-content h2{margin:0 0 .8em;font:700 clamp(28px,4.6vw,56px)/1.04 Georgia,serif;color:#241307}
+.v8939-page-content p{margin:0 0 .95em}
+.v8939-page-num{position:absolute;bottom:2.3vh;left:50%;transform:translateX(-50%);font:600 clamp(12px,1.5vw,18px)/1 Georgia,serif;color:#8b6b43}
+.book-launch-overlay.v8939-3d .skip-book-animation{display:flex!important;position:fixed!important;right:max(12px,env(safe-area-inset-right))!important;bottom:max(12px,env(safe-area-inset-bottom))!important;z-index:100001!important;opacity:1!important;visibility:visible!important;pointer-events:auto!important;min-height:48px!important;padding:11px 17px!important;transform:none!important}
+@media(max-width:640px){.v8939-page{padding:6.5vh 6vw 7vh}.v8939-page-content{font-size:14px;line-height:1.5}.v8939-page-content h2{font-size:30px}.v8939-spread{grid-template-columns:1fr 1fr}}
+@media(prefers-reduced-motion:reduce){.v8939-stage.opening .v8939-flight,.v8939-stage.returning .v8939-flight,.v8939-spread.show,.v8939-spread.hide,.v8939-bg{animation-duration:.25s!important}.v8939-book .v8939-front-cover,.v8939-book .v8939-back-cover,.v8939-book .v8939-leaf,.v8939-book .v8939-page-block{transition-duration:.18s!important}}
+</style>
+<script id="v8939-procedural-3d-book-script">
+(function(){
+  const ANIMATION_OPEN_MS=3250;
+  const ANIMATION_RETURN_MS=2550;
+  const PAGE_SHOW_AT=2240;
+  const state={timers:[],skipHandler:null};
+  const reg={
+    books:()=>typeof BOOKS!=="undefined"?BOOKS:(globalThis.BOOKS||{}),
+    labels:()=>typeof LIBRARY_LABELS!=="undefined"?LIBRARY_LABELS:(globalThis.LIBRARY_LABELS||{}),
+    covers:()=>typeof LIBRARY_COVERS!=="undefined"?LIBRARY_COVERS:(globalThis.LIBRARY_COVERS||{})
+  };
+  function q(id){return document.getElementById(id)}
+  function cleanText(v){return String(v||"").replace(/\s+/g," ").trim()}
+  function excerpt(v,max){const t=cleanText(v);return !t?"":(t.length>max?t.slice(0,max-1).trim()+"…":t)}
+  function getBookCopy(bookId){
+    const books=reg.books(); const labels=reg.labels();
+    const book=books[bookId]||{}; const label=labels[bookId]||{};
+    let firstNode=null;
+    if(book && book.nodes && book.start && book.nodes[book.start]) firstNode=book.nodes[book.start];
+    if(!firstNode && book && book.nodes){
+      const firstKey=Object.keys(book.nodes)[0];
+      if(firstKey) firstNode=book.nodes[firstKey];
+    }
+    const rawLeft=firstNode?.narration || book.desc || "The story opens here.";
+    const rawRight=firstNode?.npc || firstNode?.text || book.desc || "The story remembers its first witness.";
+    return {
+      eyebrow:label.eyebrow || book.title || "Lorespan",
+      title:label.title || book.title || "Story",
+      left:excerpt(rawLeft,420) || "The story opens here.",
+      right:excerpt(rawRight,380) || "The story remembers its first witness.",
+      extra:excerpt(book.desc||"",220)
+    };
+  }
+  function clearTimers(){ state.timers.forEach(t=>clearTimeout(t)); state.timers=[]; }
+  function addTimer(fn,ms){ const t=setTimeout(fn,ms); state.timers.push(t); return t; }
+  function buildBook(bookId){
+    const cover=(reg.covers()[bookId]) || (reg.covers().academy) || "";
+    const flight=document.createElement('div');
+    flight.className='v8939-flight';
+    const book=document.createElement('div');
+    book.className='v8939-book';
+    const core=document.createElement('div');
+    core.className='v8939-core';
+    core.innerHTML='<div class="v8939-shadow"></div><div class="v8939-spine"></div><div class="v8939-back-cover"></div><div class="v8939-page-block"></div><div class="v8939-pages">'+Array.from({length:7},()=>'<i class="v8939-leaf"></i>').join('')+'</div><div class="v8939-front-cover"><img alt="" draggable="false"></div>';
+    const img=core.querySelector('img'); if(img) img.src=cover;
+    book.appendChild(core); flight.appendChild(book);
+    return {flight,book};
+  }
+  function buildSpread(bookId){
+    const copy=getBookCopy(bookId);
+    const spread=document.createElement('div');
+    spread.className='v8939-spread';
+    spread.innerHTML=`<section class="v8939-page left"><div class="v8939-page-content"><span class="eyebrow">${copy.eyebrow}</span><h2>${copy.title}</h2><p>${copy.left}</p></div><span class="v8939-page-num">1</span></section><section class="v8939-page right"><div class="v8939-page-content"><span class="eyebrow">Opening Passage</span><p>${copy.right}</p>${copy.extra?`<p>${copy.extra}</p>`:''}</div><span class="v8939-page-num">2</span></section>`;
+    return spread;
+  }
+  function cleanupOverlay(overlay,skip,finishRef,cancelRef){
+    clearTimers();
+    if(skip && state.skipHandler){ ['click','pointerup','touchend'].forEach(evt=>skip.removeEventListener(evt,state.skipHandler)); state.skipHandler=null; }
+    overlay.className='book-launch-overlay';
+    overlay.setAttribute('aria-hidden','true');
+    overlay.replaceChildren();
+    document.body.classList.remove('book-opening');
+    q('library')?.removeAttribute('inert');
+    if(activeBookAnimationFinish===finishRef) activeBookAnimationFinish=null;
+    if(activeBookAnimationCancel===cancelRef) activeBookAnimationCancel=null;
+  }
+  function positionFlight(flight,source,target){
+    flight.style.left='0px'; flight.style.top='0px';
+    const sx=source.left+source.width/2, sy=source.top+source.height/2;
+    const tx=target.left+target.width/2, ty=target.top+target.height/2;
+    const startScale=source.width/target.width;
+    const keyframes=[
+      {transform:`translate3d(${sx-target.width/2}px,${sy-target.height/2}px,0) scale(${startScale}) rotateX(0deg) rotateY(0deg) rotateZ(${source.rotation||0}deg)`},
+      {offset:.38,transform:`translate3d(${sx+(tx-sx)*.52-target.width/2}px,${sy+(ty-sy)*.52-target.height/2}px,80px) scale(${startScale+(1-startScale)*.58}) rotateX(7deg) rotateY(-22deg) rotateZ(-6deg)`},
+      {offset:.66,transform:`translate3d(${tx-target.width/2}px,${ty-target.height/2}px,140px) scale(1) rotateX(12deg) rotateY(-30deg) rotateZ(-8deg)`},
+      {offset:1,transform:`translate3d(${tx-target.width/2}px,${ty-target.height/2}px,170px) scale(1.08) rotateX(18deg) rotateY(-22deg) rotateZ(-10deg)`}
+    ];
+    flight.animate(keyframes,{duration:1300,easing:'cubic-bezier(.2,.84,.18,1)',fill:'forwards'});
+  }
+  function positionReturnFlight(flight,source,target){
+    flight.style.left='0px'; flight.style.top='0px';
+    const sx=source.left+source.width/2, sy=source.top+source.height/2;
+    const tx=target.left+target.width/2, ty=target.top+target.height/2;
+    const endScale=target.width/source.width;
+    const keyframes=[
+      {transform:`translate3d(${sx-source.width/2}px,${sy-source.height/2}px,150px) scale(1) rotateX(18deg) rotateY(-22deg) rotateZ(-10deg)`,opacity:0},
+      {offset:.12,transform:`translate3d(${sx-source.width/2}px,${sy-source.height/2}px,150px) scale(1) rotateX(18deg) rotateY(-22deg) rotateZ(-10deg)`,opacity:1},
+      {offset:.36,transform:`translate3d(${sx+(tx-sx)*.24-source.width/2}px,${sy+(ty-sy)*.24-source.height/2}px,115px) scale(${1-(1-endScale)*.18}) rotateX(10deg) rotateY(-20deg) rotateZ(-6deg)`,opacity:1},
+      {offset:.74,transform:`translate3d(${sx+(tx-sx)*.74-source.width/2}px,${sy+(ty-sy)*.74-source.height/2}px,60px) scale(${1-(1-endScale)*.72}) rotateX(3deg) rotateY(-10deg) rotateZ(-3deg)`,opacity:1},
+      {transform:`translate3d(${tx-source.width/2}px,${ty-source.height/2}px,0) scale(${endScale}) rotateX(0deg) rotateY(0deg) rotateZ(${target.rotation||0}deg)`,opacity:0}
+    ];
+    flight.animate(keyframes,{duration:1550,easing:'cubic-bezier(.22,.8,.2,1)',fill:'forwards'});
+  }
+  function runProcedural(direction,bookId,done,edgeRect){
+    if(typeof cancelBookOpenAnimation==='function') cancelBookOpenAnimation();
+    const overlay=q('bookLaunchOverlay');
+    const skip=q('skipBookAnimation');
+    if(!overlay){ done(); return false; }
+    let completed=false;
+    const stage=document.createElement('div'); stage.className='v8939-stage '+(direction==='return'?'returning':'opening');
+    stage.innerHTML='<div class="v8939-bg shelf"></div><div class="v8939-bg room"></div><div class="v8939-magic"></div>';
+    const spread=buildSpread(bookId);
+    const built=buildBook(bookId);
+    stage.appendChild(spread);
+    stage.appendChild(built.flight);
+    overlay.replaceChildren(stage); if(skip) overlay.appendChild(skip);
+    overlay.className='book-launch-overlay v8939-3d'; overlay.setAttribute('aria-hidden','false');
+    document.body.classList.add('book-opening'); q('library')?.setAttribute('inert','');
+    const vw=Math.max(1,window.innerWidth), vh=Math.max(1,window.innerHeight);
+    const source=edgeRect || {left:vw*.12,top:vh*.18,width:Math.min(120,vw*.16),height:Math.min(180,vh*.22),rotation:0};
+    const targetW=Math.min(vw*.36,280), targetH=targetW*1.48;
+    const target={left:vw*.5-targetW/2, top:vh*.48-targetH/2, width:targetW, height:targetH, rotation:0};
+    built.flight.style.width=targetW+'px'; built.flight.style.height=targetH+'px';
+    const returnSource={left:vw*.5-targetW/2, top:vh*.48-targetH/2, width:targetW, height:targetH, rotation:0};
+    const finish=()=>{ if(completed) return; completed=true; cleanupOverlay(overlay,skip,finish,cancel); done(); };
+    const cancel=()=>{ if(completed) return; completed=true; cleanupOverlay(overlay,skip,finish,cancel); };
+    activeBookAnimationFinish=finish; activeBookAnimationCancel=cancel;
+    state.skipHandler=(ev)=>{ ev?.preventDefault?.(); finish(); };
+    if(skip) ['click','pointerup','touchend'].forEach(evt=>skip.addEventListener(evt,state.skipHandler,{once:true,passive:false}));
+    if(direction==='open'){
+      positionFlight(built.flight,source,target);
+      addTimer(()=>built.book.classList.add('is-opening'),980);
+      addTimer(()=>spread.classList.add('show'),PAGE_SHOW_AT);
+      addTimer(finish,ANIMATION_OPEN_MS);
+    }else{
+      spread.classList.add('show');
+      built.book.classList.add('is-opening');
+      built.flight.style.opacity='0';
+      addTimer(()=>{ spread.classList.remove('show'); spread.classList.add('hide'); built.flight.style.opacity='1'; },120);
+      addTimer(()=>{ built.book.classList.remove('is-opening'); },420);
+      addTimer(()=>{ positionReturnFlight(built.flight,returnSource,source); },700);
+      addTimer(finish,ANIMATION_RETURN_MS);
+    }
+    return true;
+  }
+  window.runBookCinematic=runProcedural;
+  window.runBookOpenAnimation=(bookId,done,sourceRect)=>runProcedural('open',bookId,done,sourceRect);
+  window.runBookReturnAnimation=(bookId,done,targetRect)=>runProcedural('return',bookId,done,targetRect);
+})();
+</script>
+
+
+<style id="v8941-cinematic-book-pass">
+.book-launch-overlay.v8941-cinematic{position:fixed!important;inset:0!important;z-index:99999!important;display:block!important;visibility:visible!important;opacity:1!important;overflow:hidden!important;isolation:isolate!important;background:#050202!important;pointer-events:auto!important}
+.book-launch-overlay.v8941-cinematic>*:not(.v8941-stage):not(.skip-book-animation){display:none!important}
+.v8941-stage{position:absolute;inset:0;overflow:hidden;perspective:2600px;transform-style:preserve-3d;background:#050202}
+.v8941-layer{position:absolute;inset:-3%;background-position:center;background-repeat:no-repeat;background-size:cover;will-change:transform,opacity,filter}
+.v8941-layer.shelf{background-image:linear-gradient(180deg,rgba(8,4,4,.12),rgba(8,4,4,.36)),url("library-concept-shelf-v885.webp");opacity:1;filter:brightness(.62) saturate(.92)}
+.v8941-layer.room{background-image:linear-gradient(180deg,rgba(10,5,4,.22),rgba(10,5,4,.56)),url("lorespan-desk-room-v8930.webp");opacity:0;filter:brightness(.76) saturate(.94)}
+.v8941-stage.opening .v8941-layer.shelf{animation:v8941ShelfAway 3.6s ease both}
+.v8941-stage.opening .v8941-layer.room{animation:v8941RoomIn 3.6s ease both}
+.v8941-stage.returning .v8941-layer.shelf{animation:v8941ShelfBack 2.7s ease both}
+.v8941-stage.returning .v8941-layer.room{animation:v8941RoomOut 2.7s ease both}
+@keyframes v8941ShelfAway{0%{opacity:1;transform:translateZ(0) rotateY(0deg) scale(1)}100%{opacity:.24;transform:translateZ(-280px) rotateY(-10deg) scale(1.07)}}
+@keyframes v8941RoomIn{0%,42%{opacity:0;transform:translateZ(-160px) scale(1.08)}100%{opacity:1;transform:translateZ(0) scale(1)}}
+@keyframes v8941ShelfBack{0%{opacity:.24;transform:translateZ(-280px) rotateY(-10deg) scale(1.07)}100%{opacity:1;transform:translateZ(0) rotateY(0) scale(1)}}
+@keyframes v8941RoomOut{0%{opacity:1;transform:translateZ(0) scale(1)}100%{opacity:0;transform:translateZ(-120px) scale(1.03)}}
+.v8941-magic{position:absolute;left:50%;top:10%;width:min(45vw,360px);height:min(78vh,760px);transform:translateX(-50%);pointer-events:none;opacity:.9;mix-blend-mode:screen}
+.v8941-magic::before{content:"";position:absolute;left:50%;top:0;bottom:12%;width:16%;transform:translateX(-50%);background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(246,192,255,.72) 12%,rgba(177,68,255,.48) 38%,rgba(120,46,196,.18) 66%,transparent 100%);filter:blur(13px)}
+.v8941-magic::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 8%,rgba(255,255,255,.95) 0 1.3px,transparent 2px),radial-gradient(circle at 38% 22%,rgba(255,234,170,.9) 0 1.2px,transparent 2px),radial-gradient(circle at 60% 32%,rgba(255,255,255,.95) 0 1.1px,transparent 2px),radial-gradient(circle at 47% 45%,rgba(255,210,135,.82) 0 1px,transparent 2px),radial-gradient(circle at 54% 61%,rgba(255,255,255,.92) 0 1px,transparent 2px),radial-gradient(circle at 43% 78%,rgba(255,219,138,.85) 0 1px,transparent 2px);background-size:44px 44px,58px 58px,68px 68px,72px 72px,66px 66px,60px 60px;animation:v8941SparkFlow 4.3s linear infinite}
+@keyframes v8941SparkFlow{0%{transform:translateY(18px)}100%{transform:translateY(-22px)}}
+.v8941-flight{position:absolute;left:0;top:0;width:260px;height:390px;transform-style:preserve-3d;will-change:transform,opacity;pointer-events:none}
+.v8941-book{position:relative;width:100%;height:100%;transform-style:preserve-3d;transform-origin:50% 56%;will-change:transform}
+.v8941-shadow{position:absolute;left:-10%;right:-10%;bottom:-7%;height:14%;background:radial-gradient(ellipse at center,rgba(0,0,0,.58),transparent 72%);filter:blur(12px);transform:translateZ(-80px) rotateX(82deg)}
+.v8941-core{position:absolute;inset:0;transform-style:preserve-3d}
+.v8941-spine{position:absolute;left:-4%;top:4%;bottom:4%;width:8%;border-radius:10px 0 0 10px;background:linear-gradient(90deg,#150804,#754222 28%,#ca9150 52%,#6b381f 74%,#150804);transform:rotateY(90deg) translateZ(8px);transform-origin:right center;box-shadow:inset 0 0 0 1px rgba(255,239,200,.13)}
+.v8941-back-cover,.v8941-front-cover,.v8941-page-stack{position:absolute;left:0;top:0;width:100%;height:100%;transform-style:preserve-3d;backface-visibility:hidden;border-radius:12px 16px 16px 12px;overflow:hidden}
+.v8941-back-cover{transform:translateZ(-9px) rotateY(0deg);background:linear-gradient(135deg,#2f150a,#5f2b16 42%,#220e07);box-shadow:0 18px 26px rgba(0,0,0,.38),inset 7px 0 12px rgba(255,255,255,.05),inset -12px 0 18px rgba(0,0,0,.32)}
+.v8941-front-cover{transform:translateZ(10px) rotateY(0deg);transform-origin:left center;background:#140905;box-shadow:0 18px 26px rgba(0,0,0,.42),inset 8px 0 12px rgba(255,255,255,.08),inset -14px 0 18px rgba(0,0,0,.3)}
+.v8941-front-cover img{display:block;width:100%;height:100%;object-fit:cover}
+.v8941-page-stack{left:2.8%;top:2.6%;width:94.4%;height:94.8%;transform:translateZ(0)}
+.v8941-paper-edge{position:absolute;inset:0;border-radius:10px 13px 13px 10px;background:linear-gradient(180deg,#fff8e6,#ecd6ae 18%,#fff5dd 58%,#ddc08f 100%);box-shadow:0 0 0 1px rgba(90,57,25,.12)}
+.v8941-leaf{position:absolute;left:3%;top:2%;width:94%;height:95%;background:linear-gradient(90deg,#fff9eb,#f0ddba 14%,#fff6de 86%,#dec394);border-radius:8px 12px 12px 8px;transform-origin:left center;box-shadow:0 0 0 1px rgba(90,57,25,.08);opacity:.99}
+.v8941-leaf::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(180deg,transparent 0 1.28em,rgba(100,68,37,.1) 1.28em 1.32em)}
+.v8941-flight .v8941-front-cover,.v8941-flight .v8941-back-cover,.v8941-flight .v8941-leaf,.v8941-flight .v8941-paper-edge,.v8941-book{transition:transform .88s cubic-bezier(.21,.82,.17,1),opacity .42s ease,filter .42s ease}
+.v8941-flight.fan .v8941-book{transform:rotateX(72deg) rotateY(-8deg) rotateZ(-4deg) scale(1.05)}
+.v8941-flight.fan .v8941-front-cover{transform:translateZ(16px) rotateY(-174deg) rotateX(8deg)}
+.v8941-flight.fan .v8941-back-cover{transform:translateZ(-16px) rotateY(38deg) rotateX(-4deg)}
+.v8941-flight.fan .v8941-paper-edge{opacity:.24;transform:translateZ(2px) scale(.98)}
+.v8941-flight.fan .v8941-leaf:nth-child(2){transform:translateZ(6px) rotateY(-10deg) rotateX(2deg)}
+.v8941-flight.fan .v8941-leaf:nth-child(3){transform:translateZ(8px) rotateY(-24deg) rotateX(2deg)}
+.v8941-flight.fan .v8941-leaf:nth-child(4){transform:translateZ(10px) rotateY(-42deg) rotateX(2deg)}
+.v8941-flight.fan .v8941-leaf:nth-child(5){transform:translateZ(12px) rotateY(-61deg) rotateX(3deg)}
+.v8941-flight.fan .v8941-leaf:nth-child(6){transform:translateZ(14px) rotateY(-82deg) rotateX(3deg)}
+.v8941-flight.fan .v8941-leaf:nth-child(7){transform:translateZ(16px) rotateY(-102deg) rotateX(4deg)}
+.v8941-flight.fan .v8941-leaf:nth-child(8){transform:translateZ(18px) rotateY(-121deg) rotateX(4deg)}
+.v8941-flight.fan .v8941-leaf:nth-child(9){transform:translateZ(20px) rotateY(-138deg) rotateX(5deg)}
+.v8941-flight.fan .v8941-leaf:nth-child(10){transform:translateZ(22px) rotateY(-152deg) rotateX(6deg)}
+.v8941-spread{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr;opacity:0;transform:scale(.88);pointer-events:none;z-index:5}
+.v8941-spread.show{animation:v8941SpreadIn .64s cubic-bezier(.2,.82,.2,1) both}
+.v8941-spread.hide{animation:v8941SpreadOut .38s ease both}
+@keyframes v8941SpreadIn{from{opacity:0;transform:scale(.88)}to{opacity:1;transform:scale(1)}}
+@keyframes v8941SpreadOut{from{opacity:1;transform:scale(1)}to{opacity:0;transform:scale(.95)}}
+.v8941-page{position:relative;padding:8vh 6vw 7.5vh;background:linear-gradient(90deg,#d1b27b 0,#fff8e0 5%,#f9edd0 96%,#c39e67 100%);overflow:hidden;color:#362414;box-shadow:inset 0 0 28px rgba(88,52,18,.16)}
+.v8941-page.left{border-right:2px solid rgba(106,67,25,.34)}
+.v8941-page::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(180deg,transparent 0 1.55em,rgba(110,72,36,.14) 1.55em 1.6em);pointer-events:none}
+.v8941-page-content{position:relative;z-index:2;max-width:36ch;font:clamp(16px,2.1vw,24px)/1.6 Georgia,serif;text-shadow:0 1px rgba(255,255,255,.38)}
+.v8941-page-content .eyebrow{display:block;margin-bottom:1.1em;padding-bottom:.6em;border-bottom:1px solid rgba(104,66,27,.25);font-size:.72em;letter-spacing:.16em;text-transform:uppercase;color:#6f5029}
+.v8941-page-content h2{margin:0 0 .8em;font:700 clamp(28px,4.6vw,56px)/1.04 Georgia,serif;color:#241307}
+.v8941-page-content p{margin:0 0 .95em}
+.v8941-page-num{position:absolute;bottom:2.2vh;left:50%;transform:translateX(-50%);font:600 clamp(12px,1.5vw,18px)/1 Georgia,serif;color:#8b6b43}
+.book-launch-overlay.v8941-cinematic .skip-book-animation{display:flex!important;position:fixed!important;right:max(12px,env(safe-area-inset-right))!important;bottom:max(12px,env(safe-area-inset-bottom))!important;z-index:100001!important;opacity:1!important;visibility:visible!important;pointer-events:auto!important;min-height:48px!important;padding:11px 17px!important;transform:none!important}
+@media(max-width:640px){.v8941-flight{width:220px;height:330px}.v8941-page{padding:6.5vh 5.8vw 7vh}.v8941-page-content{font-size:14px;line-height:1.5}.v8941-page-content h2{font-size:30px}}
+@media(prefers-reduced-motion:reduce){.v8941-layer,.v8941-spread.show,.v8941-spread.hide{animation-duration:.22s!important}.v8941-flight .v8941-front-cover,.v8941-flight .v8941-back-cover,.v8941-flight .v8941-leaf,.v8941-flight .v8941-paper-edge,.v8941-book{transition-duration:.16s!important}}
+</style>
+<script id="v8941-cinematic-book-pass-script">
+(function(){
+  const OPEN_MS=3450;
+  const RETURN_MS=2700;
+  const FAN_AT=980;
+  const SPREAD_AT=2280;
+  const state={timers:[],skipHandler:null};
+  const reg={
+    books:()=>typeof BOOKS!=="undefined"?BOOKS:(globalThis.BOOKS||{}),
+    labels:()=>typeof LIBRARY_LABELS!=="undefined"?LIBRARY_LABELS:(globalThis.LIBRARY_LABELS||{}),
+    covers:()=>typeof LIBRARY_COVERS!=="undefined"?LIBRARY_COVERS:(globalThis.LIBRARY_COVERS||{})
+  };
+  function q(id){return document.getElementById(id)}
+  function clean(v){return String(v||"").replace(/\s+/g,' ').trim()}
+  function short(v,n){const t=clean(v); return !t?'':(t.length>n?t.slice(0,n-1).trim()+'…':t)}
+  function addTimer(fn,ms){const t=setTimeout(fn,ms); state.timers.push(t); return t;}
+  function clearTimers(){state.timers.forEach(clearTimeout); state.timers=[];}
+  function getCopy(bookId){
+    const book=(reg.books()[bookId]||{}), label=(reg.labels()[bookId]||{});
+    let first=null;
+    if(book.nodes && book.start && book.nodes[book.start]) first=book.nodes[book.start];
+    if(!first && book.nodes){ const key=Object.keys(book.nodes)[0]; if(key) first=book.nodes[key]; }
+    const left=short(first?.narration || first?.text || book.desc || 'The story opens here.', 440) || 'The story opens here.';
+    const right=short(first?.npc || first?.response || first?.text || book.desc || 'The story remembers its first witness.', 360) || 'The story remembers its first witness.';
+    return {eyebrow:label.eyebrow || book.title || 'Lorespan', title:label.title || book.title || 'Story', left, right, extra: short(book.desc||'',200)};
+  }
+  function cleanup(overlay,skip,finishRef,cancelRef){
+    clearTimers();
+    if(skip && state.skipHandler){ ['click','pointerup','touchend'].forEach(evt=>skip.removeEventListener(evt,state.skipHandler)); state.skipHandler=null; }
+    overlay.className='book-launch-overlay';
+    overlay.setAttribute('aria-hidden','true');
+    overlay.replaceChildren();
+    document.body.classList.remove('book-opening');
+    q('library')?.removeAttribute('inert');
+    if(activeBookAnimationFinish===finishRef) activeBookAnimationFinish=null;
+    if(activeBookAnimationCancel===cancelRef) activeBookAnimationCancel=null;
+  }
+  function buildSpread(bookId){
+    const copy=getCopy(bookId); const spread=document.createElement('div');
+    spread.className='v8941-spread';
+    spread.innerHTML=`<section class="v8941-page left"><div class="v8941-page-content"><span class="eyebrow">${copy.eyebrow}</span><h2>${copy.title}</h2><p>${copy.left}</p></div><span class="v8941-page-num">1</span></section><section class="v8941-page right"><div class="v8941-page-content"><span class="eyebrow">Opening Passage</span><p>${copy.right}</p>${copy.extra?`<p>${copy.extra}</p>`:''}</div><span class="v8941-page-num">2</span></section>`;
+    return spread;
+  }
+  function buildBook(bookId){
+    const cover=(reg.covers()[bookId]) || (reg.covers().academy) || '';
+    const flight=document.createElement('div'); flight.className='v8941-flight';
+    const book=document.createElement('div'); book.className='v8941-book';
+    const core=document.createElement('div'); core.className='v8941-core';
+    core.innerHTML='<div class="v8941-shadow"></div><div class="v8941-spine"></div><div class="v8941-back-cover"></div><div class="v8941-page-stack"><div class="v8941-paper-edge"></div>'+Array.from({length:9},()=>'<i class="v8941-leaf"></i>').join('')+'</div><div class="v8941-front-cover"><img alt="" draggable="false"></div>';
+    const img=core.querySelector('img'); if(img) img.src=cover;
+    book.appendChild(core); flight.appendChild(book);
+    return {flight,book};
+  }
+  function getRects(edgeRect){
+    const vw=Math.max(1,window.innerWidth), vh=Math.max(1,window.innerHeight);
+    const source=edgeRect || {left:vw*.12,top:vh*.18,width:Math.min(120,vw*.16),height:Math.min(180,vh*.22),rotation:0};
+    const targetW=Math.min(vw*.33,260), targetH=targetW*1.5;
+    const hover={left:vw*.5-targetW/2, top:vh*.46-targetH/2, width:targetW, height:targetH, rotation:0};
+    return {vw,vh,source,hover};
+  }
+  function animateIn(flight,source,hover){
+    const sx=source.left+source.width/2, sy=source.top+source.height/2;
+    const hx=hover.left+hover.width/2, hy=hover.top+hover.height/2;
+    const startScale=source.width/hover.width;
+    flight.animate([
+      {transform:`translate3d(${sx-hover.width/2}px,${sy-hover.height/2}px,0) scale(${startScale}) rotateX(0deg) rotateY(0deg) rotateZ(${source.rotation||0}deg)`, opacity:1},
+      {offset:.28,transform:`translate3d(${sx+(hx-sx)*.44-hover.width/2}px,${sy+(hy-sy)*.44-hover.height/2}px,70px) scale(${startScale+(1-startScale)*.42}) rotateX(8deg) rotateY(-18deg) rotateZ(-5deg)`,opacity:1},
+      {offset:.58,transform:`translate3d(${sx+(hx-sx)*.84-hover.width/2}px,${sy+(hy-sy)*.84-hover.height/2}px,155px) scale(.98) rotateX(14deg) rotateY(-26deg) rotateZ(-8deg)`,opacity:1},
+      {offset:1,transform:`translate3d(${hx-hover.width/2}px,${hy-hover.height/2}px,220px) scale(1.06) rotateX(16deg) rotateY(-16deg) rotateZ(-6deg)`,opacity:1}
+    ],{duration:1340,easing:'cubic-bezier(.18,.84,.16,1)',fill:'forwards'});
+  }
+  function animateOut(flight,hover,source){
+    const sx=hover.left+hover.width/2, sy=hover.top+hover.height/2;
+    const tx=source.left+source.width/2, ty=source.top+source.height/2;
+    const endScale=source.width/hover.width;
+    flight.animate([
+      {transform:`translate3d(${sx-hover.width/2}px,${sy-hover.height/2}px,220px) scale(1.06) rotateX(16deg) rotateY(-16deg) rotateZ(-6deg)`,opacity:0},
+      {offset:.14,transform:`translate3d(${sx-hover.width/2}px,${sy-hover.height/2}px,220px) scale(1.06) rotateX(16deg) rotateY(-16deg) rotateZ(-6deg)`,opacity:1},
+      {offset:.48,transform:`translate3d(${sx+(tx-sx)*.36-hover.width/2}px,${sy+(ty-sy)*.36-hover.height/2}px,120px) scale(${1.02-(1.02-endScale)*.24}) rotateX(9deg) rotateY(-11deg) rotateZ(-4deg)`,opacity:1},
+      {offset:.78,transform:`translate3d(${sx+(tx-sx)*.82-hover.width/2}px,${sy+(ty-sy)*.82-hover.height/2}px,45px) scale(${1.02-(1.02-endScale)*.74}) rotateX(3deg) rotateY(-5deg) rotateZ(-2deg)`,opacity:1},
+      {transform:`translate3d(${tx-hover.width/2}px,${ty-hover.height/2}px,0) scale(${endScale}) rotateX(0deg) rotateY(0deg) rotateZ(${source.rotation||0}deg)`,opacity:0}
+    ],{duration:1580,easing:'cubic-bezier(.22,.82,.18,1)',fill:'forwards'});
+  }
+  function run(direction,bookId,done,edgeRect){
+    if(typeof cancelBookOpenAnimation==='function') cancelBookOpenAnimation();
+    const overlay=q('bookLaunchOverlay'), skip=q('skipBookAnimation');
+    if(!overlay){ done(); return false; }
+    let completed=false;
+    const stage=document.createElement('div'); stage.className='v8941-stage '+(direction==='return'?'returning':'opening');
+    stage.innerHTML='<div class="v8941-layer shelf"></div><div class="v8941-layer room"></div><div class="v8941-magic"></div>';
+    const spread=buildSpread(bookId), built=buildBook(bookId);
+    stage.appendChild(spread); stage.appendChild(built.flight);
+    overlay.replaceChildren(stage); if(skip) overlay.appendChild(skip);
+    overlay.className='book-launch-overlay v8941-cinematic'; overlay.setAttribute('aria-hidden','false');
+    document.body.classList.add('book-opening'); q('library')?.setAttribute('inert','');
+    const {source,hover}=getRects(edgeRect);
+    built.flight.style.width=hover.width+'px'; built.flight.style.height=hover.height+'px';
+    const finish=()=>{ if(completed) return; completed=true; cleanup(overlay,skip,finish,cancel); done(); };
+    const cancel=()=>{ if(completed) return; completed=true; cleanup(overlay,skip,finish,cancel); };
+    activeBookAnimationFinish=finish; activeBookAnimationCancel=cancel;
+    state.skipHandler=(ev)=>{ ev?.preventDefault?.(); finish(); };
+    if(skip) ['click','pointerup','touchend'].forEach(evt=>skip.addEventListener(evt,state.skipHandler,{once:true,passive:false}));
+    if(direction==='open'){
+      animateIn(built.flight,source,hover);
+      addTimer(()=>built.flight.classList.add('fan'), FAN_AT);
+      addTimer(()=>spread.classList.add('show'), SPREAD_AT);
+      addTimer(()=>{ built.flight.style.opacity='0'; }, SPREAD_AT+120);
+      addTimer(finish, OPEN_MS);
+    } else {
+      spread.classList.add('show');
+      built.flight.classList.add('fan');
+      built.flight.style.opacity='0';
+      addTimer(()=>{ spread.classList.remove('show'); spread.classList.add('hide'); }, 40);
+      addTimer(()=>{ built.flight.style.opacity='1'; }, 210);
+      addTimer(()=>{ built.flight.classList.remove('fan'); }, 420);
+      addTimer(()=>{ animateOut(built.flight,hover,source); }, 700);
+      addTimer(finish, RETURN_MS);
+    }
+    return true;
+  }
+  window.runBookCinematic=run;
+  window.runBookOpenAnimation=(bookId,done,sourceRect)=>run('open',bookId,done,sourceRect);
+  window.runBookReturnAnimation=(bookId,done,targetRect)=>run('return',bookId,done,targetRect);
 })();
 </script>
 

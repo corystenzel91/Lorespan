@@ -174,3 +174,20 @@
 - Added book-open-movie.mp4 and book-return-movie.mp4 to the package.
 - Replaced the movie cinematic controller with a stronger version that keeps the selected book visually identified, supports skip more reliably, and reveals readable page copy before entering the reader.
 - Updated visible app version string to 8.9.38.
+
+## v8.9.39
+- Replaced the v8.9.38 movie-book override with a cleaner procedural 3D transition that flies the selected book forward, opens it in 3D, fans pages, then reveals the opening spread.
+- Fixed the duplicate/stray frame issue that appeared before the final page reveal by rebuilding overlay cleanup and timing.
+- Fixed the opening spread text source so it pulls from actual story content/labels instead of default placeholder text when possible.
+- Rebuilt the shelf/home background assets so the library uses a clean bookshelf image instead of the wrong hero art.
+- Restored all local cover/background assets referenced by the app package and bumped the app version to 8.9.39.
+
+## v8.9.40
+- Restored the bookshelf artwork so the library no longer appears missing/empty.
+- Rebuilt the library/home shelf background with visible books and glow while keeping the 3D transition fixes from v8.9.39.
+- Bumped the visible app version to 8.9.40.
+
+## v8.9.41
+- Added a more realistic procedural 3D open/return transition with a mid-air fanned-book pose before the spread appears.
+- Tightened overlay cleanup and skip handling during open/return transitions.
+- Kept bookshelf restoration and prior asset repairs intact while bumping the app version to 8.9.41.
