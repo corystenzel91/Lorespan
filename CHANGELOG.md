@@ -1,5 +1,16 @@
 # Changelog
 
+## v8.9.32
+
+- Added an explicit Preview Book control for every shelf volume.
+- Added persistent opened-book tracking so Continue and Start Over appear after a book has been opened, even before character setup is completed.
+- Increased the selected cover pull-out depth and perspective so it reads as halfway out of the shelf.
+- Reinforced visible spine, page block, top edge, side edge, contact shadow, and perspective during opening and return.
+- Forced the illustrated desk-room asset as the transition background.
+- Removed dormant movie CSS, the legacy movie loader, and all stale movie-path references.
+- Verified all ten books have placements, covers, labels, and existing cover files.
+- Advanced app, manifest, and service-worker cache versions to v8.9.32.
+
 ## v8.9.31
 - Preserved all ten book preview cards and Start Over confirmation controls.
 - Preserved first-page reading before character creation for fresh starts.

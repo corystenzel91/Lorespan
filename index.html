@@ -4045,13 +4045,6 @@ body.book-opening{overflow:hidden!important;touch-action:none}
 }
 </style>
 
-<style id="movie-animation-v8928">
-.book-launch-overlay.live3d-v8931{display:block!important;position:fixed!important;inset:0!important;z-index:10050!important;background:#050302!important;overflow:hidden!important}
-.book-launch-overlay.live3d-v8931>*:not(.book-animation-movie):not(.skip-book-animation){display:none!important}
-.book-launch-overlay.live3d-v8931 .book-animation-movie{display:block!important;position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:cover!important;background:#050302!important;z-index:1!important;pointer-events:none!important}
-.book-launch-overlay.live3d-v8931 .skip-book-animation{display:flex!important;position:fixed!important;left:50%!important;right:auto!important;bottom:max(16px,env(safe-area-inset-bottom))!important;transform:translateX(-50%)!important;z-index:4!important;opacity:1!important;visibility:visible!important;pointer-events:auto!important;min-height:48px!important;white-space:nowrap!important}
-@media (orientation:landscape){.book-launch-overlay.live3d-v8931 .book-animation-movie{object-fit:cover!important}}
-</style>
 
 
 <style id="v8930-polish">
@@ -4120,6 +4113,34 @@ body.book-opening{overflow:hidden!important;touch-action:none}
   .concept-book.is-pulling .concept-book-depth{transform:perspective(1000px) translate3d(-6%,15%,88px) rotateX(6deg) rotateY(-15deg) scale(1.19)!important}
 }
 @media(prefers-reduced-motion:reduce){.concept-book-face,.concept-book-depth{transition-duration:.12s!important}}
+</style>
+
+<style id="v8932-library-runtime-audit-fix">
+/* v8.9.32: clearer halfway preview, realistic shelf alignment, and live desk cinematic hardening. */
+.concept-book.selected .concept-book-face,.concept-book.active .concept-book-face{
+  transform:perspective(1250px) translate3d(0,13%,88px) rotateX(4deg) rotateY(-13deg) rotateZ(.5deg) scale(1.18)!important;
+  box-shadow:-12px 6px 0 rgba(27,11,5,.96),-18px 13px 24px rgba(0,0,0,.62),0 30px 38px rgba(0,0,0,.78),0 0 24px color-mix(in srgb,var(--book-glow) 38%,transparent)!important;
+}
+.concept-book.selected .concept-book-depth,.concept-book.active .concept-book-depth{
+  transform:perspective(1250px) translate3d(-7%,14%,65px) rotateX(4deg) rotateY(-13deg) scale(1.17)!important;
+  background:linear-gradient(90deg,#100603 0 7%,#6b3c1d 8% 13%,#f3e7c5 14% 92%,#9a6e3b 93% 100%)!important;
+}
+.concept-book.preview-pulse .concept-book-face{animation:v8932PreviewPulse .62s cubic-bezier(.2,.8,.2,1)}
+@keyframes v8932PreviewPulse{0%,100%{filter:saturate(1.03) brightness(1.03)}45%{filter:saturate(1.16) brightness(1.16);translate:0 -4px}}
+.concept-card-actions{display:grid!important;grid-template-columns:1fr 1.35fr!important;gap:7px!important;align-items:center!important}
+.concept-card-actions .restart-action{grid-column:1/-1!important;justify-self:start!important}
+.concept-card-actions .preview-action{min-height:38px!important;border:1px solid rgba(224,183,113,.42)!important;border-radius:7px!important;padding:7px!important;text-align:center!important;color:#f0d9b5!important;background:rgba(30,15,10,.48)!important}
+.book-launch-overlay.open .v862-room{background-image:linear-gradient(180deg,rgba(8,4,2,.05),rgba(8,4,2,.18)),url("lorespan-desk-room-v8930.webp")!important;background-size:cover!important;background-position:center!important}
+.book-launch-overlay .v862-flight{backface-visibility:visible!important;transform-style:preserve-3d!important}
+.book-launch-overlay .v862-book-cover{border-radius:8px 14px 14px 7px!important;overflow:hidden!important}
+.book-launch-overlay .v862-page-side,.book-launch-overlay .v862-page-top,.book-launch-overlay .v862-page-block{opacity:1!important}
+@media(max-width:620px){
+  .concept-book.selected .concept-book-face,.concept-book.active .concept-book-face{transform:perspective(1000px) translate3d(0,12%,68px) rotateX(4deg) rotateY(-12deg) scale(1.15)!important}
+  .concept-book.selected .concept-book-depth,.concept-book.active .concept-book-depth{transform:perspective(1000px) translate3d(-6%,13%,49px) rotateX(4deg) rotateY(-12deg) scale(1.14)!important}
+  .concept-card-actions{grid-template-columns:1fr!important}
+  .concept-card-actions .restart-action{grid-column:1!important}
+  .concept-card-actions .preview-action{min-height:34px!important;font-size:.68rem!important}
+}
 </style>
 </head>
 <body>
@@ -37390,6 +37411,13 @@ function shelfProgress(state){
   const history=Array.isArray(state?.history)?state.history.length:0;
   return history?`${history} passages recorded`:"Not started";
 }
+function bookOpenedStorageKey(bookId){return `lorespan-opened-${bookId}`;}
+function hasOpenedBook(bookId){
+  try{return localStorage.getItem(bookOpenedStorageKey(bookId))==="1";}catch{return false;}
+}
+function markBookOpened(bookId){
+  try{localStorage.setItem(bookOpenedStorageKey(bookId),"1");}catch{}
+}
 function fillSetupFromProfile(bookId,reset=false){
   const existing=!reset?getProfile(bookId):null;
   const labels=LIBRARY_LABELS[bookId]||{title:BOOKS[bookId]?.title||"this book"};
@@ -37567,7 +37595,8 @@ function buildShelf(){
     previewCard.classList.add("active-glow");
     const isPreview=["Story preview","Future volume"].includes(labels.status);
     const profileReady=hasCompletedBookProfile(bookId);
-    const primaryLabel=(hasProgress&&profileReady)?"Continue":((profileReady&&!hasProgress)?(isPreview?"Open Preview":"Begin Story"):(isPreview?"Open Preview":"Begin Story"));
+    const openedBefore=hasOpenedBook(bookId);
+    const primaryLabel=(hasProgress&&profileReady)||openedBefore?"Continue":(isPreview?"Open Preview":"Open Book");
     const tags=tagWords(bookId,b).map(t=>`<span>${t}</span>`).join('');
     previewCard.setAttribute("aria-label",`${labels.eyebrow}: ${labels.title}`);
     previewCard.setAttribute("aria-busy","false");
@@ -37578,9 +37607,17 @@ function buildShelf(){
       <p class="concept-card-desc">${b.desc}</p>
       <div class="concept-card-tags">${tags}</div>
       <div class="concept-card-actions">
-        <button class="cover-action primary-action">${primaryLabel}</button>
-        ${hasProgress?'<button class="secondary-link restart-action">Start Over</button>':''}
+        <button class="secondary-link preview-action" type="button">Preview Book</button>
+        <button class="cover-action primary-action" type="button">${primaryLabel}</button>
+        ${(hasProgress||openedBefore)?'<button class="secondary-link restart-action" type="button">Start Over</button>':''}
       </div>`;
+    previewCard.querySelector('.preview-action').onclick=()=>{
+      const selected=shelf.querySelector(`.concept-book[data-book="${bookId}"]`);
+      selected?.classList.remove('preview-pulse');
+      requestAnimationFrame(()=>selected?.classList.add('preview-pulse'));
+      selected?.focus({preventScroll:true});
+      window.setTimeout(()=>selected?.classList.remove('preview-pulse'),650);
+    };
     previewCard.querySelector('.primary-action').onclick=()=>openSelectedBook(bookId);
     const restart=previewCard.querySelector('.restart-action');
     if(restart)restart.onclick=()=>{
@@ -37596,6 +37633,7 @@ function buildShelf(){
     const hotspot=shelf.querySelector(`.concept-book[data-book="${bookId}"]`);
     if(!hotspot) return;
     shelf.dataset.opening="true";
+    markBookOpened(bookId);
     await withTimeout(preloadCinematicAssets(),1400);
     if(!document.body.contains(hotspot)){shelf.dataset.opening="false";return;}
     previewCard.setAttribute("aria-busy","true");
@@ -38588,107 +38626,6 @@ function runBookCinematic(direction,bookId,done,edgeRect=null){
   // Pre-rendered movies flattened the book and could show stale shelf artwork.
   return runBookProceduralCinematic(direction,bookId,done,edgeRect);
 }
-function runBookMovieCinematicLegacy(direction,bookId,done,edgeRect=null){
-  const moviePath=`movies/${bookId}-${direction==='return'?'return':'open'}.mp4`;
-  const overlay=$("bookLaunchOverlay");
-  const skip=$("skipBookAnimation");
-  if(!overlay || !window.HTMLVideoElement || !moviePath){
-    return runBookProceduralCinematic(direction,bookId,done,edgeRect);
-  }
-  cancelBookOpenAnimation();
-  const epoch=++bookAnimationEpoch;
-  let finished=false;
-  let fallbackStarted=false;
-  let watchdog=0;
-  let video=overlay.querySelector('.book-animation-movie');
-  if(!video){
-    video=document.createElement('video');
-    video.className='book-animation-movie';
-    video.muted=true;
-    video.defaultMuted=true;
-    video.playsInline=true;
-    video.setAttribute('playsinline','');
-    video.setAttribute('webkit-playsinline','');
-    video.preload='auto';
-    video.disablePictureInPicture=true;
-    video.controls=false;
-    overlay.appendChild(video);
-  }
-  const library=$("library");
-  const shelf=$("shelf");
-  const label=direction==='return'?'Skip return movie':'Skip opening movie';
-  if(skip){
-    const arrow=skip.querySelector('[aria-hidden="true"]');
-    [...skip.childNodes].filter(n=>n.nodeType===Node.TEXT_NODE).forEach(n=>n.remove());
-    skip.insertBefore(document.createTextNode(`${label} `),arrow||skip.firstChild);
-    skip.setAttribute('aria-label',label);
-    skip.disabled=false;
-  }
-  bookOpeningInProgress=true;
-  document.body.classList.add('book-opening');
-  library?.setAttribute('inert','');
-  overlay.className=`book-launch-overlay open live3d-v8931${direction==='return'?' returning':''}`;
-  overlay.setAttribute('aria-hidden','false');
-  overlay.setAttribute('aria-busy','true');
-  video.style.display='block';
-
-  const clearState=()=>{
-    window.clearTimeout(watchdog);
-    skip?.removeEventListener('click',finish);
-    video.removeEventListener('ended',finish);
-    video.removeEventListener('error',fallback);
-    try{video.pause();}catch{}
-    video.removeAttribute('src');
-    try{video.load();}catch{}
-    video.style.display='none';
-    overlay.className='book-launch-overlay';
-    overlay.setAttribute('aria-hidden','true');
-    overlay.removeAttribute('aria-busy');
-    library?.removeAttribute('inert');
-    document.body.classList.remove('book-opening');
-    bookOpeningInProgress=false;
-    if(shelf)shelf.dataset.opening='false';
-    shelf?.querySelectorAll('.concept-book.is-pulling,.concept-book.is-returning').forEach(el=>el.classList.remove('is-pulling','is-returning'));
-    if(skip)skip.disabled=true;
-    if(activeBookAnimationCancel===cancel)activeBookAnimationCancel=null;
-    if(activeBookAnimationFinish===finish)activeBookAnimationFinish=null;
-  };
-  const handoff=()=>{
-    clearState();
-    requestAnimationFrame(()=>{
-      if(epoch!==bookAnimationEpoch)return;
-      try{done?.();}catch(error){console.error('Book movie handoff failed',error);}
-    });
-  };
-  function finish(){
-    if(finished)return;
-    finished=true;
-    handoff();
-  }
-  function cancel(){
-    if(finished)return;
-    finished=true;
-    clearState();
-  }
-  function fallback(){
-    if(finished||fallbackStarted)return;
-    fallbackStarted=true;
-    finished=true;
-    clearState();
-    runBookProceduralCinematic(direction,bookId,done,edgeRect);
-  }
-  activeBookAnimationCancel=cancel;
-  activeBookAnimationFinish=finish;
-  skip?.addEventListener('click',finish,{once:true});
-  video.addEventListener('ended',finish,{once:true});
-  video.addEventListener('error',fallback,{once:true});
-  watchdog=window.setTimeout(fallback,7500);
-  video.src=moviePath;
-  const playPromise=video.play();
-  if(playPromise&&typeof playPromise.catch==='function')playPromise.catch(fallback);
-  return true;
-}
-
 function runBookOpenAnimation(bookId,done,sourceRect=null){
   return runBookCinematic("open",bookId,done,sourceRect);
 }
@@ -39163,7 +39100,7 @@ window.addEventListener("unhandledrejection",event=>{
   }
 });
 
-const LORESPAN_VERSION="v8.9.31";
+const LORESPAN_VERSION="v8.9.32";
 const LORESPAN_BUILD_ID="vantheir-adaptive-novel-github";
 const isIOS=/iPad|iPhone|iPod/.test(navigator.userAgent) ||
   (navigator.platform==="MacIntel" && navigator.maxTouchPoints>1);
