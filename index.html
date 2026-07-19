@@ -40289,75 +40289,7 @@ refreshSettingButtons();
   window.runBookCinematic=runProcedural;
   window.runBookOpenAnimation=(bookId,done,sourceRect)=>runProcedural('open',bookId,done,sourceRect);
   window.runBookReturnAnimation=(bookId,done,targetRect)=>runProcedural('return',bookId,done,targetRect);
-})();/* === Bookshelf cinematic flow controller === */
-(() => {
-  const BOOKS = [
-    { id:'beastbound', title:'Beastbound', cover:'cover-beastbound-clean-v885.webp', open:'beastbound-open.mp4', ret:'beastbound-return.mp4' },
-    { id:'emberwake',  title:'Emberwake',  cover:'cover-emberwake-v885.webp',       open:'emberwake-open.mp4',  ret:'emberwake-return.mp4'  },
-    { id:'guild',      title:'Guild',      cover:'cover-guild-clean-v885.webp',     open:'guild-open.mp4',      ret:'guild-return.mp4'      },
-    { id:'hero',       title:'Hero Academia', cover:'cover-hero-academia-v8930.webp', open:'hero-open.mp4', ret:'hero-return.mp4'        },
-    { id:'ironhaven',  title:'Ironhaven',  cover:'cover-ironhaven-v885.webp',       open:'ironhaven-open.mp4',  ret:'ironhaven-return.mp4'  },
-    { id:'moonwake',   title:'Moonwake',   cover:'cover-moonwake-v885.webp',        open:'moonwake-open.mp4',   ret:'moonwake-return.mp4'   },
-    { id:'starfall',   title:'Starfall',   cover:'cover-starfall-v885.webp',        open:'starfall-open.mp4',   ret:'starfall-return.mp4'   },
-    { id:'tides',      title:'Tides',      cover:'cover-tides-clean-v885.webp',     open:'pirate-open.mp4',     ret:'pirate-return.mp4'     },
-    { id:'vantheir',   title:'Vantheir',   cover:'cover-vantheir-clean-v885.webp',  open:'academy-open.mp4',    ret:'academy-return.mp4'    },
-    { id:'veilwood',   title:'Veilwood',   cover:'cover-veilwood-v885.webp',        open:'veilwood-open.mp4',   ret:'veilwood-return.mp4'   }
-  ];
-
-  const SHELF_BG = 'library-concept-shelf-v885.webp';
-  const DESK_BG = 'lorespan-desk-room-v8930.webp';
-
-  const overlay = document.getElementById('cinemaOverlay');
-  const stage = document.getElementById('cinemaStage');
-  const shelfBg = document.getElementById('cinemaShelfBg');
-  const deskBg = document.getElementById('cinemaDeskBg');
-  const cinemaBook = document.getElementById('cinemaBook');
-  const openVideo = document.getElementById('cinemaOpenVideo');
-  const returnVideo = document.getElementById('cinemaReturnVideo');
-  const firstPagePanel = document.getElementById('firstPagePanel');
-  const firstPageTitle = document.getElementById('firstPageTitle');
-  const firstPageText = document.getElementById('firstPageText');
-  const firstPageBackBtn = document.getElementById('firstPageBackBtn');
-  const continueToSetupBtn = document.getElementById('continueToSetupBtn');
-
-  if (!overlay || !stage) return;
-
-  shelfBg.style.backgroundImage = `url("${SHELF_BG}")`;
-  deskBg.style.backgroundImage = `url("${DESK_BG}")`;
-
-  let activeBook = null;
-  let isTransitioning = false;
-  let setupOverlay = null;
-  let setupCard = null;
-  let existingSetupGrid = null;
-
-  const wait = (ms) => new Promise(r => setTimeout(r, ms));
-
-  function firstPageFor(book){
-    return `Welcome to ${book.title}.\n\nThis is the first page preview. The reader can review this before character setup appears.`;
-  }
-
-  function pickBookFromCard(card, idx){
-    const titleEl = card.querySelector('h2');
-    const title = (titleEl?.textContent || '').trim().toLowerCase();
-    const byTitle = BOOKS.find(b => title.includes(b.id) || title.includes(b.title.toLowerCase()));
-    return byTitle || BOOKS[idx % BOOKS.length];
-  }
-
-  async function playVideo(videoEl){
-    if (!videoEl?.src) return;
-    videoEl.currentTime = 0;
-    videoEl.classList.add('playing');
-    try { await videoEl.play(); } catch {}
-    await new Promise(resolve => {
-      let done = false;
-      const finish = () => { if (done) return; done = true; cleanup(); resolve(); };
-      const cleanup = () => {
-        videoEl.removeEventListener('ended', finish);
-        videoEl.removeEventListener('error', finish);
-      };
-      videoEl.addEventListener('ended', finish, { once:true });
-      videoEl.addEventListener
+})();
 </script>
 
 
