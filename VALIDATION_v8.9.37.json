@@ -1,0 +1,27 @@
+{
+  "version": "v8.9.37",
+  "html_parse": true,
+  "inline_script_count": 4,
+  "javascript_syntax_errors": [],
+  "duplicate_ids": [],
+  "missing_referenced_assets": [],
+  "missing_required_files": [],
+  "movies": [
+    {
+      "file": "book-open-movie.mp4",
+      "duration_seconds": 4.0,
+      "ok": true
+    },
+    {
+      "file": "book-return-movie.mp4",
+      "duration_seconds": 4.0,
+      "ok": true
+    }
+  ],
+  "service_worker_syntax_ok": true,
+  "movie_open_hook": true,
+  "movie_return_hook": true,
+  "page_fill_animation": true,
+  "fallback_present": true,
+  "passed": true
+}

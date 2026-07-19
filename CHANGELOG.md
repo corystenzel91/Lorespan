@@ -1,4 +1,13 @@
-# Lorespan v8.9.35
+# Lorespan v8.9.37
+
+- Enlarged Start Over into a full-width visible control.
+- Preserved natural cover colors for all books.
+- Refined the live 3D shelf-to-desk flight with restrained page depth and magical glow.
+- Restored readable cover titles during flight.
+- Prevented animated sheets from covering the first-page story text.
+- Kept the first story spread visible before entering the reader.
+
+# Lorespan v8.9.37
 
 - Rebuilt the live book presentation to preserve true cover artwork and visible physical depth.
 - Removed selected-cover color filters and tinting.
@@ -159,3 +168,10 @@
 - Added halfway-out selected-book preview with cover, page depth, shadow, title card, and per-book selection.
 - Switched opening and return to the live 3D procedural animation to eliminate blocky/stale movie backgrounds.
 - Aligned opening and return geometry to the visible selected cover.
+
+## v8.9.37
+- Restored movie-based book animation using the supplied 9733.mp4 sequence.
+- Added 3D shelf-facing turn during takeoff and reverse turn during return.
+- Added full-screen final page zoom.
+- Added reverse return movie and offline cache entries.
+- Added movie load fallback and cleanup safeguards.

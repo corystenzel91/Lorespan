@@ -4169,7 +4169,7 @@ body.book-opening{overflow:hidden!important;touch-action:none}
           </button>
           <input id="importSaveInput" type="file" accept="application/json,.json" hidden>
         </div>
-        <p id="appVersion" class="launcher-version">Lorespan v8.9.35</p>
+        <p id="appVersion" class="launcher-version">Lorespan v8.9.36</p>
       </aside>
       <div id="appStatus" class="sr-status" role="status" aria-live="polite"></div>
 
@@ -38519,6 +38519,7 @@ function runBookProceduralCinematic(direction,bookId,done,edgeRect=null){
   pageStacks.forEach(stack=>stack.style.opacity='1');
   if(glow)glow.style.opacity="0";
   if(flash)flash.style.opacity="0";
+  spread.classList.remove('story-visible');
   Object.assign(spread.style,{left:"50%",top:`${spreadBox.top}px`,width:`${spreadBox.width}px`,height:`${spreadBox.height}px`,transform:direction==='return'?'translate(-50%,-50%) perspective(1800px) rotateX(8deg) scale(1)':'translate(-50%,-50%) perspective(1800px) rotateX(58deg) rotateZ(-2deg) scale(.72)',opacity:direction==='return'?'1':'0'});
   room.style.opacity=direction==='return'?'1':'0';
   origin.style.opacity=direction==='return'?'0':'1';
@@ -38535,7 +38536,7 @@ function runBookProceduralCinematic(direction,bookId,done,edgeRect=null){
   const cleanup=()=>{
     clearTimeout(timer);skip?.removeEventListener("click",finish);
     animations.forEach(a=>{try{a.cancel()}catch{}});
-    flight.style.opacity="0";spread.style.opacity="0";origin.style.opacity="0";room.style.opacity="0";
+    flight.style.opacity="0";spread.style.opacity="0";spread.classList.remove('story-visible');origin.style.opacity="0";room.style.opacity="0";
     flight.style.willChange="auto";
     if(skip)skip.disabled=true;
     if(sourceMask){sourceMask.style.opacity='0';sourceMask.style.display='none';}
@@ -38590,7 +38591,10 @@ function runBookProceduralCinematic(direction,bookId,done,edgeRect=null){
     animateSafe(glow,[{opacity:0},{opacity:.27,offset:.64},{opacity:.12}],{duration:1050,delay:420,fill:'forwards',easing:'ease-out'},animations);
     await Promise.all([wait(coverOpen),wait(settleOpen),...pageAnimations.map(wait)]);
     if(stop())return;
-    await new Promise(r=>setTimeout(r,180));
+    turnPages.forEach(page=>{page.style.opacity='0';page.style.pointerEvents='none';});
+    pageStacks.forEach(stack=>stack.style.opacity='.82');
+    spread.classList.add('story-visible');
+    await new Promise(r=>setTimeout(r,1150));
 
     const zoom=animateSafe(spread,[
       {opacity:1,transform:'translate(-50%,-50%) perspective(1800px) rotateX(7deg) scale(1)'},
@@ -39113,7 +39117,7 @@ window.addEventListener("unhandledrejection",event=>{
   }
 });
 
-const LORESPAN_VERSION="v8.9.35";
+const LORESPAN_VERSION="v8.9.37";
 const LORESPAN_BUILD_ID="vantheir-adaptive-novel-github";
 const isIOS=/iPad|iPhone|iPod/.test(navigator.userAgent) ||
   (navigator.platform==="MacIntel" && navigator.maxTouchPoints>1);
@@ -39277,7 +39281,7 @@ if("serviceWorker" in navigator && location.protocol!=="file:"){
     }
   });
 
-  navigator.serviceWorker.register("./service-worker.js?v=8.9.35",{updateViaCache:"none"}).then(registration=>{
+  navigator.serviceWorker.register("./service-worker.js?v=8.9.36",{updateViaCache:"none"}).then(registration=>{
     swRegistration=registration;
 
     if(registration.waiting && navigator.serviceWorker.controller){
@@ -39529,7 +39533,7 @@ refreshSettingButtons();
 
 
 <style id="v8935-real-book-model-fix">
-/* v8.9.35 — preserve true cover color and use one physical 3D model everywhere. */
+/* v8.9.36 — preserve true cover color and use one physical 3D model everywhere. */
 #shelf .concept-book{perspective:1500px!important;transform-style:preserve-3d!important;overflow:visible!important}
 #shelf .concept-book-face{
   filter:none!important;mix-blend-mode:normal!important;opacity:1;
@@ -39570,7 +39574,7 @@ refreshSettingButtons();
 }
 .book-launch-overlay.cinematic-v862 .v862-book-cover::before{content:"";position:absolute;inset:0;border-radius:inherit;border:1px solid rgba(236,201,131,.24);pointer-events:none}
 .book-launch-overlay.cinematic-v862 .v862-book-cover::after{background:linear-gradient(103deg,rgba(255,255,255,.15),transparent 20%,transparent 74%,rgba(0,0,0,.22))!important;mix-blend-mode:normal!important}
-.book-launch-overlay.cinematic-v862 .v862-cover-title,.book-launch-overlay.cinematic-v862 .v862-cover-mark{display:none!important}
+.book-launch-overlay.cinematic-v862 .v862-cover-title{display:block!important;position:absolute!important;left:12%!important;right:9%!important;top:17%!important;color:#f6dfaa!important;text-align:center!important;font:700 clamp(13px,2.7vw,28px)/1.08 Georgia,serif!important;letter-spacing:.035em!important;text-transform:uppercase!important;text-shadow:0 2px 2px #180704,0 0 8px rgba(0,0,0,.85)!important;z-index:9!important;pointer-events:none!important}.book-launch-overlay.cinematic-v862 .v862-cover-mark{display:block!important;position:absolute!important;left:0!important;right:0!important;bottom:5.5%!important;text-align:center!important;color:#d8b873!important;font:700 clamp(7px,1.2vw,12px)/1 Georgia,serif!important;letter-spacing:.18em!important;z-index:9!important;text-shadow:0 1px 2px #120604!important}
 .book-launch-overlay.cinematic-v862 .v862-back-cover{transform:translateZ(-18px)!important;border-radius:9px 15px 15px 8px!important;background:#2b1309!important}
 .book-launch-overlay.cinematic-v862 .v862-page-side{right:-13%!important;width:20%!important;top:4%!important;height:92%!important;transform:rotateY(79deg) translateZ(1px)!important;background:repeating-linear-gradient(90deg,#fff8df 0 2px,#d4b77d 2px 3px,#f8ebc7 3px 5px)!important}
 .book-launch-overlay.cinematic-v862 .v862-page-top{top:-9%!important;height:16%!important;left:4%!important;right:0!important;transform:rotateX(76deg) translateZ(1px)!important;background:repeating-linear-gradient(0deg,#fff8df 0 2px,#d4b77d 2px 3px,#f8ebc7 3px 5px)!important}
@@ -39598,6 +39602,151 @@ refreshSettingButtons();
  .v8935-page-copy{font-size:9px;line-height:1.42;inset:7% 7%}.v8935-page-copy h2{font-size:15px}
 }
 </style>
+
+
+<style id="v8936-cinematic-book-and-controls-fix">
+/* v8.9.36: consistent warm leather rendering, readable pages, and full-size controls. */
+#shelf .concept-book-face{filter:none!important;mix-blend-mode:normal!important;image-rendering:auto!important;background-color:transparent!important}
+#shelf .concept-book.selected .concept-book-face,#shelf .concept-book.active .concept-book-face{
+  transform:perspective(1650px) translate3d(0,7%,72px) rotateX(1deg) rotateY(-9deg) rotateZ(0deg) scale(1.08)!important;
+  box-shadow:-6px 4px 0 rgba(40,17,7,.96),-12px 8px 17px rgba(0,0,0,.54),0 22px 30px rgba(0,0,0,.66),inset 9px 0 12px rgba(255,232,176,.10),inset -12px 0 18px rgba(0,0,0,.27)!important
+}
+#shelf .concept-book.selected .concept-book-depth,#shelf .concept-book.active .concept-book-depth{
+  left:5%!important;right:5%!important;height:94%!important;bottom:-1%!important;
+  background:repeating-linear-gradient(180deg,#f8edcf 0 2px,#d9be88 2px 3px,#fff6db 3px 5px)!important;
+  transform:perspective(1650px) translate3d(-4%,10%,48px) rotateX(1deg) rotateY(-9deg) scale(1.07)!important
+}
+.concept-card-actions .restart-action{display:flex!important;align-items:center!important;justify-content:center!important;flex:1 1 100%!important;min-height:46px!important;padding:10px 12px!important;border:1px solid rgba(236,194,121,.52)!important;border-radius:8px!important;background:linear-gradient(180deg,rgba(95,39,27,.92),rgba(48,16,14,.96))!important;color:#fff0d1!important;font:800 .78rem/1 system-ui,sans-serif!important;letter-spacing:.06em!important;text-transform:uppercase!important;box-shadow:0 8px 18px rgba(0,0,0,.28)!important}
+.concept-card-actions .restart-action:active{transform:translateY(1px)!important}
+.book-launch-overlay.cinematic-v862 .v862-flight{--book-depth:15px!important;filter:drop-shadow(0 24px 28px rgba(0,0,0,.62)) drop-shadow(0 0 16px color-mix(in srgb,var(--spark2) 55%,transparent))!important}
+.book-launch-overlay.cinematic-v862 .v862-book-cover{border-radius:7px 12px 12px 7px!important;transform:translateZ(15px)!important;box-shadow:inset 8px 0 11px rgba(255,238,194,.11),inset -12px 0 18px rgba(0,0,0,.31),0 24px 38px rgba(0,0,0,.52)!important}
+.book-launch-overlay.cinematic-v862 .v862-back-cover{transform:translateZ(-15px)!important;background:#2a1208!important}
+.book-launch-overlay.cinematic-v862 .v862-page-side{right:-9%!important;width:14%!important;transform:rotateY(80deg) translateZ(1px)!important}
+.book-launch-overlay.cinematic-v862 .v862-page-top{top:-6%!important;height:11%!important;transform:rotateX(79deg) translateZ(1px)!important}
+.book-launch-overlay.cinematic-v862 .v862-page-block{bottom:-6%!important;height:11%!important;right:-5%!important;transform:rotateX(77deg) translateZ(0)!important}
+.book-launch-overlay.cinematic-v862 .v862-book-spine{left:-7%!important;width:14%!important;transform:rotateY(78deg) translateZ(2px)!important}
+.book-launch-overlay.cinematic-v862 .v862-page-left,.book-launch-overlay.cinematic-v862 .v862-page-right{background:linear-gradient(90deg,#cfb47c 0,#fff8df 8%,#f5e8c6 94%,#bc985d 100%)!important}
+.book-launch-overlay.cinematic-v862 .v8935-page-copy{z-index:40!important;opacity:0!important;transition:opacity .35s ease!important;inset:8% 9%!important;font-size:clamp(10px,1.6vw,16px)!important;line-height:1.46!important}
+.book-launch-overlay.cinematic-v862 .v862-spread.story-visible .v8935-page-copy{opacity:1!important}
+.book-launch-overlay.cinematic-v862 .v862-spread.story-visible .v862-turn-page{opacity:0!important;visibility:hidden!important}
+.book-launch-overlay.cinematic-v862 .v862-spread.story-visible .v862-page-left,.book-launch-overlay.cinematic-v862 .v862-spread.story-visible .v862-page-right{box-shadow:inset 0 0 22px rgba(90,53,20,.16)!important}
+.book-launch-overlay.cinematic-v862 .v862-page-glow{opacity:.09!important}
+@media(max-width:600px){.concept-card-actions .restart-action{min-height:44px!important;font-size:.73rem!important}.book-launch-overlay.cinematic-v862 .v8935-page-copy{font-size:10px!important;line-height:1.38!important;inset:7% 7%!important}.book-launch-overlay.cinematic-v862 .v8935-page-copy h2{font-size:16px!important;margin:5% 0 6%!important}}
+</style>
+
+
+
+<style id="v8937-movie-book-animation-fix">
+/* v8.9.37 — full movie animation with shelf turn, reverse return, and full-screen page finish. */
+.book-launch-overlay.movie-v8937{
+  display:block!important;position:fixed!important;inset:0!important;z-index:99999!important;
+  overflow:hidden!important;background:#080403!important;opacity:1!important;visibility:visible!important;
+  pointer-events:auto!important;isolation:isolate!important;
+}
+.book-launch-overlay.movie-v8937>*:not(.movie-v8937-stage):not(.skip-book-animation){display:none!important}
+.movie-v8937-stage{position:absolute;inset:0;overflow:hidden;background:#080403;perspective:1800px;transform-style:preserve-3d}
+.movie-v8937-stage::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 48%,transparent 35%,rgba(0,0,0,.12) 68%,rgba(0,0,0,.58) 100%);z-index:4}
+.movie-v8937-video-wrap{position:absolute;inset:-1.5%;transform-origin:var(--movie-origin-x,50%) var(--movie-origin-y,38%);transform-style:preserve-3d;will-change:transform,opacity;backface-visibility:hidden}
+.movie-v8937-video{display:block;width:100%;height:100%;object-fit:cover;object-position:center;background:#080403;will-change:transform,filter;transform-origin:50% 50%}
+.movie-v8937-stage.opening .movie-v8937-video-wrap{animation:v8937ShelfTurnOut 4s cubic-bezier(.18,.72,.18,1) both}
+.movie-v8937-stage.returning .movie-v8937-video-wrap{animation:v8937ShelfTurnIn 4s cubic-bezier(.18,.72,.18,1) both}
+.movie-v8937-stage.opening .movie-v8937-video{animation:v8937PageFill 4s cubic-bezier(.2,.74,.16,1) both}
+.movie-v8937-stage.returning .movie-v8937-video{animation:v8937PageUnfill 4s cubic-bezier(.2,.74,.16,1) both}
+@keyframes v8937ShelfTurnOut{
+  0%{opacity:0;transform:perspective(1800px) rotateY(78deg) rotateZ(var(--movie-shelf-tilt,0deg)) scale(.93)}
+  5%{opacity:1}
+  22%{transform:perspective(1800px) rotateY(35deg) rotateZ(calc(var(--movie-shelf-tilt,0deg)*.55)) scale(.97)}
+  40%{transform:perspective(1800px) rotateY(0deg) rotateZ(0deg) scale(1)}
+  100%{opacity:1;transform:perspective(1800px) rotateY(0deg) rotateZ(0deg) scale(1)}
+}
+@keyframes v8937ShelfTurnIn{
+  0%{opacity:1;transform:perspective(1800px) rotateY(0deg) rotateZ(0deg) scale(1)}
+  60%{transform:perspective(1800px) rotateY(0deg) rotateZ(0deg) scale(1)}
+  82%{transform:perspective(1800px) rotateY(35deg) rotateZ(calc(var(--movie-shelf-tilt,0deg)*.55)) scale(.97)}
+  96%{opacity:1}
+  100%{opacity:0;transform:perspective(1800px) rotateY(78deg) rotateZ(var(--movie-shelf-tilt,0deg)) scale(.93)}
+}
+@keyframes v8937PageFill{
+  0%,66%{transform:scale(1);filter:brightness(.96) saturate(1)}
+  82%{transform:scale(1.14);filter:brightness(1) saturate(1)}
+  100%{transform:scale(1.52);filter:brightness(1.04) saturate(.98)}
+}
+@keyframes v8937PageUnfill{
+  0%{transform:scale(1.52);filter:brightness(1.04) saturate(.98)}
+  18%{transform:scale(1.14);filter:brightness(1) saturate(1)}
+  34%,100%{transform:scale(1);filter:brightness(.96) saturate(1)}
+}
+.book-launch-overlay.movie-v8937 .skip-book-animation{display:flex!important;position:fixed!important;right:max(12px,env(safe-area-inset-right))!important;bottom:max(12px,env(safe-area-inset-bottom))!important;left:auto!important;top:auto!important;z-index:100000!important;opacity:1!important;visibility:visible!important;pointer-events:auto!important;min-height:48px!important;padding:11px 17px!important;transform:none!important}
+@media(max-width:650px){
+  .movie-v8937-video{object-fit:cover;object-position:center}
+  @keyframes v8937PageFill{0%,66%{transform:scale(1)}82%{transform:scale(1.19)}100%{transform:scale(1.72)}}
+  @keyframes v8937PageUnfill{0%{transform:scale(1.72)}18%{transform:scale(1.19)}34%,100%{transform:scale(1)}}
+}
+@media(prefers-reduced-motion:reduce){.movie-v8937-video-wrap,.movie-v8937-video{animation-duration:1.2s!important}}
+</style>
+<script id="v8937-movie-book-animation-script">
+(function(){
+  const OPEN_MOVIE='book-open-movie.mp4';
+  const RETURN_MOVIE='book-return-movie.mp4';
+  const MOVIE_DURATION=4000;
+  function movieBookCinematic(direction,bookId,done,edgeRect){
+    if(typeof cancelBookOpenAnimation==='function')cancelBookOpenAnimation();
+    const overlay=document.getElementById('bookLaunchOverlay');
+    const skip=document.getElementById('skipBookAnimation');
+    if(!overlay){done();return false}
+    let finished=false,timer=0;
+    const stage=document.createElement('div');
+    stage.className='movie-v8937-stage '+(direction==='return'?'returning':'opening');
+    const wrap=document.createElement('div');
+    wrap.className='movie-v8937-video-wrap';
+    const video=document.createElement('video');
+    video.className='movie-v8937-video';
+    video.src=direction==='return'?RETURN_MOVIE:OPEN_MOVIE;
+    video.preload='auto';video.muted=true;video.playsInline=true;video.setAttribute('playsinline','');video.setAttribute('webkit-playsinline','');
+    wrap.appendChild(video);stage.appendChild(wrap);
+    const vw=Math.max(1,window.innerWidth),vh=Math.max(1,window.innerHeight);
+    if(edgeRect){
+      const cx=edgeRect.left+edgeRect.width/2,cy=edgeRect.top+edgeRect.height/2;
+      wrap.style.setProperty('--movie-origin-x',Math.max(5,Math.min(95,cx/vw*100))+'%');
+      wrap.style.setProperty('--movie-origin-y',Math.max(5,Math.min(95,cy/vh*100))+'%');
+      wrap.style.setProperty('--movie-shelf-tilt',(Number(edgeRect.rotation)||0)+'deg');
+    }
+    const finish=()=>{
+      if(finished)return;finished=true;clearTimeout(timer);
+      try{video.pause();video.removeAttribute('src');video.load()}catch(e){}
+      skip&&skip.removeEventListener('click',finish);
+      overlay.classList.remove('movie-v8937','open','closing');
+      overlay.setAttribute('aria-hidden','true');stage.remove();
+      document.body.classList.remove('book-opening');
+      document.getElementById('library')?.removeAttribute('inert');
+      if(activeBookAnimationCancel===cancel)activeBookAnimationCancel=null;
+      if(activeBookAnimationFinish===finish)activeBookAnimationFinish=null;
+      done();
+    };
+    const cancel=()=>{if(finished)return;finished=true;clearTimeout(timer);try{video.pause()}catch(e){};skip&&skip.removeEventListener('click',finish);overlay.classList.remove('movie-v8937','open','closing');overlay.setAttribute('aria-hidden','true');stage.remove();document.body.classList.remove('book-opening');document.getElementById('library')?.removeAttribute('inert')};
+    overlay.querySelectorAll('.movie-v8937-stage').forEach(node=>node.remove());
+    overlay.appendChild(stage);
+    overlay.className='book-launch-overlay movie-v8937 open';
+    overlay.setAttribute('aria-hidden','false');
+    document.body.classList.add('book-opening');
+    document.getElementById('library')?.setAttribute('inert','');
+    activeBookAnimationCancel=cancel;activeBookAnimationFinish=finish;
+    skip&&skip.addEventListener('click',finish,{once:true});
+    video.addEventListener('ended',finish,{once:true});
+    video.addEventListener('error',()=>{
+      console.error('Movie animation failed; using procedural fallback.');
+      cancel();
+      if(typeof runBookProceduralCinematic==='function')runBookProceduralCinematic(direction,bookId,done,edgeRect);else done();
+    },{once:true});
+    const play=video.play();if(play&&typeof play.catch==='function')play.catch(()=>{video.muted=true;video.play().catch(()=>{})});
+    timer=setTimeout(finish,MOVIE_DURATION+900);
+    return true;
+  }
+  runBookCinematic=movieBookCinematic;
+  runBookOpenAnimation=(bookId,done,sourceRect)=>movieBookCinematic('open',bookId,done,sourceRect);
+  runBookReturnAnimation=(bookId,done,targetRect)=>movieBookCinematic('return',bookId,done,targetRect);
+})();
+</script>
 
 </body>
 </html>

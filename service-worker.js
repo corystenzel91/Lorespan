@@ -1,5 +1,5 @@
 const CACHE_PREFIX="lorespan-";
-const CACHE_NAME='lorespan-v8.9.35';
+const CACHE_NAME='lorespan-v8.9.37';
 const CORE=[
   "./",
   "./index.html",
@@ -25,6 +25,8 @@ const CORE=[
   "./cover-emberwake-v885.webp",
   "./cover-ironhaven-v885.webp",
   "./cover-veilwood-v885.webp",
+  "./book-open-movie.mp4",
+  "./book-return-movie.mp4",
 ];
 self.addEventListener("install",e=>e.waitUntil((async()=>{const c=await caches.open(CACHE_NAME);await c.addAll(CORE);await self.skipWaiting()})()));
 self.addEventListener("activate",e=>e.waitUntil((async()=>{for(const k of await caches.keys())if(k.startsWith(CACHE_PREFIX)&&k!==CACHE_NAME)await caches.delete(k);await self.clients.claim()})()));
